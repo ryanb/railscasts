@@ -1,0 +1,28 @@
+<% title "Episode" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @episode.name %>
+</p>
+<p>
+  <strong>Permalink:</strong>
+  <%=h @episode.permalink %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @episode.description %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%=h @episode.notes %>
+</p>
+<p>
+  <strong>Published At:</strong>
+  <%=h @episode.published_at %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_episode_path(@episode) %> |
+  <%= link_to "Destroy", @episode, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", episodes_path %>
+</p>
