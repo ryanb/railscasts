@@ -12,6 +12,13 @@ Please read the license if you plan to use this code.
 3. migrate the databases (rake db:migrate)
 4. script/server and enjoy!
 
+If you want to run the tests, you'll need to install the rspec plugins.
+
+  script/plugin install http://rspec.rubyforge.org/svn/tags/CURRENT/rspec
+  script/plugin install http://rspec.rubyforge.org/svn/tags/CURRENT/rspec_on_rails
+
+I may add plugins to the repository later, just not yet.
+
 
 == License
 

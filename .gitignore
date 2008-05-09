@@ -4,3 +4,4 @@ tmp/**/*
 config/database.yml
 db/*.sqlite3
 vendor/rails
+vendor/plugins/*
