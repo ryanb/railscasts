@@ -12,10 +12,14 @@ Please read the license if you plan to use this code.
 3. migrate the databases (rake db:migrate)
 4. script/server and enjoy!
 
-If you want to run the tests, you'll need to install the rspec plugins.
+If you want to run the tests, you'll need to install the latest rspec plugins.
 
-  script/plugin install http://rspec.rubyforge.org/svn/tags/CURRENT/rspec
-  script/plugin install http://rspec.rubyforge.org/svn/tags/CURRENT/rspec_on_rails
+  script/plugin install http://rspec.rubyforge.org/svn/trunk/rspec
+  script/plugin install http://rspec.rubyforge.org/svn/trunk/rspec_on_rails
+
+You will also need to install the mocha gem.
+
+  gem install mocha
 
 I may add plugins to the repository later, just not yet.
 
