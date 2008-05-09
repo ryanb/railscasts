@@ -20,13 +20,13 @@ describe EpisodesController do
   end
   
   it "create action should render new template when model is invalid" do
-    Episode.any_instance.stubs(:valid?).returns(false)
+    Episode.any_instance.stub(:valid? => false)
     post :create
     response.should render_template(:new)
   end
   
   it "create action should redirect to index action when model is valid" do
-    Episode.any_instance.stubs(:valid?).returns(true)
+    Episode.any_instance.stub(:valid? => true)
     post :create
     response.should redirect_to(episode_path(assigns[:episode]))
   end
@@ -37,13 +37,13 @@ describe EpisodesController do
   end
   
   it "update action should render edit template when model is invalid" do
-    Episode.any_instance.stubs(:valid?).returns(false)
+    Episode.any_instance.stub(:valid? => false)
     put :update, :id => Episode.first
     response.should render_template(:edit)
   end
   
   it "update action should redirect to show action when model is valid" do
-    Episode.any_instance.stubs(:valid?).returns(true)
+    Episode.any_instance.stub(:valid? => true)
     put :update, :id => Episode.first
     response.should redirect_to(episode_path(Episode.first))
   end
