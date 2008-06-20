@@ -7,4 +7,10 @@ describe Episode do
     Episode.published.should include(a)
     Episode.published.should_not include(b)
   end
+  
+  it "should assign tags to episodes" do
+    episode = Episode.create!(:tag_names => 'foo bar')
+    episode.tags.map(&:name) == %w[foo bar]
+    episode.tag_names.should == 'foo bar'
+  end
 end
