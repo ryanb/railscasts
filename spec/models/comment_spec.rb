@@ -1,11 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Comment do
-  before(:each) do
-    @comment = Comment.new
+  it "should automatically add http to site url upon saving" do
+    comment = Comment.create!(:site_url => 'example.com')
+    comment.site_url.should == 'http://example.com'
   end
   
-  it "should be valid" do
-    @comment.should be_valid
+  it "should automatically add protocol if there already is one" do
+    comment = Comment.create!(:site_url => 'https://example.com')
+    comment.site_url.should == 'https://example.com'
   end
 end
