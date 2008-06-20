@@ -1,22 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title><%= h(yield(:title) || "Untitled") %></title>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Railscasts - <%= h(yield(:title) || "Free Ruby on Rails Screencasts") %></title>
+  	<meta name="description" content="Short Ruby on Rails screencasts containing tips, tricks and tutorials. Great for both novice and experienced programmers." />
+    <meta name="keywords" content="rails, ruby on rails, screencasts, railscast, railscasts, tips, tricks, tutorials, training, podcasts, programming" />
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
   </head>
   <body>
     <div id="container">
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>
-      
-      <%- if show_title? -%>
-        <h1><%=h yield(:title) %></h1>
-      <%- end -%>
-      
-      <%= yield %>
+      <div id="logo"><%= link_to_unless_current image_tag('logo.png', :size => '452x88', :alt => 'Railscasts'), root_path %></div>
+      <div id="main">
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+        
+        <%- if show_title? -%>
+          <h1 class="content"><%=h yield(:title) %></h1>
+        <%- end -%>
+        
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

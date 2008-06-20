@@ -4,40 +4,112 @@ body {
   font-size: 14px;
 }
 
+a {
+	color: #1B97F2;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 a img {
   border: none;
 }
 
-a {
-  color: #0000FF;
+h1 {
+  font-size: 24px;
 }
 
-body {
-  background-color: #4B7399;
+h2, h2 a {
+  color: #E98C08;
+  font-size: 18px;
+}
+
+h3 {
+  color: #666;
+  font-size: 14px;
+}
+
+h4 {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+label {
+  font-size: 12px;
+}
+
+label.required {
+  font-weight: bold;
+}
+
+ul {
+  margin: 4px 0;
+  padding-left: 17px;
 }
 
 #container {
-  width: 75%;
+  width: 680px;
   margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
 }
 
-#flash_notice, #flash_error {
-  padding: 5px 8px;
-  margin: 10px 0;
+#logo {
+  margin-top: 40px;
+  margin-left: 74px;
 }
 
 #flash_notice {
+  font-size: 11px;
   background-color: #CFC;
   border: solid 1px #6C6;
+  padding: 5px 8px;
+  margin-top: 10px;
 }
 
 #flash_error {
+  font-size: 11px;
   background-color: #FCC;
   border: solid 1px #C66;
+  padding: 5px 8px;
+  margin-top: 10px;
+}
+
+#main {
+  width: 500px;
+  float: left;
+}
+
+#side {
+  margin-left: 530px;
+  width: 150px;
+  color: #333;
+  font-size: 11px;
+  padding-top: 20px;
+}
+
+#side .section {
+  margin-bottom: 20px;
+}
+
+#side .badge {
+  padding-top: 8px;
+}
+
+#side ul {
+  list-style: none;
+  margin: 5px 0;
+  padding: 0;
+}
+
+#side ul li {
+  padding: 0;
+  margin: 2px 0;
+  font-size: 12px;
+}
+
+#side .sponsor {
+  margin: 5px 0;
 }
 
 .clear {
@@ -45,9 +117,185 @@ body {
 }
 
 
+#intro {
+  margin-top: 20px;
+}
+
+.content, .main {
+  margin-left: 100px;
+}
+
+.episode .side {
+  color: #999;
+  float: left;
+  width: 85px;
+  text-align: right;
+}
+
+.episode {
+  margin: 30px 0;
+}
+
+.episode h2 {
+  margin-top: 0px;
+  margin-bottom: 6px;
+}
+
+.episode .description {
+  margin-bottom: 2px;
+}
+
+.episode .number {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.episode .tags {
+  font-size: 10px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.episode .published_at {
+  font-size: 12px;
+}
+
+.episode .comments_count {
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.episode .download {
+  background-color: #F3F3F3;
+  border: dashed 1px #AAA;
+  padding: 8px 8px;
+  margin-top: 10px;
+  margin-right: 50px;
+}
+
+.download .stats {
+  color: #666;
+  font-size: 10px;
+}
+
+.episode .alt_download {
+  margin-top: 3px;
+  font-size: 10px;
+  color: #666;
+}
+
+.episode .notes {
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+#episode_nav {
+  margin: 8px 0;
+}
+
+#previous_episode {
+  float: left;
+}
+
+#next_episode {
+  float: right;
+  margin-right: 50px;
+}
+
+.actions {
+  font-size: 10px;
+}
+
+.actions p {
+  margin: 5px 0;
+}
+
+.comments {
+  border: #AAA solid 1px;
+  background-color: #F3F3F3;
+  margin-right: 50px;
+}
+
+.comment {
+  margin: 15px 20px;
+}
+
+.comment .name {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.comment_content {
+  font-size: 12px;
+}
+
+.comment_content p {
+  margin: 8px 0;
+}
+
+.comments hr {
+  width: 200px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid #CCC;
+}
+
+.add_comment {
+  margin-top: 30px;
+}
+
+.comment .created_at {
+  font-size: 10px;
+  color: #666;
+}
+
+.info {
+  font-style: italic;
+  color: #333;
+  font-size: 10px;
+}
+
+#about h2 {
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+#about p {
+  margin: 8px 0;
+}
+
+.faq .question {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.faq {
+  margin: 20px 0;
+}
+
+.prizes {
+  font-size: 11px;
+}
+
+.prizes .donor {
+  text-align: right;
+}
+
+.prizes .prize {
+  vertical-align: top;
+}
+
+.prizes li {
+  margin: 5px 0;
+}
 
 .fieldWithErrors {
   display: inline;
+}
+
+#rejected_comments {
+  font-size: 10px;
 }
 
 #errorExplanation {
@@ -79,4 +327,30 @@ body {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+#railsrumble {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+
+#bot_email_field {
+  display: none;
+}
+
+#faqs {
+  font-size: 12px;
+}
+
+#contest .submissions {
+  font-size: 11px;
+}
+
+#contest .submissions li {
+  margin: 8px 0;
+}
+
+#contest .submissions {
+  list-style: none;
 }
