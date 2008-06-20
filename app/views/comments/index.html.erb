@@ -1,0 +1,30 @@
+<% title "Comments" %>
+
+<table>
+  <tr>
+    <th>Episode</th>
+    <th>Content</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Site Url</th>
+    <th>User Ip</th>
+    <th>User Agent</th>
+    <th>Referrer</th>
+  </tr>
+  <% for comment in @comments %>
+    <tr>
+      <td><%=h comment.episode %></td>
+      <td><%=h comment.content %></td>
+      <td><%=h comment.name %></td>
+      <td><%=h comment.email %></td>
+      <td><%=h comment.site_url %></td>
+      <td><%=h comment.user_ip %></td>
+      <td><%=h comment.user_agent %></td>
+      <td><%=h comment.referrer %></td>
+      <td><%= link_to "Edit", edit_comment_path(comment) %></td>
+      <td><%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Comment", new_comment_path %></p>

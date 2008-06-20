@@ -1,0 +1,35 @@
+<% form_for @comment do |f| %>
+  <p>
+    <%= f.label :episode %><br />
+    <%= f.text_field :episode %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :site_url %><br />
+    <%= f.text_field :site_url %>
+  </p>
+  <p>
+    <%= f.label :user_ip %><br />
+    <%= f.text_field :user_ip %>
+  </p>
+  <p>
+    <%= f.label :user_agent %><br />
+    <%= f.text_field :user_agent %>
+  </p>
+  <p>
+    <%= f.label :referrer %><br />
+    <%= f.text_field :referrer %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080620015432) do
+ActiveRecord::Schema.define(:version => 20080620022227) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "episode_id"
+    t.text     "content"
+    t.string   "name"
+    t.string   "email"
+    t.string   "site_url"
+    t.string   "user_ip"
+    t.string   "user_agent"
+    t.string   "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "episodes", :force => true do |t|
     t.string   "name"
