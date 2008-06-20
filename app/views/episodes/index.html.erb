@@ -1,25 +1,11 @@
 <% title "Episodes" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Permalink</th>
-    <th>Description</th>
-    <th>Notes</th>
-    <th>Published At</th>
-  </tr>
-  <% for episode in @episodes %>
-    <tr>
-      <td><%=h episode.name %></td>
-      <td><%=h episode.permalink %></td>
-      <td><%=h episode.description %></td>
-      <td><%=h episode.notes %></td>
-      <td><%=h episode.published_at %></td>
-      <td><%= link_to "Show", episode %></td>
-      <td><%= link_to "Edit", edit_episode_path(episode) %></td>
-      <td><%= link_to "Destroy", episode, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="episodes">
+  <%= render :partial => @episodes %>
+</div>
 
-<p><%= link_to "New Episode", new_episode_path %></p>
+<div class="content">
+  <div class="actions">
+    <p><%= link_to 'New Episode', new_episode_path %></p>
+  </div>
+</div>

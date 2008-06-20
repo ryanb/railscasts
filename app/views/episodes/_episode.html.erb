@@ -1,0 +1,37 @@
+<div class="episode">
+  <div class="side">
+    <div class="number">#<%= episode.id %></div>
+    <div class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></div>
+    <div class="comments_count">
+      <%= link_to pluralize(episode.comments.size, 'comment'), episode %>
+    </div>
+    <div class="actions">
+      <p><%= link_to 'Edit', edit_episode_path(episode) %></p>
+      <p><%= link_to 'Destroy', episode, :method => :delete, :confirm => 'Are you sure?' %></p>
+    </div>
+  </div>
+  <div class="main">
+    <h2><%= link_to h(episode.name), episode %></h2>
+    <div class="description"><%=h episode.description %></div>
+    <% unless episode.tags.empty? %>
+      <div class="tags">
+        Tags:
+        <% for tag in episode.tags %>
+          <%= link_to h(tag.name), tag %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="download">
+      <%= link_to "Download", 'download_url' %>
+      <span class="stats">
+        (file size, duration)
+      </span>
+      <div class="alt_download">
+        <%= link_to "alternative download", 'ipod_url' %> for iPod &amp; Apple TV
+        <span class="stats">
+          (file size, duration)
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
