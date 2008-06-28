@@ -12,7 +12,7 @@ class Episode < ActiveRecord::Base
   end
   
   def tag_names=(names)
-    self.tags = Tag.with_names(names)
+    self.tags = Tag.with_names(names.split(/\s+/))
   end
   
   def tag_names

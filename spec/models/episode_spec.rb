@@ -10,7 +10,7 @@ describe Episode do
   
   it "should assign tags to episodes" do
     episode = Factory.create(:episode, :tag_names => 'foo bar')
-    episode.tags.map(&:name) == %w[foo bar]
+    episode.tags.map(&:name).should == %w[foo bar]
     episode.tag_names.should == 'foo bar'
   end
   
