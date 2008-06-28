@@ -7,6 +7,10 @@ class Episode < ActiveRecord::Base
   
   validates_presence_of :published_at
   
+  def self.by_month
+    all.group_by { |e| e.published_at.beginning_of_month }
+  end
+  
   def tag_names=(names)
     self.tags = Tag.with_names(names)
   end

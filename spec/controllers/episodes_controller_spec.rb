@@ -9,6 +9,11 @@ describe EpisodesController do
     response.should render_template(:index)
   end
   
+  it "recent action should render recent template" do
+    get :recent
+    response.should render_template(:recent)
+  end
+  
   it "show action should render show template" do
     get :show, :id => Episode.first
     response.should render_template(:show)

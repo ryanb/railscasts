@@ -1,5 +1,9 @@
 class EpisodesController < ApplicationController
   def index
+    @episode_months = Episode.published.by_month
+  end
+  
+  def recent
     @episodes = Episode.find(:all)
   end
 

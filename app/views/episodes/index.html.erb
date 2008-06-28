@@ -1,11 +1,13 @@
 <% title "Episodes" %>
 
-<div class="episodes">
-  <%= render :partial => @episodes %>
-</div>
-
 <div class="content">
-  <div class="actions">
-    <p><%= link_to 'New Episode', new_episode_path %></p>
-  </div>
+  <% @episode_months.each do |month, episodes| %>
+    <h2><%=h month.strftime('%B %Y') %></h2>
+    <% for episode in episodes %>
+      <div>
+        <%= episode.id %>.
+        <%= link_to episode.name, episode %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
