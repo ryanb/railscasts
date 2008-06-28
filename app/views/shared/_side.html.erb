@@ -1,0 +1,49 @@
+<div class="section">
+  <strong>subscribe:</strong>
+  <ul id="feeds">
+    <li>Full: <a href="http://feeds.feedburner.com/railscasts">RSS</a>
+      | <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=218282043">iTunes</a></li>
+    <li>iPod: <a href="http://feeds.feedburner.com/railscasts_ipod">RSS</a>
+      | <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=253867754">iTunes</a></li>
+  </ul>
+</div>
+<div class="section">
+  <strong>navigation:</strong>
+  <ul id="navigation">
+    <li><%= link_to_unless_current "Recent Episodes", root_path %></li>
+    <li><%= link_to_unless_current "All Episodes", episodes_path %></li>
+    <li><%= link_to_unless_current "About Railscasts", about_path %></li>
+  </ul>
+</div>
+<div class="section">
+  <strong>tags:</strong>
+  <ul id="tags">
+  <% for tag in Tag.find(:all, :order => 'name') %>
+    <li><%= link_to h(tag.name), tag_path(tag) %></li>
+  <% end %>
+  </ul>
+</div>
+<div class="section">
+  <strong>sponsored by:</strong>
+</div>
+<div class="section">
+  <strong>if you want to help:</strong>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="badge">
+    <div>
+    <input type="hidden" name="cmd" value="_xclick" />
+    <input type="hidden" name="business" value="ryan@railscasts.com" />
+    <input type="hidden" name="item_name" value="Railscasts Donation" />
+    <input type="hidden" name="no_shipping" value="1" />
+    <input type="hidden" name="cn" value="Comments or Suggestions" />
+    <input type="hidden" name="currency_code" value="USD" />
+    <input type="hidden" name="tax" value="0" />
+    <input type="hidden" name="lc" value="US" />
+    <input type="hidden" name="bn" value="PP-DonationsBF" />
+    <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
+    </div>
+  </form>
+</div>
+<div class="section">
+  <strong>required:</strong><br />
+  <div class="badge"><a href="http://www.apple.com/quicktime/download/"><img src="/images/quicktime.gif" width="88" height="31" alt="Get Quicktime Player" /></a></div>
+</div>

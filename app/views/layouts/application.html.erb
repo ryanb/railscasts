@@ -23,6 +23,10 @@
         
         <%= yield %>
       </div>
+      <div id="side">
+        <%= yield(:side) || render(:partial => 'shared/side') %>
+      </div>
+      <div class="clear"></div>
     </div>
   </body>
 </html>
