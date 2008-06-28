@@ -1,12 +1,10 @@
 
 Interface
-- side bar
 - episode show page
 - episode forms
 - tags show page
 - comments list
 - comment forms
-- about page
 - contest page
 
 Core Features
@@ -16,6 +14,7 @@ Core Features
 - RSS feeds
 - textile for notes
 - authorization
+- sponsors
 
 Additional Features
 - search
