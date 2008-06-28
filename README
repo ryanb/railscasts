@@ -7,7 +7,7 @@ Please read the license if you plan to use this code.
 
 == Setup
 
-1. install edge rails (until 2.1 is released)
+1. install rails 2.1 if you haven't already
 2. make config/database.yml (see example_database.yml)
 3. migrate the databases (rake db:migrate)
 4. script/server and enjoy!
@@ -17,9 +17,9 @@ If you want to run the tests, you'll need to install the latest rspec plugins.
   script/plugin install http://rspec.rubyforge.org/svn/trunk/rspec
   script/plugin install http://rspec.rubyforge.org/svn/trunk/rspec_on_rails
 
-You will also need to install the mocha gem.
+You will also need to install the gems.
 
-  gem install mocha
+  rake gems:install RAILS_ENV='test'
 
 I may add plugins to the repository later, just not yet.
 

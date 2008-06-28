@@ -1,0 +1,25 @@
+
+Interface
+- side bar
+- episode show page
+- episode forms
+- tags show page
+- comments list
+- comment forms
+- about page
+- contest page
+
+Core Features
+- separate download file formats
+- spam protection
+- coderay code highlighting
+- RSS feeds
+- textile for notes
+- episode archive list
+- authorization
+
+Additional Features
+- search
+- textile for comments
+- add alternative download format for linux/windows
+- RSS feed for comments
