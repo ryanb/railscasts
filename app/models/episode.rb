@@ -5,6 +5,8 @@ class Episode < ActiveRecord::Base
   
   named_scope :published, lambda { {:conditions => ['published_at <= ?', Time.now]} }
   
+  validates_presence_of :published_at
+  
   def tag_names=(names)
     self.tags = Tag.with_names(names)
   end
