@@ -1,27 +1,25 @@
-<% form_for @episode do |f| %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :permalink %><br />
-    <%= f.text_field :permalink %>
-  </p>
-  <p>
-    <%= f.label :tag_names %><br />
-    <%= f.text_field :tag_names %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
-  </p>
-  <p>
-    <%= f.label :published_at %><br />
-    <%= f.datetime_select :published_at %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+<div class="content">
+  <% form_for @episode do |f| %>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :tag_names, 'Tags' %><br />
+      <%= f.text_field :tag_names %>
+    </p>
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :rows => 6 %>
+    </p>
+    <p>
+      <%= f.label :notes %><br />
+      <%= f.text_area :notes, :rows => 10 %>
+    </p>
+    <p>
+      <%= f.label :published_at, 'Publish Date' %><br />
+      <%= f.date_select :published_at %>
+    </p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+</div>

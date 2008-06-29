@@ -1,10 +1,8 @@
 
 Interface
 - episode show page
-- episode forms
 - tags show page
 - comments list
-- comment forms
 - contest page
 
 Core Features
@@ -15,9 +13,14 @@ Core Features
 - textile for notes
 - authorization
 - sponsors
+- next/previous episode links
+- automate permalink generation
+- use permalink in url with id
+- required comment fields
 
 Additional Features
 - search
 - textile for comments
 - add alternative download format for linux/windows
 - RSS feed for comments
+- pagination
