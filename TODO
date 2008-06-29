@@ -15,8 +15,7 @@ Core Features
 - sponsors
 - next/previous episode links
 - automate permalink generation
-- use permalink in url with id
-- required comment fields
+- use id+permalink in episode url
 
 Additional Features
 - search
