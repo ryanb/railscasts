@@ -7,14 +7,7 @@
       | <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=253867754">iTunes</a></li>
   </ul>
 </div>
-<div class="section">
-  <strong>navigation:</strong>
-  <ul id="navigation">
-    <li><%= link_to_unless_current "Recent Episodes", root_path %></li>
-    <li><%= link_to_unless_current "All Episodes", episodes_path %></li>
-    <li><%= link_to_unless_current "About Railscasts", about_path %></li>
-  </ul>
-</div>
+<%= render :partial => 'shared/navigation' %>
 <div class="section">
   <strong>tags:</strong>
   <ul id="tags">
