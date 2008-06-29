@@ -4,7 +4,7 @@ class EpisodesController < ApplicationController
   end
   
   def recent
-    @episodes = Episode.find(:all)
+    @episodes = Episode.published
   end
 
   def show

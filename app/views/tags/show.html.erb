@@ -1,6 +1,5 @@
-<% title "Tag" %>
+<% title "#{@tag.name} episodes" %>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @tag.name %>
-</p>
+<div class="episodes">
+  <%= render :partial => @episodes %>
+</div>
