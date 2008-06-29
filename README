@@ -10,7 +10,8 @@ Please read the license if you plan to use this code.
 1. install rails 2.1 if you haven't already
 2. make config/database.yml (see example_database.yml)
 3. migrate the databases (rake db:migrate)
-4. script/server and enjoy!
+4. run 'rake gems:install'
+5. script/server and enjoy!
 
 If you want to run the tests, you'll need to install the latest rspec plugins.
 

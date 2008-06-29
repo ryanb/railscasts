@@ -56,4 +56,6 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
+  
+  config.gem "RedCloth", :version => ">= 3.301", :source => "http://code.whytheluckystiff.net/"
 end

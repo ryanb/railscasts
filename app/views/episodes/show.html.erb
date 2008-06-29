@@ -1,7 +1,11 @@
 <% title @episode.name, false %>
 
 <div class="episodes">
-  <%= render :partial => @episode %>
+  <% render :layout => @episode do %>
+    <div class="notes">
+      <%= textilize @episode.notes %>
+    </div>
+  <% end %>
 </div>
 
 <% unless @episode.comments.empty? %>
