@@ -1,28 +1,17 @@
-<% title "Episode" %>
+<% title @episode.name, false %>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @episode.name %>
-</p>
-<p>
-  <strong>Permalink:</strong>
-  <%=h @episode.permalink %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%=h @episode.description %>
-</p>
-<p>
-  <strong>Notes:</strong>
-  <%=h @episode.notes %>
-</p>
-<p>
-  <strong>Published At:</strong>
-  <%=h @episode.published_at %>
-</p>
+<div class="episodes">
+  <%= render :partial => @episode %>
+</div>
 
-<p>
-  <%= link_to "Edit", edit_episode_path(@episode) %> |
-  <%= link_to "Destroy", @episode, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", episodes_path %>
-</p>
+<% unless @episode.comments.empty? %>
+  <h3 class="content"><%= pluralize @episode.comments.size, 'comment' %></h3>
+  <div class="content comments">
+    <%= render :partial => @episode.comments %>
+  </div>
+<% end %>
+
+<div class="content add_comment">
+  <h3>Add your comment:</h3>
+  <%= render :partial => 'comments/form' %>
+</div>

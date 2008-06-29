@@ -1,8 +1,6 @@
 
 Interface
-- episode show page
 - tags show page
-- comments list
 - contest page
 
 Core Features
@@ -20,3 +18,14 @@ Additional Features
 - add alternative download format for linux/windows
 - RSS feed for comments
 - pagination
+- comment preview
+
+Episode Show Page
+- unlink episode name
+- hide comment count
+- show episode notes
+- previous/next episode links
+
+Comment List
+- add divider
+- add episode link if not on episode page

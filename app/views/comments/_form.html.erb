@@ -1,23 +1,21 @@
-<div class="content">
-  <%= error_messages_for :comment %>
-  <% form_for @comment do |f| %>
-    <div><%= f.hidden_field :episode_id %></div>
-    <p>
-      <%= f.label :name, 'Name', :class => 'required' %> <span class="info">(required)</span><br />
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :email %> <span class="info">(not shown)</span><br />
-      <%= f.text_field :email %>
-    </p>
-    <p>
-      <%= f.label :site_url, 'Website URL' %><br />
-      <%= f.text_field :site_url %>
-    </p>
-    <p>
-      <%= f.label :content, 'Comment', :class => 'required' %> <span class="info">(required)</span><br />
-      <%= f.text_area :content, :rows => '12', :cols => 35 %>
-    </p>
-    <p><%= f.submit "Submit" %></p>
-  <% end %>
-</div>
+<%= error_messages_for :comment %>
+<% form_for @comment do |f| %>
+  <div><%= f.hidden_field :episode_id %></div>
+  <p>
+    <%= f.label :name, 'Name', :class => 'required' %> <span class="info">(required)</span><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %> <span class="info">(not shown)</span><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :site_url, 'Website URL' %><br />
+    <%= f.text_field :site_url %>
+  </p>
+  <p>
+    <%= f.label :content, 'Comment', :class => 'required' %> <span class="info">(required)</span><br />
+    <%= f.text_area :content, :rows => '12', :cols => 35 %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
