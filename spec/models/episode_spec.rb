@@ -14,9 +14,10 @@ describe Episode do
     episode.tag_names.should == 'foo bar'
   end
   
-  it "should require publication date" do
+  it "should require publication date and name" do
     episode = Episode.new
     episode.should have(1).error_on(:published_at)
+    episode.should have(1).error_on(:name)
   end
   
   it "should group episodes by month" do
@@ -27,5 +28,15 @@ describe Episode do
     months = Episode.by_month
     months[Time.parse('2008-01-01')].should == [a, b]
     months[Time.parse('2008-02-01')].should == [c]
+  end
+  
+  it "should automatically generate permalink when creating episode" do
+    episode = Factory.create(:episode, :name => ' Hello_ *World* 2.1. ')
+    episode.permalink.should == 'hello-world-2-1'
+  end
+  
+  it "should include id and permalink in to_param" do
+    episode = Factory.create(:episode, :name => 'Foo Bar')
+    episode.to_param.should == "#{episode.id}-#{episode.permalink}"
   end
 end
