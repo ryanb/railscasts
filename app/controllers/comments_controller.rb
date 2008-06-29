@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     if @comment.save
       flash[:notice] = "Successfully created comment."
-      redirect_to comments_path
+      redirect_to @comment.episode
     else
       render :action => 'new'
     end
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(params[:comment])
       flash[:notice] = "Successfully updated comment."
-      redirect_to comments_path
+      redirect_to @comment.episode
     else
       render :action => 'edit'
     end

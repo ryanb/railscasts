@@ -22,8 +22,8 @@ describe CommentsController do
   
   it "create action should redirect to index action when model is valid" do
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create
-    response.should redirect_to(comments_path)
+    post :create, :comment => { :episode_id => Episode.first.id }
+    response.should redirect_to(episode_path(Episode.first))
   end
   
   it "edit action should render edit template" do
@@ -37,10 +37,10 @@ describe CommentsController do
     response.should render_template(:edit)
   end
   
-  it "update action should redirect to show action when model is valid" do
+  it "update action should redirect to episode page when model is valid" do
     Comment.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Comment.first
-    response.should redirect_to(comments_path)
+    put :update, :id => Comment.first, :comment => { :episode_id => Episode.first.id }
+    response.should redirect_to(episode_path(Episode.first))
   end
   
   it "destroy action should destroy model and redirect to index action" do
