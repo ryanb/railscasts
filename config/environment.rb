@@ -58,4 +58,5 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
   
   config.gem "RedCloth", :version => ">= 3.301", :source => "http://code.whytheluckystiff.net/"
+  config.gem "coderay"
 end
