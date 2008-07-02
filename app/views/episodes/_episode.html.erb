@@ -2,16 +2,16 @@
   <div class="side">
     <div class="number">#<%= episode.id %></div>
     <div class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></div>
-    <div class="comments_count">
-      <%= link_to pluralize(episode.comments.size, 'comment'), episode %>
-    </div>
+    <% unless current_page? episode %>
+      <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode %></div>
+    <% end %>
     <div class="actions">
       <p><%= link_to 'Edit', edit_episode_path(episode) %></p>
       <p><%= link_to 'Destroy', episode, :method => :delete, :confirm => 'Are you sure?' %></p>
     </div>
   </div>
   <div class="main">
-    <h2><%= link_to h(episode.name), episode %></h2>
+    <h2><%= link_to_unless_current h(episode.name), episode %></h2>
     <div class="description"><%=h episode.description %></div>
     <% unless episode.tags.empty? %>
       <div class="tags">
