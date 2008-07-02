@@ -5,7 +5,7 @@
     <h2><%=h month.strftime('%B %Y') %></h2>
     <% for episode in episodes %>
       <div>
-        <%= episode.id %>.
+        <%= episode.position %>.
         <%= link_to episode.name, episode %>
       </div>
     <% end %>

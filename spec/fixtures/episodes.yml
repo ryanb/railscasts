@@ -1,6 +1,8 @@
 one:
   name: Episode 1
   published_at: 2008-01-01
+  position: 1
 two:
   name: Episode 2
   published_at: 2008-01-02
+  position: 2

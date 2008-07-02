@@ -2,6 +2,7 @@ class Episode < ActiveRecord::Base
   has_many :comments
   has_many :taggings
   has_many :tags, :through => :taggings
+  acts_as_list
   
   named_scope :published, lambda { {:conditions => ['published_at <= ?', Time.now]} }
   
@@ -23,6 +24,14 @@ class Episode < ActiveRecord::Base
   
   def to_param
     [id, permalink].join('-')
+  end
+  
+  def first?
+    self == self.class.first
+  end
+  
+  def last?
+    self == self.class.published.last
   end
   
   private

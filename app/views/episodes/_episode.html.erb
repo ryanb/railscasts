@@ -1,6 +1,6 @@
 <div class="episode">
   <div class="side">
-    <div class="number">#<%= episode.id %></div>
+    <div class="number">#<%= episode.position %></div>
     <div class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></div>
     <% unless current_page? episode %>
       <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode %></div>

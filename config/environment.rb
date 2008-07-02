@@ -59,4 +59,5 @@ Rails::Initializer.run do |config|
   
   config.gem "RedCloth", :version => ">= 3.301", :source => "http://code.whytheluckystiff.net/"
   config.gem "coderay"
+  config.gem 'ryanb-acts-as-list', :lib => 'acts_as_list', :source => 'http://gems.github.com'
 end
