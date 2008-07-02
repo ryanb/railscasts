@@ -39,4 +39,13 @@ describe Episode do
     episode = Factory.create(:episode, :name => 'Foo Bar')
     episode.to_param.should == "#{episode.id}-#{episode.permalink}"
   end
+  
+  it "should know if it's the last published episode" do
+    a = Factory.create(:episode, :published_at => 2.weeks.ago)
+    b = Factory.create(:episode, :published_at => 1.week.ago)
+    c = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    a.should_not be_last_published
+    b.should be_last_published
+    c.should_not be_last_published
+  end
 end

@@ -9,7 +9,7 @@
     <% unless @episode.first? %>
       <div id="previous_episode"><%= link_to h('< Previous Episode'), @episode.higher_item %></div>
     <% end %>
-    <% unless @episode.last? %>
+    <% unless @episode.last_published? %>
       <div id="next_episode"><%= link_to h('Next Episode >'), @episode.lower_item %></div>
     <% end %>
     </div>

@@ -26,11 +26,7 @@ class Episode < ActiveRecord::Base
     [id, permalink].join('-')
   end
   
-  def first?
-    self == self.class.first
-  end
-  
-  def last?
+  def last_published?
     self == self.class.published.last
   end
   
