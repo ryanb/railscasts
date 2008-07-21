@@ -13,7 +13,7 @@ Spec::Runner.configure do |config|
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
   config.mock_with :mocha
   
-  config.include(ControllerMacros, :type => :controllers)
+  config.include(ControllerMacros, :type => :controller)
 end
 
 class Object

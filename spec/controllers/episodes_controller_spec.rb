@@ -1,9 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe EpisodesController do
-  fixtures :all
-  integrate_views
-  
   describe "as guest" do
     it "index action should render index template" do
       get :index
