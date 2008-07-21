@@ -1,6 +1,5 @@
 
 Core Features
-- download file formats
 - spam protection
 - RSS feeds
 - authorization
@@ -13,6 +12,7 @@ Additional Features
 - RSS feed for comments
 - pagination
 - comment preview
+- author edit comment for short time
 
 Comment List
 - add divider

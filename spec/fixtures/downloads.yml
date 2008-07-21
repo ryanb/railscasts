@@ -1,0 +1,13 @@
+mov:
+  episode: one
+  url: MyString
+  format: mov
+  bytes: 1
+  seconds: 1
+
+m4v:
+  episode: one
+  url: MyString
+  format: m4v
+  bytes: 1
+  seconds: 1

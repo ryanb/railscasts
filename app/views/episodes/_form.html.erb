@@ -1,3 +1,4 @@
+<%= error_messages_for :episode %>
 <div class="content">
   <% form_for @episode do |f| %>
     <p>
@@ -20,6 +21,25 @@
       <%= f.label :published_at, 'Publish Date' %><br />
       <%= f.date_select :published_at %>
     </p>
+    <% for download in @episode.downloads %>
+      <% fields_for_download(download) do |d| %>
+        <%= error_messages_for :download, :object => download %>
+        <h3><%=h download.format %></h3>
+        <div><%= d.hidden_field :format %></div>
+        <p>
+          <%= d.label :url, 'File URL' %><br />
+          <%= d.text_field :url %>
+        </p>
+        <p>
+          <%= d.label :bytes, 'Size in Bytes' %><br />
+          <%= d.text_field :bytes %>
+        </p>
+        <p>
+          <%= d.label :seconds, 'Duration in Seconds' %><br />
+          <%= d.text_field :seconds %>
+        </p>
+      <% end %>
+    <% end %>
     <p><%= f.submit "Submit" %></p>
   <% end %>
 </div>

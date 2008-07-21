@@ -48,4 +48,20 @@ describe Episode do
     b.should be_last_published
     c.should_not be_last_published
   end
+  
+  describe "with downloads" do
+    before(:each) do
+      @episode = Factory.create(:episode)
+      @mov = @episode.downloads.create!(:format => 'mov')
+      @m4v = @episode.downloads.create!(:format => 'm4v')
+    end
+    
+    it "should find mov" do
+      @episode.mov.should == @mov
+    end
+    
+    it "should find m4v" do
+      @episode.m4v.should == @m4v
+    end
+  end
 end

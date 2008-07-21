@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080702045900) do
+ActiveRecord::Schema.define(:version => 20080721011326) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20080702045900) do
     t.string   "user_ip"
     t.string   "user_agent"
     t.string   "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "downloads", :force => true do |t|
+    t.integer  "episode_id"
+    t.string   "url"
+    t.string   "format"
+    t.integer  "bytes"
+    t.integer  "seconds"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

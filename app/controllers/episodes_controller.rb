@@ -14,6 +14,8 @@ class EpisodesController < ApplicationController
 
   def new
     @episode = Episode.new
+    @episode.downloads.build(:format => 'mov')
+    @episode.downloads.build(:format => 'm4v')
   end
 
   def create
