@@ -13,6 +13,4 @@ Additional Features
 - pagination
 - comment preview
 - author edit comment for short time
-
-Comment List
-- add episode link if not on episode page
+- add episode link for comment if not on episode page

@@ -1,0 +1,3 @@
+module SessionsHelper
+  
+end
