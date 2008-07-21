@@ -2,8 +2,11 @@
 Core Features
 - spam protection
 - RSS feeds
-- authorization
 - sponsors
+
+Smaller Fixes
+- display future episodes on recent episodes page
+- triple check rss xml to make sure it is correct
 
 Additional Features
 - search

@@ -2,7 +2,10 @@ class EpisodesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
   
   def index
-    @episode_months = Episode.published.by_month
+    respond_to do |format|
+      format.html { @episode_months = Episode.published.by_month }
+      format.rss  { @episodes = Episode.published }
+    end
   end
   
   def recent
