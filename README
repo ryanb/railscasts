@@ -2,7 +2,7 @@
 
 This is a rewrite of the Railscasts site (http://railscasts.com).
 
-Please read the license if you plan to use this code.
+Please let me know if you plan to use this app for your site.
 
 
 == Setup
@@ -24,25 +24,3 @@ You will also need to install the gems.
   rake gems:install RAILS_ENV='test'
 
 I may add plugins to the repository later, just not yet.
-
-
-== License
-
-Copyright (c) 2008 Ryan Bates, Railscasts
-
-This source code is intended for educational use. Any person is free to 
-take small portions of this code and adapt it to their project without 
-any restriction. Any person is free to copy, fork, modify and/or 
-redistribute this full code AS LONG AS it maintains the same name, 
-branding, copyright and license. Any other uses are prohibited without 
-special permission. Full copies or substantial portions of this 
-software CANNOT be used to promote another site or brand without 
-special permission.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
