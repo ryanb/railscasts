@@ -1,4 +1,4 @@
-<%= tag :hr unless comment_counter.zero? %>
+<%= tag :hr unless comment_counter == 1 %>
 <div class="comment">
   <span class="name">
     <%= link_to_unless comment.site_url.blank?, h(comment.name), h(comment.site_url) %>
