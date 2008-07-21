@@ -9,8 +9,10 @@
   <div class="comment_content">
     <%= simple_format(h(comment.content)) %>
   </div>
+  <% if admin? %>
   <div class="actions">
     <%= link_to "Edit", edit_comment_path(comment) %> |
     <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %>
   </div>
+  <% end %>
 </div>

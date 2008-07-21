@@ -1,4 +1,6 @@
 class EpisodesController < ApplicationController
+  before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
+  
   def index
     @episode_months = Episode.published.by_month
   end

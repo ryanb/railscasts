@@ -5,10 +5,12 @@
     <% unless current_page? episode %>
       <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode %></div>
     <% end %>
+    <% if admin? %>
     <div class="actions">
       <p><%= link_to 'Edit', edit_episode_path(episode) %></p>
       <p><%= link_to 'Destroy', episode, :method => :delete, :confirm => 'Are you sure?' %></p>
     </div>
+    <% end %>
   </div>
   <div class="main">
     <h2><%= link_to_unless_current h(episode.name), episode %></h2>

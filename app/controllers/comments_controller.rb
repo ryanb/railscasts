@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :authorize, :only => [:edit, :update, :destroy]
+  
   def index
     @comments = Comment.find(:all)
   end

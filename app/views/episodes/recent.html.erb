@@ -4,8 +4,10 @@
   <%= render :partial => @episodes %>
 </div>
 
+<% if admin? %>
 <div class="content">
   <div class="actions">
     <p><%= link_to 'New Episode', new_episode_path %></p>
   </div>
 </div>
+<% end %>
