@@ -1,6 +1,7 @@
 log/*.log
 tmp/**/*
 config/database.yml
+config/app_config.yml
 db/*.sqlite3
 vendor/plugins/*
 public/assets
