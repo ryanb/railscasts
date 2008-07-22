@@ -14,13 +14,9 @@ Please let me know if you plan to use this app for your site.
 5. run 'rake gems:install'
 6. script/server and enjoy!
 
-If you want to run the tests, you'll need to install the latest rspec plugins.
-
-  script/plugin install http://rspec.rubyforge.org/svn/trunk/rspec
-  script/plugin install http://rspec.rubyforge.org/svn/trunk/rspec_on_rails
+If you want to run the tests, you'll need to install the latest rspec 
+plugins. Instructions: http://github.com/dchelimsky/rspec-rails/wikis
 
 You will also need to install the gems.
 
   rake gems:install RAILS_ENV='test'
-
-I may add plugins to the repository later, just not yet.
