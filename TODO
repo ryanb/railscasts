@@ -1,9 +1,7 @@
-
-Core Features
-- spam protection
-
 Smaller Fixes
 - triple check rss xml to make sure it is correct
+- fix sort order for recent episodes
+- fix view and fixtures integration for rspec on nested controller examples
 
 Additional Features
 - search

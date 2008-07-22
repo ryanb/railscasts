@@ -11,10 +11,15 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    if @comment.save
-      flash[:notice] = "Successfully created comment."
-      redirect_to @comment.episode
+    if params[:not_spam]
+      if @comment.save
+        flash[:notice] = "Successfully created comment."
+        redirect_to @comment.episode
+      else
+        render :action => 'new'
+      end
     else
+      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com."
       render :action => 'new'
     end
   end

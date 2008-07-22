@@ -12,15 +12,21 @@ describe CommentsController do
       response.should render_template(:new)
     end
   
+    it "create action should render new template when spam even if model is valid" do
+      Comment.any_instance.stubs(:valid?).returns(true)
+      post :create
+      response.should render_template(:new)
+    end
+  
     it "create action should render new template when model is invalid" do
       Comment.any_instance.stubs(:valid?).returns(false)
-      post :create
+      post :create, :not_spam => true
       response.should render_template(:new)
     end
   
     it "create action should redirect to index action when model is valid" do
       Comment.any_instance.stubs(:valid?).returns(true)
-      post :create, :comment => { :episode_id => Episode.first.id }
+      post :create, :not_spam => true, :comment => { :episode_id => Episode.first.id }
       response.should redirect_to(episode_path(Episode.first))
     end
     

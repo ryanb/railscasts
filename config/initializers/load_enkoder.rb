@@ -1,0 +1,1 @@
+require 'enkoder' # found in lib directory

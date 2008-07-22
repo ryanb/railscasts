@@ -1,6 +1,9 @@
 <% form_for @comment do |f| %>
   <%= error_messages_for :comment %>
-  <div><%= f.hidden_field :episode_id %></div>
+  <div>
+    <%= enkode hidden_field_tag(:not_spam, true) %>
+    <%= f.hidden_field :episode_id %>
+  </div>
   <p>
     <%= f.label :name, 'Name', :class => 'required' %> <span class="info">(required)</span><br />
     <%= f.text_field :name %>
