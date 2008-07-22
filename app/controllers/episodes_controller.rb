@@ -9,7 +9,7 @@ class EpisodesController < ApplicationController
   end
   
   def recent
-    @episodes = Episode.published.recent
+    @episodes = Episode.published.recent.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show

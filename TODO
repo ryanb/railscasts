@@ -1,6 +1,5 @@
-Smaller Fixes
+Fixes
 - triple check rss xml to make sure it is correct
-- limit episodes on index to only 10
 
 Additional Features
 - search
