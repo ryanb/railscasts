@@ -13,7 +13,11 @@ class EpisodesController < ApplicationController
   end
 
   def show
-    @episode = Episode.find(params[:id])
+    if admin?
+      @episode = Episode.find(params[:id])
+    else
+      @episode = Episode.published.find(params[:id])
+    end
     @comment = Comment.new(:episode => @episode)
   end
 

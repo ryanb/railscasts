@@ -16,6 +16,11 @@ describe EpisodesController do
       get :show, :id => Episode.first
       response.should render_template(:show)
     end
+  
+    it "show action should not find episode when unpublished" do
+      episode = Factory.create(:episode, :published_at => 2.weeks.from_now)
+      lambda { get :show, :id => episode }.should raise_error(ActiveRecord::RecordNotFound)
+    end
     
     it_should_require_admin_for_actions :new, :create, :edit, :update, :destroy
   end
@@ -23,6 +28,12 @@ describe EpisodesController do
   describe "as admin" do
     before(:each) do
       session[:admin] = true
+    end
+  
+    it "show action should render show template when unpublished" do
+      episode = Factory.create(:episode, :published_at => 2.weeks.from_now)
+      lambda { get :show, :id => episode }.should_not raise_error(ActiveRecord::RecordNotFound)
+      response.should render_template(:show)
     end
     
     it "new action should render new template" do

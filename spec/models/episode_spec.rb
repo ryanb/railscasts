@@ -8,6 +8,13 @@ describe Episode do
     Episode.published.should_not include(b)
   end
   
+  it "should find unpublished" do
+    a = Factory.create(:episode, :published_at => 2.weeks.ago)
+    b = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    Episode.unpublished.should include(b)
+    Episode.unpublished.should_not include(a)
+  end
+  
   it "should assign tags to episodes" do
     episode = Factory.create(:episode, :tag_names => 'foo bar')
     episode.tags.map(&:name).should == %w[foo bar]

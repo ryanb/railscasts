@@ -5,6 +5,11 @@
 </div>
 
 <% if admin? %>
+<h1 class="content">Future Episodes</h1>
+<div class="episodes">
+  <%= render :partial => Episode.unpublished %>
+</div>
+
 <div class="content">
   <div class="actions">
     <p><%= link_to 'New Episode', new_episode_path %></p>
