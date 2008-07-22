@@ -34,7 +34,7 @@
         <div class="alt_download">
           <%= link_to "alternative download", episode.m4v.url %> for iPod &amp; Apple TV
           <span class="stats">
-            (<%= number_to_human_size(episode.mov.bytes) %>, <%= episode.mov.duration %>)
+            (<%= number_to_human_size(episode.m4v.bytes) %>, <%= episode.m4v.duration %>)
           </span>
         </div>
       <% end %>
