@@ -121,7 +121,7 @@ ul {
   margin-top: 20px;
 }
 
-.content, .main {
+.content, .main, #flash_notice, #flash_error {
   margin-left: 100px;
 }
 

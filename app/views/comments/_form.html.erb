@@ -1,5 +1,5 @@
-<%= error_messages_for :comment %>
 <% form_for @comment do |f| %>
+  <%= error_messages_for :comment %>
   <div><%= f.hidden_field :episode_id %></div>
   <p>
     <%= f.label :name, 'Name', :class => 'required' %> <span class="info">(required)</span><br />
