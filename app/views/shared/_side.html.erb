@@ -18,7 +18,7 @@
 </div>
 <div class="section">
   <strong>sponsored by:</strong>
-  <% for sponsor in Sponsor.active %>
+  <% for sponsor in Sponsor.active.sort_by { rand } %>
     <div class="sponsor">
       <%= link_to image_tag(sponsor.image_url, :alt => h(sponsor.name)), sponsor.site_url %>
     </div>
