@@ -15,6 +15,13 @@ describe Episode do
     Episode.unpublished.should_not include(a)
   end
   
+  it "should sort recent episodes in descending order" do
+    Episode.delete_all
+    e1 = Factory.create(:episode)
+    e2 = Factory.create(:episode)
+    Episode.recent.should == [e2, e1]
+  end
+  
   it "should assign tags to episodes" do
     episode = Factory.create(:episode, :tag_names => 'foo bar')
     episode.tags.map(&:name).should == %w[foo bar]

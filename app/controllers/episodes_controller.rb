@@ -9,7 +9,7 @@ class EpisodesController < ApplicationController
   end
   
   def recent
-    @episodes = Episode.published
+    @episodes = Episode.published.recent
   end
 
   def show

@@ -8,6 +8,7 @@ class Episode < ActiveRecord::Base
   
   named_scope :published, lambda { {:conditions => ['published_at <= ?', Time.now]} }
   named_scope :unpublished, lambda { {:conditions => ['published_at > ?', Time.now]} }
+  named_scope :recent, :order => 'position DESC'
   
   validates_presence_of :published_at, :name
   validates_associated :downloads, :on => :update # create automatically handles validation
