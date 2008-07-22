@@ -1,0 +1,11 @@
+one:
+  name: MyString
+  active: false
+  site_url: MyString
+  image_url: MyString
+
+two:
+  name: MyString
+  active: false
+  site_url: MyString
+  image_url: MyString

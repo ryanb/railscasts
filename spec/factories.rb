@@ -12,3 +12,10 @@ Factory.define :comment do |f|
   f.content  'Hello world.'
   f.episode { |c| c.association(:episode) }
 end
+
+Factory.define :sponsor do |f|
+  f.name      'ACME Inc.'
+  f.site_url  'http://example.com'
+  f.image_url '/assets/sponsors/example.png'
+  f.active    true
+end

@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'sessions', :action => 'new'
   map.login 'logout', :controller => 'sessions', :action => 'destroy'
   
+  map.resources :sponsors
   map.resources :comments
   map.resources :tags
   map.resources :episodes, :collection => { :recent => :get }

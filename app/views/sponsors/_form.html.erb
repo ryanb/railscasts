@@ -1,0 +1,21 @@
+<div class="content">
+  <% form_for @sponsor do |f| %>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :site_url, 'Site URL' %><br />
+      <%= f.text_field :site_url %>
+    </p>
+    <p>
+      <%= f.label :image_url, 'Image URL' %><br />
+      <%= f.text_field :image_url %>
+    </p>
+    <p>
+      <%= f.check_box :active %>
+      <%= f.label :active %>
+    </p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+</div>

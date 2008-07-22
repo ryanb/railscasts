@@ -1,0 +1,16 @@
+<% title "Sponsors" %>
+<div class="content">
+  <% for sponsor in @sponsors %>
+  <div class="sponsor">
+    <h3><%=h sponsor.name %></h3>
+    <p><%= image_tag(sponsor.image_url) %></p>
+    <p class="actions">
+      <%= link_to "Edit", edit_sponsor_path(sponsor) %> |
+      <%= link_to "Destroy", sponsor, :confirm => "Are you sure?", :method => :delete %>
+    </p>
+    <hr />
+  </div>
+  <% end %>
+
+  <p class="actions"><%= link_to "New Sponsor", new_sponsor_path %></p>
+</div>
