@@ -19,7 +19,9 @@
 <div class="section">
   <strong>sponsored by:</strong>
   <% for sponsor in Sponsor.active %>
-    <div class="sponsor"><%= image_tag sponsor.image_url, :alt => h(sponsor.name) %></div>
+    <div class="sponsor">
+      <%= link_to image_tag(sponsor.image_url, :alt => h(sponsor.name)), sponsor.site_url %>
+    </div>
   <% end %>
 </div>
 <div class="section">
