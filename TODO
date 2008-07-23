@@ -10,18 +10,6 @@ Legacy Migration
 - compare schema files to find other differences
 - fill initial sponsors
 
-Deployment
-- setup rbates user
-- install git
-- install apache2
-- install ruby and rails
-- install mod rails
-- setup ssh keys
-- setup deploy user
-- add deploy.rb recipe and setup
-- transfer config files
-- transfer assets directory
-
 Additional Features
 - search
 - textile for comments
