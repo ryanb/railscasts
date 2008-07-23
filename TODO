@@ -1,5 +1,26 @@
 Fixes
 - triple check rss xml to make sure it is correct
+- fix image links on contest page
+
+Legacy Migration
+- add rake task to handle switch
+- split episode files into separate download records
+- delete comments marked as spam
+- translate code blocks in episode show notes
+- compare schema files to find other differences
+- fill initial sponsors
+
+Deployment
+- setup rbates user
+- install git
+- install apache2
+- install ruby and rails
+- install mod rails
+- setup ssh keys
+- setup deploy user
+- add deploy.rb recipe and setup
+- transfer config files
+- transfer assets directory
 
 Additional Features
 - search

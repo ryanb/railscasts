@@ -22,7 +22,7 @@ describe Textilizer do
   end
   
   it "allow code block in the middle" do
-    textilize("foo\n@@@\ntest\n@@@\nbar").should include(CodeRay.scan('test', 'ruby').div(:css => :class))
+    textilize("foo\n@@@\ntest\n@@@\nbar").should include(CodeRay.scan('test', 'ruby').div(:css => :class).strip)
   end
   
   it "should handle \r in code block" do
