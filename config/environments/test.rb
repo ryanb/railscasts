@@ -21,4 +21,4 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-config.gem 'ryanb-factory_girl', :version => '>= 1.1.1', :lib => 'factory_girl', :source => 'http://gems.github.com'
+config.gem 'thoughtbot-factory_girl', :version => '>= 1.1.1', :lib => 'factory_girl', :source => 'http://gems.github.com'
