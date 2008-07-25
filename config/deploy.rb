@@ -1,11 +1,10 @@
 set :application, "railscasts.com"
-role :app, "208.78.99.21"
-role :web, "208.78.99.21"
-role :db,  "208.78.99.21", :primary => true
+role :app, "railscasts.railsmachina.com"
+role :web, "railscasts.railsmachina.com"
+role :db,  "railscasts.railsmachina.com", :primary => true
 
-set :user, "rbates"
-set :port, 30000
-set :deploy_to, "/home/#{user}/#{application}"
+set :user, "deploy"
+set :deploy_to, "/var/www/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
