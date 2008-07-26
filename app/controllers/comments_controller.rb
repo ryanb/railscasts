@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    if params[:not_spam]
+    if params[:not_spam] && params[:email].blank? # fake email to catch spammers
       @comment.request = request
       if @comment.save
         flash[:notice] = "Successfully created comment."

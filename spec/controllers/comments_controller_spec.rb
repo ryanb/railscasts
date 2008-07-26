@@ -20,6 +20,12 @@ describe CommentsController, "as guest" do
     response.should render_template(:new)
   end
 
+  it "create action should render new template when fake email filled even if model is valid" do
+    Comment.any_instance.stubs(:valid?).returns(true)
+    post :create, :email => 'spammer', :not_spam => 'true'
+    response.should render_template(:new)
+  end
+
   it "create action should render new template when model is invalid" do
     Comment.any_instance.stubs(:valid?).returns(false)
     post :create, :not_spam => true
