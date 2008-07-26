@@ -22,4 +22,12 @@ describe Comment do
       comment.should have(1).error_on(attr)
     end
   end
+  
+  it "should set request based attributes" do
+    comment = Factory.build(:comment, :site_url => 'example.com')
+    comment.request = stub(:remote_ip => 'ip', :env => { 'HTTP_USER_AGENT' => 'agent', 'HTTP_REFERER' => 'referrer' })
+    comment.user_ip.should == 'ip'
+    comment.user_agent.should == 'agent'
+    comment.referrer.should == 'referrer'
+  end
 end

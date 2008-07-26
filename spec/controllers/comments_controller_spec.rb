@@ -27,9 +27,11 @@ describe CommentsController, "as guest" do
   end
 
   it "create action should redirect to index action when model is valid" do
+    request.stubs(:remote_ip).returns('ip')
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :not_spam => true, :comment => { :episode_id => Episode.first.id }
     response.should redirect_to(episode_path(Episode.first))
+    assigns[:comment].user_ip.should == 'ip'
   end
   
   it_should_require_admin_for_actions :edit, :update, :destroy

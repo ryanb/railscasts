@@ -5,6 +5,12 @@ class Comment < ActiveRecord::Base
   
   before_save :add_protocol_to_site_url
   
+  def request=(request)
+    self.user_ip    = request.remote_ip
+    self.user_agent = request.env['HTTP_USER_AGENT']
+    self.referrer   = request.env['HTTP_REFERER']
+  end
+  
   private
   
   def add_protocol_to_site_url
