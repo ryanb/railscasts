@@ -38,6 +38,11 @@ namespace :deploy do
     put File.read("config/example_app_config.yml"), "#{shared_path}/config/app_config.yml"
     puts "Now edit the config files and fill assets folder in #{shared_path}."
   end
+  
+  desc "Sync the public/assets directory."
+  task :assets do
+    `rsync -vr public/assets deploy@railscasts.railsmachina.com:/var/www/apps/railscasts.com/shared/assets`
+  end
 end
 
 after "deploy", "deploy:cleanup" # keeps only last 5 releases
