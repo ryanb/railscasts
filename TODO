@@ -1,7 +1,6 @@
 Fixes
 
 Legacy Migration
-- figure out proper timezones
 - migrate legacy database
 - switch DNS entries
 - redirect to new server from old server

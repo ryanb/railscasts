@@ -112,6 +112,10 @@ ul {
   margin: 5px 0;
 }
 
+#side #navigation {
+  color: #999;
+}
+
 .clear {
   clear: both;
 }
