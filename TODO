@@ -1,9 +1,13 @@
 Fixes
-- triple check rss xml to make sure it is correct
 - fix image links on contest page
 
 Legacy Migration
 - fill initial sponsors
+- figure out proper timezones
+- migrate legacy database
+- switch DNS entries
+- redirect to new server from old server
+- validate rss feed (both normal and ipod)
 
 Additional Features
 - search

@@ -4,7 +4,7 @@ class EpisodesController < ApplicationController
   def index
     respond_to do |format|
       format.html { @episode_months = Episode.published.by_month }
-      format.rss  { @episodes = Episode.published }
+      format.rss  { @episodes = Episode.published.recent }
     end
   end
   

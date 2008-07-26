@@ -26,7 +26,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
     xml.lastBuildDate @episodes.first.published_at.to_s(:rfc822)
     xml.itunes :author, author
     xml.itunes :keywords, keywords
-    xml.itunes :explicit, 'no'
+    xml.itunes :explicit, 'clean'
     xml.itunes :image, :href => image
     xml.itunes :owner do
       xml.itunes :name, author
@@ -39,29 +39,22 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
     xml.itunes :category, :text => 'Education' do
       xml.itunes :category, :text => 'Training'
     end
- 
-    xml.media :thumbnail, :url => 'http://railscasts.com'
-    xml.media :keywords, keywords
-    xml.media :category, {:scheme => "http://www.itunes.com/dtds/podcast-1.0.dtd"}, "Technology/Software How-To"
-    xml.media :category, {:scheme => "http://www.itunes.com/dtds/podcast-1.0.dtd"}, "Education/Training"
-  
+    
     @episodes.each do  |episode|
       download = episode.downloads.find_by_format(format)
       
       xml.item do
-        xml.title episode.name
+        xml.title "Episode #{episode.position}: #{episode.name}"
         xml.description episode.description
         xml.pubDate episode.published_at.to_s(:rfc822)
-        xml.enclosure :url => download.url, :length => download.duration, :type => 'video/quicktime'
+        xml.enclosure :url => download.url, :length => download.bytes, :type => 'video/quicktime'
         xml.link episode_url(episode)
-        xml.guid episode_url(episode)
+        xml.guid({:isPermaLink => "false"}, episode.permalink)
         xml.itunes :author, author
         xml.itunes :subtitle, truncate(episode.description, 150)
         xml.itunes :summary, episode.description
         xml.itunes :explicit, 'no'
         xml.itunes :duration, download.duration
-        xml.dc :creator, {"xmlns:dc" => "http://purl.org/dc/elements/1.1/"}, author
-        xml.media :content, :url => download.url, :fileSize => download.bytes, :type => 'video/quicktime'
       end
     end
   end
