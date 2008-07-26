@@ -1,7 +1,6 @@
 Fixes
 
 Legacy Migration
-- fill initial sponsors
 - figure out proper timezones
 - migrate legacy database
 - switch DNS entries
