@@ -3,11 +3,11 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :name, :content, :episode_id
   
-  before_save :correct_site_url
+  before_save :add_protocol_to_site_url
   
   private
   
-  def correct_site_url
-    self.site_url = "http://#{site_url}" if site_url && !site_url.include?('://')
+  def add_protocol_to_site_url
+    self.site_url = "http://#{site_url}" unless site_url.blank? || site_url.include?('://')
   end
 end

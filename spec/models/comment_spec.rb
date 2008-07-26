@@ -6,9 +6,14 @@ describe Comment do
     comment.site_url.should == 'http://example.com'
   end
   
-  it "should automatically add protocol if there already is one" do
+  it "should not add protocol if there already is one" do
     comment = Factory.create(:comment, :site_url => 'https://example.com')
     comment.site_url.should == 'https://example.com'
+  end
+  
+  it "should not add protocol if site url is blank" do
+    comment = Factory.create(:comment, :site_url => '')
+    comment.site_url.should == ''
   end
   
   it "should validate the presence of name, content, and episode_id" do
