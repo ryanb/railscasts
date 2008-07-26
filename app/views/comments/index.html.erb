@@ -1,5 +1,12 @@
 <% title "Comments" %>
 
 <div class="content comments">
-  <%= render :partial => @comments %>
+  <% for comment in @comments %>
+    <% render :layout => comment do %>
+      <h4>
+        Episode #<%= comment.episode.position %>:
+        <%= link_to h(comment.episode.name), episode_path(comment.episode) %>
+      </h4>
+    <% end %>
+  <% end %>
 </div>
