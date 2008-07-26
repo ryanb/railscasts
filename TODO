@@ -1,11 +1,7 @@
 Fixes
 
 Legacy Migration
-- migrate legacy database
-- switch DNS entries
-- redirect to new server from old server
-- validate rss feed (both normal and ipod)
-- shutdown old site (mysql, cron job, etc.)
+- shutdown old site cron job
 - copy over old site cron jobs
 
 Additional Features

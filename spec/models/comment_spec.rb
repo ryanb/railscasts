@@ -30,4 +30,11 @@ describe Comment do
     comment.user_agent.should == 'agent'
     comment.referrer.should == 'referrer'
   end
+  
+  it "should sort recent comments in descending order by created_at time" do
+    Comment.delete_all
+    c1 = Factory.create(:comment, :created_at => 2.weeks.ago)
+    c2 = Factory.create(:comment, :created_at => Time.now)
+    Comment.recent.should == [c2, c1]
+  end
 end
