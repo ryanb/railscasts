@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :authorize, :only => [:edit, :update, :destroy]
   
   def index
-    @comments = Comment.find(:all)
+    @comments = Comment.find(:all, :limit => 30)
   end
   
   def new
