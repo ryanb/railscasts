@@ -1,6 +1,5 @@
 Fixes
 - add deploy:assets task to rsync assets directory
-- add iTunes cover graphics
 
 Legacy Migration
 - fill initial sponsors
