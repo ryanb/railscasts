@@ -44,10 +44,10 @@ namespace :legacy do
       ]
     end
     
-    # puts "starting comments"
-    # migrate_model Comment, "comments WHERE approved='1' AND id NOT IN (39396, 39422)" do |row|
-    #   row.except(:approved)
-    # end
+    puts "starting comments"
+    migrate_model Comment, "comments WHERE approved='1' AND id NOT IN (39396, 39422)" do |row|
+      row.except(:approved)
+    end
   end
   
   def migrate_model(model_class, table_name)
@@ -63,7 +63,8 @@ namespace :legacy do
       row.each { |r| insert_row(model_class, r) }
     else
       record = model_class.new
-      row.each do |name, value| # loop so we don't have mass assignment problems
+      row.each do |name, value|
+        value = Time.parse(value) + 7.hours if name.to_s =~ /_at$/ # convert times to UTC
         record.write_attribute(name, value)
       end
       record.save(false) # skips validation
