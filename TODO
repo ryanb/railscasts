@@ -1,5 +1,4 @@
 Fixes
-- add deploy:assets task to rsync assets directory
 
 Legacy Migration
 - fill initial sponsors
