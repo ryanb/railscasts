@@ -3,6 +3,7 @@ Fixes
 Legacy Migration
 - shutdown old site cron job
 - copy over old site cron jobs
+- add <noscript> message saying javascript required when submitting comment
 
 Additional Features
 - search
@@ -13,3 +14,4 @@ Additional Features
 - comment preview
 - author edit comment for short time
 - remember me when logging in
+- add javascript code highlighting

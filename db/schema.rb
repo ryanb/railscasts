@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080722025256) do
+ActiveRecord::Schema.define(:version => 20080727044942) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20080722025256) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["episode_id"], :name => "index_comments_on_episode_id"
+
   create_table "downloads", :force => true do |t|
     t.integer  "episode_id"
     t.string   "url"
@@ -33,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20080722025256) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "downloads", ["episode_id"], :name => "index_downloads_on_episode_id"
 
   create_table "episodes", :force => true do |t|
     t.string   "name"
@@ -60,6 +64,9 @@ ActiveRecord::Schema.define(:version => 20080722025256) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["episode_id"], :name => "index_taggings_on_episode_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"
