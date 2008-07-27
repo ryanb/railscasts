@@ -1,6 +1,5 @@
 Fixes
 - add counter cache for episode comments
-- hide comments link while on episode page
 
 Features
 - improve look of 404/500 error messages

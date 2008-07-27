@@ -2,9 +2,7 @@
   <div class="side">
     <div class="number">#<%= episode.position %></div>
     <div class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></div>
-    <% unless current_page? episode %>
-      <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode %></div>
-    <% end %>
+    <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode_path(:id => episode, :anchor => 'comments') %></div>
     <% if admin? %>
     <div class="actions">
       <p><%= link_to 'Edit', edit_episode_path(episode) %></p>
