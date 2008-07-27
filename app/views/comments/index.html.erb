@@ -1,11 +1,11 @@
 <% title "Comments" %>
 
-<div class="content comments">
+<div id="comments" class="content">
   <% for comment in @comments %>
     <% render :layout => comment do %>
       <h4>
         Episode #<%= comment.episode.position %>:
-        <%= link_to h(comment.episode.name), episode_path(comment.episode) %>
+        <%= link_to h(comment.episode.name), episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>
       </h4>
     <% end %>
   <% end %>

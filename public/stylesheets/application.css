@@ -215,7 +215,7 @@ ul {
   margin: 5px 0;
 }
 
-.comments {
+#comments {
   border: #AAA solid 1px;
   background-color: #F3F3F3;
   margin-right: 50px;
@@ -238,7 +238,7 @@ ul {
   margin: 8px 0;
 }
 
-.comments hr {
+#comments hr {
   width: 200px;
   margin: 0 auto;
   border: none;
