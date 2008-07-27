@@ -1,7 +1,7 @@
 Fixes
 - add specs for RSS feeds
 - add counter cache for episode comments
-- fix authorize redirect so it doesn't go to logout page
+- hide comments link while on episode page
 
 Features
 - improve look of 404/500 error messages
@@ -14,3 +14,4 @@ Features
 - author edit comment for short time
 - remember me when logging in
 - add javascript code highlighting
+- add uservoice tab

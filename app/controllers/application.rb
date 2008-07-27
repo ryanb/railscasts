@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   
   def authorize
     unless admin?
-      flash[:error] = "Authorization required."
-      redirect_to login_url
+      flash[:error] = "Not authorized to access this page."
+      redirect_to root_url
     end
   end
 end
