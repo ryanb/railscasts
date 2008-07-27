@@ -42,19 +42,20 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
     
     @episodes.each do  |episode|
       download = episode.downloads.find_by_format(format)
-      
-      xml.item do
-        xml.title "Episode #{episode.position}: #{episode.name}"
-        xml.description episode.description
-        xml.pubDate episode.published_at.to_s(:rfc822)
-        xml.enclosure :url => download.url, :length => download.bytes, :type => 'video/quicktime'
-        xml.link episode_url(episode)
-        xml.guid({:isPermaLink => "false"}, episode.permalink)
-        xml.itunes :author, author
-        xml.itunes :subtitle, truncate(episode.description, 150)
-        xml.itunes :summary, episode.description
-        xml.itunes :explicit, 'no'
-        xml.itunes :duration, download.duration
+      if download
+        xml.item do
+          xml.title "Episode #{episode.position}: #{episode.name}"
+          xml.description episode.description
+          xml.pubDate episode.published_at.to_s(:rfc822)
+          xml.enclosure :url => download.url, :length => download.bytes, :type => 'video/quicktime'
+          xml.link episode_url(episode)
+          xml.guid({:isPermaLink => "false"}, episode.permalink)
+          xml.itunes :author, author
+          xml.itunes :subtitle, truncate(episode.description, 150)
+          xml.itunes :summary, episode.description
+          xml.itunes :explicit, 'no'
+          xml.itunes :duration, download.duration
+        end
       end
     end
   end

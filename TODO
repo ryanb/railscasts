@@ -1,5 +1,4 @@
 Fixes
-- add specs for RSS feeds
 - add counter cache for episode comments
 - hide comments link while on episode page
 

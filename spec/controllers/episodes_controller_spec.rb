@@ -8,6 +8,20 @@ describe EpisodesController, "as guest" do
     get :index
     response.should render_template(:index)
   end
+  
+  it "index action should render index template for rss with xml" do
+    get :index, :format => 'rss'
+    response.should render_template(:index)
+    response.content_type.should == 'application/rss+xml'
+    response.should have_tag('title', :text => 'Railscasts')
+  end
+  
+  it "index action should render index template for rss with xml for iPod" do
+    get :index, :format => 'rss', :ipod => true
+    response.should render_template(:index)
+    response.content_type.should == 'application/rss+xml'
+    response.should have_tag('title', :text => /Railscasts.+iPod/)
+  end
 
   it "recent action should render recent template" do
     get :recent
