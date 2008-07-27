@@ -22,17 +22,17 @@ describe EpisodesController, "as guest" do
     response.content_type.should == 'application/rss+xml'
     response.should have_tag('title', :text => /Railscasts.+iPod/)
   end
-
-  it "recent action should render recent template" do
-    get :recent
-    response.should render_template(:recent)
+  
+  it "archive action should render archive template" do
+    get :archive
+    response.should render_template(:archive)
   end
-
+  
   it "show action should render show template" do
     get :show, :id => Episode.first
     response.should render_template(:show)
   end
-
+  
   it "show action should not find episode when unpublished" do
     episode = Factory.create(:episode, :published_at => 2.weeks.from_now)
     lambda { get :show, :id => episode }.should raise_error(ActiveRecord::RecordNotFound)

@@ -2,14 +2,15 @@ class EpisodesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
   
   def index
+    @episodes = Episode.published.recent
     respond_to do |format|
-      format.html { @episode_months = Episode.published.by_month }
-      format.rss  { @episodes = Episode.published.recent }
+      format.html { @episodes = @episodes.paginate(:page => params[:page], :per_page => 10) }
+      format.rss
     end
   end
   
-  def recent
-    @episodes = Episode.published.recent.paginate(:page => params[:page], :per_page => 10)
+  def archive
+    @episode_months = Episode.published.by_month
   end
 
   def show

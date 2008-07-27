@@ -1,0 +1,13 @@
+<% title "All Episodes" %>
+
+<div class="content">
+  <% @episode_months.each do |month, episodes| %>
+    <h2><%=h month.strftime('%B %Y') %></h2>
+    <% for episode in episodes %>
+      <div>
+        <%= episode.position %>.
+        <%= link_to episode.name, episode %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

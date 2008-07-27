@@ -8,8 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sponsors
   map.resources :comments
   map.resources :tags
-  map.resources :episodes, :collection => { :recent => :get }
+  map.resources :episodes, :collection => { :archive => :get }
   map.resources :sessions
   
-  map.root :recent_episodes
+  map.root :episodes
 end
