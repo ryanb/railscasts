@@ -4,6 +4,12 @@
   <%= render :partial => @episodes %>
 </div>
 
+<p class="content">
+  <%= link_to h('< Newer Episodes'), :overwrite_params => { :page => @episodes.previous_page } if @episodes.previous_page %>
+  <%= "|" if @episodes.previous_page && @episodes.next_page %>
+  <%= link_to h('Older Episodes >'), :overwrite_params => { :page => @episodes.next_page } if @episodes.next_page %>
+</p>
+
 <% if admin? %>
 <h1 class="content">Future Episodes</h1>
 <div class="episodes">

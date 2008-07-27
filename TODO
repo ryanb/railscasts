@@ -4,11 +4,12 @@ Fixes
 Features
 - search
 - textile for comments
-- add alternative download format for linux/windows
 - RSS feed for comments
-- pagination
 - comment preview
-- author edit comment for short time
 - remember me when logging in
 - add javascript code highlighting
 - add uservoice tab
+
+Possible
+- add alternative download format for linux/windows
+- author edit comment for short time
