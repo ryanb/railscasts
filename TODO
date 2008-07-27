@@ -1,10 +1,9 @@
 Fixes
+- redirect to non www (apache config)
+- add specs for RSS feeds
+- add counter cache for episode comments
 
-Legacy Migration
-- shutdown old site cron job
-- copy over old site cron jobs
-
-Additional Features
+Features
 - search
 - textile for comments
 - add alternative download format for linux/windows

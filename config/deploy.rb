@@ -1,7 +1,7 @@
 set :application, "railscasts.com"
-role :app, "railscasts.railsmachina.com"
-role :web, "railscasts.railsmachina.com"
-role :db,  "railscasts.railsmachina.com", :primary => true
+role :app, application
+role :web, application
+role :db,  application, :primary => true
 
 set :user, "deploy"
 set :deploy_to, "/var/www/apps/#{application}"
@@ -41,7 +41,7 @@ namespace :deploy do
   
   desc "Sync the public/assets directory."
   task :assets do
-    system "rsync -vr --exclude='.DS_Store' public/assets deploy@railscasts.railsmachina.com:/var/www/apps/railscasts.com/shared/"
+    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/www/apps/railscasts.com/shared/"
   end
 end
 
