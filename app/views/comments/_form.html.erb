@@ -1,5 +1,6 @@
 <% form_for @comment do |f| %>
   <%= error_messages_for :comment %>
+  <noscript><p>Javascript required to add comment.</p></noscript>
   <div>
     <%= f.hidden_field :episode_id %>
     <%= enkode hidden_field_tag(:not_spam, true) %>

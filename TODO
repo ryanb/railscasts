@@ -3,7 +3,6 @@ Fixes
 Legacy Migration
 - shutdown old site cron job
 - copy over old site cron jobs
-- add <noscript> message saying javascript required when submitting comment
 
 Additional Features
 - search
