@@ -2,7 +2,6 @@ Fixes
 - add counter cache for episode comments
 
 Features
-- improve look of 404/500 error messages
 - search
 - textile for comments
 - add alternative download format for linux/windows
