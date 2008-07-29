@@ -1,5 +1,15 @@
-<% title "New Comment" %>
+<% if params[:preview_button] %>
+  <% title "Comment Preview" %>
+<% else %>
+  <% title "New Comment" %>
+<% end %>
 
 <div class="content">
+  <% if params[:preview_button] %>
+    <div id="comments">
+      <%= render :partial => @comment %>
+    </div>
+  <% end %>
+  
   <%= render :partial => 'form' %>
 </div>

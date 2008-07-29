@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    if params[:not_spam] && params[:email].blank? # fake email to catch spammers
+    if params[:preview_button].nil? && params[:not_spam] && params[:email].blank? # fake email to catch spammers
       @comment.request = request
       if @comment.save
         flash[:notice] = "Successfully created comment."
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
         render :action => 'new'
       end
     else
-      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com."
+      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com." unless params[:preview_button]
       render :action => 'new'
     end
   end

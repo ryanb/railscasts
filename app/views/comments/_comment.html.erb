@@ -1,12 +1,14 @@
-<%= tag :hr unless comment_counter == 1 %>
+<%= tag :hr if comment_counter > 1 %>
 <% div_for comment do %>
   <%= yield if block_given? %>
   <span class="name">
     <%= link_to_unless comment.site_url.blank?, h(comment.name), h(comment.site_url) %>
   </span>
-  <span class="created_at">
-    <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
-  </span>
+  <% unless comment.created_at.nil? %>
+    <span class="created_at">
+      <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
+    </span>
+  <% end %>
   <div class="comment_content">
     <%= simple_format(h(comment.content)) %>
   </div>

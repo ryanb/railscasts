@@ -32,6 +32,13 @@ describe CommentsController, "as guest" do
     response.should render_template(:new)
   end
 
+  it "create action should render new template when preview button is pressed" do
+    Comment.any_instance.stubs(:valid?).returns(true)
+    post :create, :not_spam => true, :preview_button => true
+    response.should render_template(:new)
+    flash[:error].should be_nil
+  end
+
   it "create action should redirect to index action when model is valid" do
     request.stubs(:remote_ip).returns('ip')
     Comment.any_instance.stubs(:valid?).returns(true)
