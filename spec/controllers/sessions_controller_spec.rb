@@ -10,7 +10,7 @@ describe SessionsController do
   end
   
   it "create action should mark as admin when password is correct" do
-    APP_CONFIG[:password] = 'testpass'
+    APP_CONFIG['password'] = 'testpass'
     get :create, :password => 'testpass'
     response.should redirect_to(root_url)
     session[:admin].should be_true

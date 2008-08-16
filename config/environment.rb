@@ -10,10 +10,6 @@ RAILS_GEM_VERSION = '2.1.0' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-# load app_config.yml
-raw_config = File.read(RAILS_ROOT + "/config/app_config.yml")
-APP_CONFIG = YAML.load(raw_config).symbolize_keys
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -52,8 +48,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => APP_CONFIG[:session_key],
-    :secret      => APP_CONFIG[:session_secret]
+    :session_key => APP_CONFIG['session_key'],
+    :secret      => APP_CONFIG['session_secret']
   }
 
   # Use the database for sessions instead of the cookie-based default,

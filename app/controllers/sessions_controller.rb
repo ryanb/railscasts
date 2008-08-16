@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
   
   def create
-    if params[:password] == APP_CONFIG[:password]
+    if params[:password] == APP_CONFIG['password']
       flash[:notice] = 'Logged in successfully.'
       session[:admin] = true
       redirect_to root_url
