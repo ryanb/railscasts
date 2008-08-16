@@ -1,0 +1,8 @@
+#feeds_list {
+  border-collapse: collapse;
+}
+
+#feeds_list td {
+  border: 1px solid #999;
+  padding: 4px 8px;
+}

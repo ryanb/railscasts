@@ -4,4 +4,7 @@ class InfoController < ApplicationController
   
   def contest
   end
+  
+  def feeds
+  end
 end

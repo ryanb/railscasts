@@ -358,3 +358,11 @@ ul {
 #contest .submissions {
   list-style: none;
 }
+
+#side #feeds li {
+  margin: 5px 0;
+}
+
+#side #feeds li img {
+  vertical-align: text-bottom;
+}

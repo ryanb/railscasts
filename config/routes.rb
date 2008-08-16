@@ -1,6 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.about 'about', :controller => 'info', :action => 'about'
-  map.contest 'contest', :controller => 'info', :action => 'contest'
+  map.with_options :controller => 'info' do |info|
+    info.about 'about', :action => 'about'
+    info.contest 'contest', :action => 'contest'
+    info.feeds 'feeds', :action => 'feeds'
+  end
   
   map.login 'login', :controller => 'sessions', :action => 'new'
   map.login 'logout', :controller => 'sessions', :action => 'destroy'

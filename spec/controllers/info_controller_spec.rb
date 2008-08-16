@@ -13,4 +13,9 @@ describe InfoController do
     get :contest
     response.should render_template(:contest)
   end
+  
+  it "feeds action should render feeds template" do
+    get :feeds
+    response.should render_template(:feeds)
+  end
 end
