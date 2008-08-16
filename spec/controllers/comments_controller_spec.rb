@@ -9,6 +9,13 @@ describe CommentsController, "as guest" do
     response.should render_template(:index)
   end
 
+  it "index action should render index template for rss with xml" do
+    get :index, :format => 'rss'
+    response.should render_template(:index)
+    response.content_type.should == 'application/rss+xml'
+    response.should have_tag('title', :text => 'Railscasts Comments')
+  end
+
   it "new action should render new template" do
     get :new
     response.should render_template(:new)

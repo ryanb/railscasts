@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
   
   def index
     @comments = Comment.recent.all(:limit => 30)
+    respond_to do |format|
+      format.html
+      format.rss
+    end
   end
   
   def new
