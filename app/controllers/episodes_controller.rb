@@ -20,6 +20,10 @@ class EpisodesController < ApplicationController
       @episode = Episode.published.find(params[:id])
     end
     @comment = Comment.new(:episode => @episode)
+    respond_to do |format|
+      format.html
+      format.rss
+    end
   end
 
   def new

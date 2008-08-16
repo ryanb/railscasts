@@ -38,6 +38,14 @@ describe EpisodesController, "as guest" do
     lambda { get :show, :id => episode }.should raise_error(ActiveRecord::RecordNotFound)
   end
   
+  it "show action should render show template for rss with xml" do
+    get :show, :id => Episode.first, :format => 'rss'
+    response.should render_template(:show)
+    response.content_type.should == 'application/rss+xml'
+    response.should have_tag('title', :text => /Comments/)
+    response.should have_tag('item description', :text => Episode.first.comments.first.content)
+  end
+  
   it_should_require_admin_for_actions :new, :create, :edit, :update, :destroy
 end
   

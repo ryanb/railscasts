@@ -1,13 +1,14 @@
 xml.instruct! :xml, :version => "1.0"
 xml.rss :version => "2.0" do
   xml.channel do
-    xml.title "Railscasts Comments"
-    xml.description "Recent comments for all Railscasts episodes."
+    xml.title "Railscasts Comments for #{@episode.name}"
+    xml.description "Comments for Episode #{@episode.position}: #{@episode.name}"
     xml.link formatted_comments_url(:rss)
     
-    @comments.each do |comment|
+    # REFACTORME some duplication with comments/index.rss.builder
+    @episode.comments.recent.each do |comment|
       xml.item do
-        xml.title "Comment for Episode #{comment.episode.position}: #{comment.episode.name}"
+        xml.title truncate(comment.content, 50)
         xml.description comment.content
         xml.pubDate comment.created_at.to_s(:rfc822)
         xml.link episode_url(:id => comment.episode, :anchor => dom_id(comment))

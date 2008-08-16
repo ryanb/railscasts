@@ -363,6 +363,6 @@ ul {
   margin: 5px 0;
 }
 
-#side #feeds li img {
+#side #feeds li img, #comment_count img {
   vertical-align: text-bottom;
 }
