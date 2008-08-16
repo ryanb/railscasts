@@ -9,6 +9,7 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title "Comment for Episode #{comment.episode.position}: #{comment.episode.name}"
         xml.description comment.content
+        xml.author comment.name
         xml.pubDate comment.created_at.to_s(:rfc822)
         xml.link episode_url(:id => comment.episode, :anchor => dom_id(comment))
         xml.guid({:isPermaLink => "false"}, comment_url(comment))
