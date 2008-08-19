@@ -27,9 +27,14 @@ class Episode < ActiveRecord::Base
   end
   
   def self.search_published(query)
-    search(query)
-  rescue ThinkingSphinx::ConnectionError
-    published.primitive_search(query)
+    if APP_CONFIG[:thinking_sphinx]
+      search(query)
+    else
+      published.primitive_search(query)
+    end
+  rescue ThinkingSphinx::ConnectionError => e
+    APP_CONFIG[:thinking_sphinx] = false
+    raise e
   end
   
   def self.primitive_search(query)

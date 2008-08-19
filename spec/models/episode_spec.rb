@@ -79,18 +79,23 @@ describe Episode do
     end
   end
   
-  it "should search name, description, and notes" do
-    Episode.delete_all
-    e1 = Factory.create(:episode, :name => 'foo', :description => 'bar', :notes => 'baz', :published_at => 2.weeks.ago)
-    e2 = Factory.create(:episode, :name => 'foo test bar', :description => 'baz', :published_at => 2.weeks.ago)
-    e3 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
-    Episode.search_published('foo bar baz').should == [e1, e2]
-  end
+  describe "primitive search" do
+    before(:each) do
+      Episode.delete_all
+      APP_CONFIG[:thinking_sphinx] = false
+    end
+    
+    it "should look in name, description, and notes" do
+      e1 = Factory.create(:episode, :name => 'foo', :description => 'bar', :notes => 'baz', :published_at => 2.weeks.ago)
+      e2 = Factory.create(:episode, :name => 'foo test bar', :description => 'baz', :published_at => 2.weeks.ago)
+      e3 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
+      Episode.search_published('foo bar baz').should == [e1, e2]
+    end
   
-  it "should search name, description, and notes" do
-    Episode.delete_all
-    e1 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
-    e2 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.from_now)
-    Episode.search_published('foo').should == [e1]
+    it "should not find unpublished" do
+      e1 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
+      e2 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.from_now)
+      Episode.search_published('foo').should == [e1]
+    end
   end
 end
