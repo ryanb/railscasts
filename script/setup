@@ -11,5 +11,5 @@ Dir['config/examples/*'].each do |source|
 end
 
 # run rake setup tasks
-system "rake gems:install"
-system "rake db:create:all db:migrate db:test:clone --trace"
+system "rake gems:install db:create:all"
+system "rake db:migrate db:test:clone --trace"
