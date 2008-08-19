@@ -1,0 +1,112 @@
+HoptoadNotifier
+===============
+
+This is the notifier plugin for integrating apps with Hoptoad.
+
+When an uncaught exception occurs, HoptoadNotifier will POST the relevant data 
+to the Hoptoad server specified in your environment.
+
+
+INSTALLATION
+
+From your project's RAILS_ROOT, run:
+
+  script/plugin install git://github.com/thoughtbot/hoptoad_notifier.git
+
+CONFIGURATION
+
+You should have something like this in config/initializers/hoptoad.rb.
+
+  HoptoadNotifier.configure do |config|
+    config.api_key = '1234567890abcdef'
+  end
+  
+(Please note that this configuration should be in a global configuration, and
+is *not* enrivonment-specific. Hoptoad is smart enough to know what errors are
+caused by what environments, so your staging errors don't get mixed in with
+your production errors.)
+
+Then, to enable hoptoad in your application, include this code...
+
+  include HoptoadNotifier::Catcher
+
+...in your ApplicationController, and all exceptions will be logged to Hoptoad
+where they can be aggregated, filtered, sorted, analyzed, massaged, and
+searched.
+
+** NOTE FOR RAILS 1.2.* USERS: **
+You will need to copy the hoptoad_notifier_tasks.rake file into your
+RAILS_ROOT/lib/tasks directory in order for the following to work:
+
+You can test that hoptoad is working in your production environment by using 
+this rake task (from RAILS_ROOT):
+
+  rake hoptoad:test
+
+If everything is configured properly, that task will send a notice to hoptoad 
+which will be visible immediately.
+
+USAGE
+
+For the most part, hoptoad works for itself.  Once you've included the notifier 
+in your ApplicationController, all errors will be rescued by the 
+#rescue_action_in_public provided by the plugin.
+
+If you want to log arbitrary things which you've rescued yourself from a 
+controller, you can do something like this:
+
+  ...
+  rescue => ex
+    notify_hoptoad(ex)
+    flash[:failure] = 'Encryptions could not be rerouted, try again.'
+  end
+  ...
+
+The #notify_hoptoad call will send the notice over to hoptoad for later 
+analysis.
+
+
+FILTERING
+
+You can specify a whitelist of errors, that Hoptoad will not report on.  Use 
+this feature when you are so apathetic to certain errors that you don't want 
+them even logged.
+
+This filter will only be applied to automatic notifications, not manual 
+notifications (when #notify is called directly).
+
+Hoptoad ignores the following exceptions by default:
+  ActiveRecord::RecordNotFound
+  ActionController::RoutingError
+  ActionController::InvalidAuthenticityToken
+  CGI::Session::CookieStore::TamperedWithCookie
+  
+To ignore errors in addition to those, specify their names in your Hoptoad 
+configuration block.
+
+  HoptoadNotifier.configure do |config|
+    config.api_key      = '1234567890abcdef'
+    config.ignore       << ActiveRecord::IgnoreThisError
+  end
+
+To ignore *only* certain errors (and override the defaults), use the 
+#ignore_only attribute.
+
+  HoptoadNotifier.configure do |config|
+    config.api_key      = '1234567890abcdef'
+    config.ignore_only  = [ActiveRecord::IgnoreThisError]
+  end
+
+
+TESTING
+
+When you run your tests, you might notice that the hoptoad service is recording
+notices generated using #notify when you don't expect it to.  You can 
+use code like this in your test_helper.rb to redefine that method so those 
+errors are not reported while running tests.
+
+  module HoptoadNotifier::Catcher
+    def notify(thing)
+      # do nothing.
+    end
+  end

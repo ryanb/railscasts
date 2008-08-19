@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'fc8393e85d1780ae56953606f53014e1'
   
+  include HoptoadNotifier::Catcher if APP_CONFIG['hoptoad_key']
+  
   private
   
   def admin?

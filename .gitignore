@@ -6,5 +6,5 @@ config/app_config.yml
 config/*.sphinx.conf
 db/*.sqlite3
 db/sphinx
-vendor/plugins/*
+vendor/plugins/rspec*
 public/assets
