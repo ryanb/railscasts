@@ -14,6 +14,13 @@ Please let me know if you plan to use this app for your site.
 5. make config/app_config.yml (see example_app_config.yml)
 6. script/server and enjoy!
 
+You may want to install sphinx, run the index and start rake commands,
+and set thinking_sphinx:true in app_config.yml. This isn't required as
+it will default to a primitive search.
+
+
+== Test Setup
+
 If you want to run the tests, you'll need to install the latest rspec 
 plugins. Instructions: http://github.com/dchelimsky/rspec-rails/wikis
 
