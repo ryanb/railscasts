@@ -28,13 +28,14 @@ class Episode < ActiveRecord::Base
   end
   
   def self.search_published(query)
-    if APP_CONFIG[:thinking_sphinx]
-      search(query)
+    if APP_CONFIG['thinking_sphinx']
+      search(query, :conditions => { :published_at => 0..Time.now.to_i },
+                    :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else
       published.primitive_search(query)
     end
   rescue ThinkingSphinx::ConnectionError => e
-    APP_CONFIG[:thinking_sphinx] = false
+    APP_CONFIG['thinking_sphinx'] = false
     raise e
   end
   

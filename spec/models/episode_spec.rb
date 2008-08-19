@@ -82,7 +82,7 @@ describe Episode do
   describe "primitive search" do
     before(:each) do
       Episode.delete_all
-      APP_CONFIG[:thinking_sphinx] = false
+      APP_CONFIG['thinking_sphinx'] = false
     end
     
     it "should look in name, description, and notes" do
