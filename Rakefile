@@ -9,4 +9,7 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-require 'thinking_sphinx/tasks' if defined? ThinkingSphinx
+begin
+  require 'thinking_sphinx/tasks'
+rescue MissingSourceFile
+end
