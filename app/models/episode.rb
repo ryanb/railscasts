@@ -16,6 +16,26 @@ class Episode < ActiveRecord::Base
   before_create :set_permalink
   after_update :save_downloads
   
+  define_index do
+    indexes :name
+    indexes position, :sortable => true
+    indexes description
+    indexes notes
+    indexes comments.content, :as => :comment_content
+    
+    has published_at
+  end
+  
+  def self.search_published(query)
+    search(query)
+  rescue ThinkingSphinx::ConnectionError
+    published.primitive_search(query)
+  end
+  
+  def self.primitive_search(query)
+    find(:all, :conditions => primitive_search_conditions(query))
+  end
+  
   def self.by_month
     all.group_by { |e| e.published_at.beginning_of_month }
   end
@@ -62,6 +82,12 @@ class Episode < ActiveRecord::Base
   end
   
   private
+  
+  def self.primitive_search_conditions(query)
+    query.split(/\s+/).map do |word|
+      '(' + %w[name description notes].map { |col| "#{col} LIKE #{sanitize('%' + word.to_s + '%')}" }.join(' OR ') + ')'
+    end.join(' AND ')
+  end
   
   def save_downloads
     if downloads.loaded?

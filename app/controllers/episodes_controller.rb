@@ -2,7 +2,11 @@ class EpisodesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
   
   def index
-    @episodes = Episode.published.recent
+    if params[:search]
+      @episodes = Episode.search_published(params[:search])
+    else
+      @episodes = Episode.published.recent
+    end
     respond_to do |format|
       format.html { @episodes = @episodes.paginate(:page => params[:page], :per_page => 10) }
       format.rss
