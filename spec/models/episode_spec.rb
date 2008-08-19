@@ -91,7 +91,7 @@ describe Episode do
       e3 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
       Episode.search_published('foo bar baz').should == [e1, e2]
     end
-  
+    
     it "should not find unpublished" do
       e1 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
       e2 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.from_now)

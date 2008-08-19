@@ -14,6 +14,11 @@ describe EpisodesController, "as guest" do
     get :index, :search => 'foo'
   end
   
+  it "index action with blank search should not search episodes" do
+    Episode.expects(:search_published).never
+    get :index, :search => ''
+  end
+  
   it "index action should render index template for rss with xml" do
     get :index, :format => 'rss'
     response.should render_template(:index)

@@ -2,10 +2,10 @@ class EpisodesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
   
   def index
-    if params[:search]
-      @episodes = Episode.search_published(params[:search])
-    else
+    if params[:search].blank?
       @episodes = Episode.published.recent
+    else
+      @episodes = Episode.search_published(params[:search])
     end
     respond_to do |format|
       format.html { @episodes = @episodes.paginate(:page => params[:page], :per_page => 10) }
