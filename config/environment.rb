@@ -67,9 +67,7 @@ Rails::Initializer.run do |config|
   
   config.gem "RedCloth", :lib => 'redcloth', :version => ">= 4.0"
   config.gem "coderay"
-  config.with_options :source => 'http://gems.github.com' do |github|
-    github.gem 'ryanb-acts-as-list', :lib => 'acts_as_list'
-    github.gem 'mislav-will_paginate', :lib => 'will_paginate'
-    github.gem 'ryanb-thinking-sphinx', :lib => 'thinking_sphinx'
-  end
+  config.gem 'ryanb-acts-as-list', :lib => 'acts_as_list', :source => 'http://gems.github.com'
+  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'ryanb-thinking-sphinx', :lib => 'thinking_sphinx', :source => 'http://gems.github.com'
 end
