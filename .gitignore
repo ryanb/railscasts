@@ -3,8 +3,7 @@ log/*.pid
 tmp/**/*
 config/database.yml
 config/app_config.yml
-config/development.sphinx.conf
-config/production.sphinx.conf
+config/*.sphinx.conf
 db/*.sqlite3
 db/sphinx
 vendor/plugins/*

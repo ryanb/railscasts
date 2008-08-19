@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+# copy config files
+Dir['config/examples/*'].each do |source|
+  destination = "config/#{File.basename(source)}"
+  unless File.exist? destination
+    FileUtils.cp(source, destination)
+    puts "Generated #{destination}"
+  end
+end
+
+# run rake setup tasks
+system "rake gems:install"
+system "rake db:create:all db:migrate db:test:clone --trace"

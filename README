@@ -7,12 +7,8 @@ Please let me know if you plan to use this app for your site.
 
 == Setup
 
-1. install rails 2.1 if you haven't already
-2. run 'rake gems:install' in project directory
-3. make config/database.yml (see example_database.yml)
-4. migrate the databases (rake db:migrate)
-5. make config/app_config.yml (see example_app_config.yml)
-6. script/server and enjoy!
+Run "script/setup". This will generate the config files, install gems,
+and migrate the database.
 
 You may want to install sphinx, run the index and start rake commands,
 and set thinking_sphinx:true in app_config.yml. This isn't required as

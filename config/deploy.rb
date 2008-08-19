@@ -35,8 +35,9 @@ namespace :deploy do
   task :setup_shared do
     run "mkdir #{shared_path}/assets"
     run "mkdir #{shared_path}/config"
-    put File.read("config/example_database.yml"), "#{shared_path}/config/database.yml"
-    put File.read("config/example_app_config.yml"), "#{shared_path}/config/app_config.yml"
+    put File.read("config/examples/database.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/examples/app_config.yml"), "#{shared_path}/config/app_config.yml"
+    put File.read("config/examples/production.sphinx.conf"), "#{shared_path}/config/production.sphinx.conf"
     puts "Now edit the config files and fill assets folder in #{shared_path}."
   end
   
