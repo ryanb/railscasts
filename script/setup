@@ -12,4 +12,4 @@ end
 
 # run rake setup tasks
 system "rake gems:install db:create:all"
-system "rake db:migrate db:test:clone --trace"
+system "rake db:migrate --trace"

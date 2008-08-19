@@ -10,16 +10,9 @@ Please let me know if you plan to use this app for your site.
 Run "script/setup". This will generate the config files, install gems,
 and migrate the database.
 
+Run "script/setup_test" if you want to run the tests. This will install
+the RSpec plugins and some other gems required for testing.
+
 You may want to install sphinx, run the index and start rake commands,
 and set thinking_sphinx:true in app_config.yml. This isn't required as
 it will default to a primitive search.
-
-
-== Test Setup
-
-If you want to run the tests, you'll need to install the latest rspec 
-plugins. Instructions: http://github.com/dchelimsky/rspec-rails/wikis
-
-You will also need to install the gems.
-
-  rake gems:install RAILS_ENV='test'

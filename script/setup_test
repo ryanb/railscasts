@@ -1,0 +1,16 @@
+#!/bin/sh
+git clone git://github.com/dchelimsky/rspec.git vendor/plugins/rspec
+cd vendor/plugins/rspec
+git checkout 1.1.4
+rm -rf .git
+cd -
+
+git clone git://github.com/dchelimsky/rspec-rails.git vendor/plugins/rspec-rails
+cd vendor/plugins/rspec-rails
+git checkout 1.1.4
+rm -rf .git
+cd -
+
+script/generate rspec
+rake gems:install RAILS_ENV='test'
+rake db:test:clone
