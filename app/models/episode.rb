@@ -22,6 +22,7 @@ class Episode < ActiveRecord::Base
     indexes description
     indexes notes
     indexes comments.content, :as => :comment_content
+    indexes tags(:name), :as => :tag_names
     
     has published_at
   end
