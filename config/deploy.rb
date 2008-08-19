@@ -29,12 +29,15 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
     run "ln -nfs #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf"
     run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
   end
 
   desc "Setup shared directory."
   task :setup_shared do
     run "mkdir #{shared_path}/assets"
     run "mkdir #{shared_path}/config"
+    run "mkdir #{shared_path}/db"
+    run "mkdir #{shared_path}/db/sphinx"
     put File.read("config/examples/database.yml"), "#{shared_path}/config/database.yml"
     put File.read("config/examples/app_config.yml"), "#{shared_path}/config/app_config.yml"
     put File.read("config/examples/production.sphinx.conf"), "#{shared_path}/config/production.sphinx.conf"
