@@ -7,6 +7,8 @@ class Comment < ActiveRecord::Base
   
   before_save :add_protocol_to_site_url
   
+  acts_as_list :scope => :episode
+  
   def request=(request)
     self.user_ip    = request.remote_ip
     self.user_agent = request.env['HTTP_USER_AGENT']

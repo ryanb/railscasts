@@ -225,7 +225,7 @@ ul {
   margin: 15px 20px;
 }
 
-.comment .name {
+.comment .position, .comment .name {
   font-size: 12px;
   font-weight: bold;
 }
