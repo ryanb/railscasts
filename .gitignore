@@ -1,6 +1,5 @@
-log/*.log
-log/*.pid
-tmp/**/*
+log/*
+tmp/*
 config/database.yml
 config/app_config.yml
 config/*.sphinx.conf

@@ -1,15 +1,18 @@
 Fixes
-- ensure searched episodes are sorted properly
 - rename pagination links so they make sense in search
 - improve CSS design
+- add pagination to episodes in tag show page
 
 Features
 - textile for comments
 - remember me when logging in
 - add index numbers to comments
-- add search to other pages
+- add search to episodes index archive
 - add alternative download format for linux/windows
 
 Possible
 - author edit comment for short time
 - add a blog
+- try "application/quicktime" content type to open movie directly in quicktime (see apple.com/quicktime for examples)
+- sort tag page in descending order
+- integration with miro (getmiro.com)
