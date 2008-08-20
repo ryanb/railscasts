@@ -1,7 +1,6 @@
 Fixes
 - improve CSS design
 - add pagination to episodes in tag show page
-- use better factory girl syntax
 
 Features
 - add alternative download format for linux/windows
@@ -14,3 +13,4 @@ Possible
 - try "application/quicktime" content type to open movie directly in quicktime (see apple.com/quicktime for examples)
 - sort tag page in descending order
 - integration with miro (getmiro.com)
+- add search to comments page

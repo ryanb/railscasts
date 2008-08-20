@@ -49,7 +49,7 @@ describe EpisodesController, "as guest" do
   end
   
   it "show action should not find episode when unpublished" do
-    episode = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    episode = Factory(:episode, :published_at => 2.weeks.from_now)
     lambda { get :show, :id => episode }.should raise_error(ActiveRecord::RecordNotFound)
   end
   
@@ -73,7 +73,7 @@ describe EpisodesController, "as admin" do
   end
 
   it "show action should render show template when unpublished" do
-    episode = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    episode = Factory(:episode, :published_at => 2.weeks.from_now)
     lambda { get :show, :id => episode }.should_not raise_error(ActiveRecord::RecordNotFound)
     response.should render_template(:show)
   end

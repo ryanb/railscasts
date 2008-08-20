@@ -2,17 +2,17 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Comment do
   it "should automatically add http to site url upon saving" do
-    comment = Factory.create(:comment, :site_url => 'example.com')
+    comment = Factory(:comment, :site_url => 'example.com')
     comment.site_url.should == 'http://example.com'
   end
   
   it "should not add protocol if there already is one" do
-    comment = Factory.create(:comment, :site_url => 'https://example.com')
+    comment = Factory(:comment, :site_url => 'https://example.com')
     comment.site_url.should == 'https://example.com'
   end
   
   it "should not add protocol if site url is blank" do
-    comment = Factory.create(:comment, :site_url => '')
+    comment = Factory(:comment, :site_url => '')
     comment.site_url.should == ''
   end
   
@@ -33,8 +33,8 @@ describe Comment do
   
   it "should sort recent comments in descending order by created_at time" do
     Comment.delete_all
-    c1 = Factory.create(:comment, :created_at => 2.weeks.ago)
-    c2 = Factory.create(:comment, :created_at => Time.now)
+    c1 = Factory(:comment, :created_at => 2.weeks.ago)
+    c2 = Factory(:comment, :created_at => Time.now)
     Comment.recent.should == [c2, c1]
   end
 end

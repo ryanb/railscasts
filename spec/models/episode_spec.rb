@@ -2,28 +2,28 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Episode do
   it "should find published" do
-    a = Factory.create(:episode, :published_at => 2.weeks.ago)
-    b = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    a = Factory(:episode, :published_at => 2.weeks.ago)
+    b = Factory(:episode, :published_at => 2.weeks.from_now)
     Episode.published.should include(a)
     Episode.published.should_not include(b)
   end
   
   it "should find unpublished" do
-    a = Factory.create(:episode, :published_at => 2.weeks.ago)
-    b = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    a = Factory(:episode, :published_at => 2.weeks.ago)
+    b = Factory(:episode, :published_at => 2.weeks.from_now)
     Episode.unpublished.should include(b)
     Episode.unpublished.should_not include(a)
   end
   
   it "should sort recent episodes in descending order" do
     Episode.delete_all
-    e1 = Factory.create(:episode)
-    e2 = Factory.create(:episode)
+    e1 = Factory(:episode)
+    e2 = Factory(:episode)
     Episode.recent.should == [e2, e1]
   end
   
   it "should assign tags to episodes" do
-    episode = Factory.create(:episode, :tag_names => 'foo bar')
+    episode = Factory(:episode, :tag_names => 'foo bar')
     episode.tags.map(&:name).should == %w[foo bar]
     episode.tag_names.should == 'foo bar'
   end
@@ -40,19 +40,19 @@ describe Episode do
   end
   
   it "should automatically generate permalink when creating episode" do
-    episode = Factory.create(:episode, :name => ' Hello_ *World* 2.1. ')
+    episode = Factory(:episode, :name => ' Hello_ *World* 2.1. ')
     episode.permalink.should == 'hello-world-2-1'
   end
   
   it "should include id and permalink in to_param" do
-    episode = Factory.create(:episode, :name => 'Foo Bar')
+    episode = Factory(:episode, :name => 'Foo Bar')
     episode.to_param.should == "#{episode.id}-#{episode.permalink}"
   end
   
   it "should know if it's the last published episode" do
-    a = Factory.create(:episode, :published_at => 2.weeks.ago)
-    b = Factory.create(:episode, :published_at => 1.week.ago)
-    c = Factory.create(:episode, :published_at => 2.weeks.from_now)
+    a = Factory(:episode, :published_at => 2.weeks.ago)
+    b = Factory(:episode, :published_at => 1.week.ago)
+    c = Factory(:episode, :published_at => 2.weeks.from_now)
     a.should_not be_last_published
     b.should be_last_published
     c.should_not be_last_published
@@ -60,7 +60,7 @@ describe Episode do
   
   describe "with downloads" do
     before(:each) do
-      @episode = Factory.create(:episode)
+      @episode = Factory(:episode)
       @mov = @episode.downloads.create!(:format => 'mov')
       @m4v = @episode.downloads.create!(:format => 'm4v')
     end
@@ -81,15 +81,15 @@ describe Episode do
     end
     
     it "should look in name, description, and notes" do
-      e1 = Factory.create(:episode, :name => 'foo', :description => 'bar', :notes => 'baz', :published_at => 2.weeks.ago)
-      e2 = Factory.create(:episode, :name => 'foo test bar', :description => 'baz', :published_at => 2.weeks.ago)
-      e3 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
+      e1 = Factory(:episode, :name => 'foo', :description => 'bar', :notes => 'baz', :published_at => 2.weeks.ago)
+      e2 = Factory(:episode, :name => 'foo test bar', :description => 'baz', :published_at => 2.weeks.ago)
+      e3 = Factory(:episode, :name => 'foo', :published_at => 2.weeks.ago)
       Episode.search_published('foo bar baz').should == [e1, e2]
     end
     
     it "should not find unpublished" do
-      e1 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.ago)
-      e2 = Factory.create(:episode, :name => 'foo', :published_at => 2.weeks.from_now)
+      e1 = Factory(:episode, :name => 'foo', :published_at => 2.weeks.ago)
+      e2 = Factory(:episode, :name => 'foo', :published_at => 2.weeks.from_now)
       Episode.search_published('foo').should == [e1]
     end
   end
