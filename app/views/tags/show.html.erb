@@ -3,3 +3,9 @@
 <div class="episodes">
   <%= render :partial => @episodes %>
 </div>
+
+<p class="content">
+  <%= link_to h('< Previous Page'), :overwrite_params => { :page => @episodes.previous_page } if @episodes.previous_page %>
+  <%= "|" if @episodes.previous_page && @episodes.next_page %>
+  <%= link_to h('Next Page >'), :overwrite_params => { :page => @episodes.next_page } if @episodes.next_page %>
+</p>
