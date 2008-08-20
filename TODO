@@ -1,11 +1,15 @@
 Fixes
+- ensure searched episodes are sorted properly
+- rename pagination links so they make sense in search
+- improve CSS design
 
 Features
-- search
 - textile for comments
 - remember me when logging in
 - add index numbers to comments
+- add search to other pages
+- add alternative download format for linux/windows
 
 Possible
-- add alternative download format for linux/windows
 - author edit comment for short time
+- add a blog
