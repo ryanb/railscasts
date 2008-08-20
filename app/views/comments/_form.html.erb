@@ -22,7 +22,11 @@
     <%= f.text_field :site_url %>
   </p>
   <p>
-    <%= f.label :content, 'Comment', :class => 'required' %> <span class="info">(required)</span><br />
+    <%= f.label :content, 'Comment', :class => 'required' %>
+    <span class="info">
+      (use <a href="http://pastie.org" target="_blank">pastie</a>
+      or <a href="http://gist.github.com" target="_blank">gist</a> for code)
+    </span><br />
     <%= f.text_area :content, :rows => '12', :cols => 35 %>
   </p>
   <p>
