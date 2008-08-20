@@ -1,10 +1,9 @@
 Fixes
 - improve CSS design
 - add pagination to episodes in tag show page
+- use better factory girl syntax
 
 Features
-- add index numbers to comments
-- add search to episodes index archive
 - add alternative download format for linux/windows
 
 Possible

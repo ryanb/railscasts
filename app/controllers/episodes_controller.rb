@@ -14,7 +14,12 @@ class EpisodesController < ApplicationController
   end
   
   def archive
-    @episode_months = Episode.published.by_month
+    if params[:search].blank?
+      episodes = Episode.published
+    else
+      episodes = Episode.search_published(params[:search]).sort_by(&:published_at)
+    end
+    @episode_months = episodes.group_by(&:published_month)
   end
 
   def show

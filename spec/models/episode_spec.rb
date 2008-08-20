@@ -34,14 +34,9 @@ describe Episode do
     episode.should have(1).error_on(:name)
   end
   
-  it "should group episodes by month" do
-    Episode.delete_all
-    a = Factory.create(:episode, :published_at => '2008-01-01')
-    b = Factory.create(:episode, :published_at => '2008-01-05')
-    c = Factory.create(:episode, :published_at => '2008-02-05')
-    months = Episode.by_month
-    months[Time.parse('2008-01-01')].should == [a, b]
-    months[Time.parse('2008-02-01')].should == [c]
+  it "should have published month" do
+    episode = Episode.new(:published_at => '2008-01-03')
+    episode.published_month.should == Time.parse('2008-01-01')
   end
   
   it "should automatically generate permalink when creating episode" do

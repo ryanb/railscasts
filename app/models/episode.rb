@@ -43,8 +43,8 @@ class Episode < ActiveRecord::Base
     find(:all, :conditions => primitive_search_conditions(query))
   end
   
-  def self.by_month
-    all.group_by { |e| e.published_at.beginning_of_month }
+  def published_month
+    published_at.beginning_of_month
   end
   
   def mov

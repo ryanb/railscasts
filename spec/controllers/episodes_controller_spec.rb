@@ -38,6 +38,11 @@ describe EpisodesController, "as guest" do
     response.should render_template(:archive)
   end
   
+  it "archive action with search should search published episodes" do
+    Episode.expects(:search_published).with('foo').returns(Episode.all)
+    get :archive, :search => 'foo'
+  end
+  
   it "show action should render show template" do
     get :show, :id => Episode.first
     response.should render_template(:show)
