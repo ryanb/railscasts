@@ -13,7 +13,7 @@
     </span>
   <% end %>
   <div class="comment_content">
-    <%= simple_format(h(comment.content)) %>
+    <%= format_comment(comment.content) %>
   </div>
   <% if admin? %>
   <div class="actions">
