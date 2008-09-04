@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.login 'login', :controller => 'sessions', :action => 'new'
-  map.login 'logout', :controller => 'sessions', :action => 'destroy'
+  map.logout 'logout', :controller => 'sessions', :action => 'destroy'
   
   map.resources :sponsors
   map.resources :comments
