@@ -6,8 +6,8 @@ class Episode < ActiveRecord::Base
   
   acts_as_list
   
-  named_scope :published, lambda { {:conditions => ['published_at <= ?', Time.now]} }
-  named_scope :unpublished, lambda { {:conditions => ['published_at > ?', Time.now]} }
+  named_scope :published, lambda { {:conditions => ['published_at <= ?', Time.now.utc]} }
+  named_scope :unpublished, lambda { {:conditions => ['published_at > ?', Time.now.utc]} }
   named_scope :recent, :order => 'position DESC'
   
   validates_presence_of :published_at, :name
@@ -29,7 +29,7 @@ class Episode < ActiveRecord::Base
   
   def self.search_published(query)
     if APP_CONFIG['thinking_sphinx']
-      search(query, :conditions => { :published_at => 0..Time.now.to_i },
+      search(query, :conditions => { :published_at => 0..Time.now.utc.to_i },
                     :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else
       published.primitive_search(query)
