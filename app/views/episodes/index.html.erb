@@ -7,9 +7,13 @@
   </p>
 <% end %>
 
-<div class="episodes">
-  <%= render :partial => @episodes %>
-</div>
+<% if @episodes.empty? %>
+  <p class="content">No episodes found. <%= link_to "See all episodes.", episodes_path %></p>
+<% else %>
+  <div class="episodes">
+    <%= render :partial => @episodes %>
+  </div>
+<% end %>
 
 <p class="content">
   <%= link_to h('< Previous Page'), :overwrite_params => { :page => @episodes.previous_page } if @episodes.previous_page %>
