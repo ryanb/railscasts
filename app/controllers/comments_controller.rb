@@ -10,7 +10,8 @@ class CommentsController < ApplicationController
   end
   
   def new
-    @comment = Comment.new
+    flash[:notice] = "To submit a comment, please go to a specific episode first."
+    redirect_to root_url
   end
   
   def create

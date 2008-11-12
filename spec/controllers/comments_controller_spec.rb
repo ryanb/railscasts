@@ -16,9 +16,10 @@ describe CommentsController, "as guest" do
     response.should have_tag('title', :text => 'Railscasts Comments')
   end
 
-  it "new action should render new template" do
+  it "new action should redirect to root url with flash notice" do
     get :new
-    response.should render_template(:new)
+    response.should redirect_to(root_url)
+    flash[:notice].should_not be_blank
   end
 
   it "create action should render new template when spam even if model is valid" do
