@@ -5,7 +5,7 @@
     <span class="position"><%= comment.position %>.</span>
   <% end %>
   <span class="name">
-    <%= link_to_unless comment.site_url.blank?, h(comment.name), h(comment.site_url) %>
+    <%= link_to_unless comment.site_url.blank?, h(comment.name), h(comment.site_url), :rel => "nofollow" %>
   </span>
   <% unless comment.created_at.nil? %>
     <span class="created_at">
