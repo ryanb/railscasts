@@ -15,9 +15,9 @@ class EpisodesController < ApplicationController
   
   def archive
     if params[:search].blank?
-      episodes = Episode.published
+      episodes = Episode.published.recent
     else
-      episodes = Episode.search_published(params[:search]).sort_by(&:published_at)
+      episodes = Episode.search_published(params[:search]).sort_by(&:published_at).reverse
     end
     @episode_months = episodes.group_by(&:published_month)
   end
