@@ -7,4 +7,10 @@ describe Sponsor do
     Sponsor.active.should include(active)
     Sponsor.active.should_not include(inactive)
   end
+  
+  it "should sort force_top first" do
+    top_sponsor = Factory(:sponsor, :force_top => true)
+    other_sponsor = Factory(:sponsor, :force_top => false)
+    [other_sponsor, top_sponsor].sort_by(&:position).first.should == top_sponsor
+  end
 end
