@@ -44,17 +44,22 @@ describe EpisodesController, "as guest" do
   end
   
   it "show action should render show template" do
-    get :show, :id => Episode.first
+    get :show, :id => Episode.first.to_param
     response.should render_template(:show)
+  end
+  
+  it "show action should redirect to full episode URL when only id" do
+    get :show, :id => Episode.first.id
+    response.should redirect_to(episode_url(Episode.first))
   end
   
   it "show action should not find episode when unpublished" do
     episode = Factory(:episode, :published_at => 2.weeks.from_now)
-    lambda { get :show, :id => episode }.should raise_error(ActiveRecord::RecordNotFound)
+    lambda { get :show, :id => episode.to_param }.should raise_error(ActiveRecord::RecordNotFound)
   end
   
   it "show action should render show template for rss with xml" do
-    get :show, :id => Episode.first, :format => 'rss'
+    get :show, :id => Episode.first.to_param, :format => 'rss'
     response.should render_template(:show)
     response.content_type.should == 'application/rss+xml'
     response.should have_tag('title', :text => /Comments/)
@@ -74,7 +79,7 @@ describe EpisodesController, "as admin" do
 
   it "show action should render show template when unpublished" do
     episode = Factory(:episode, :published_at => 2.weeks.from_now)
-    lambda { get :show, :id => episode }.should_not raise_error(ActiveRecord::RecordNotFound)
+    lambda { get :show, :id => episode.to_param }.should_not raise_error(ActiveRecord::RecordNotFound)
     response.should render_template(:show)
   end
   

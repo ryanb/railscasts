@@ -28,10 +28,15 @@ class EpisodesController < ApplicationController
     else
       @episode = Episode.published.find(params[:id])
     end
-    @comment = Comment.new(:episode => @episode)
-    respond_to do |format|
-      format.html
-      format.rss
+    if params[:id] != @episode.to_param
+      headers["Status"] = "301 Moved Permanently"
+      redirect_to episode_url(@episode)
+    else
+      @comment = Comment.new(:episode => @episode)
+      respond_to do |format|
+        format.html
+        format.rss
+      end
     end
   end
 
