@@ -25,14 +25,14 @@
       <% if episode.mov %>
         <%= link_to "Download", episode.mov.url %>
         <span class="stats">
-          (<%= number_to_human_size(episode.mov.bytes) %>, <%= episode.mov.duration %>)
+          (<%= number_to_human_size(episode.mov.bytes) %>, <%= episode.duration %>)
         </span>
       <% end %>
       <% if episode.m4v %>
         <div class="alt_download">
           <%= link_to "alternative download", episode.m4v.url %> for iPod &amp; Apple TV
           <span class="stats">
-            (<%= number_to_human_size(episode.m4v.bytes) %>, <%= episode.m4v.duration %>)
+            (<%= number_to_human_size(episode.m4v.bytes) %>, <%= episode.duration %>)
           </span>
         </div>
       <% end %>

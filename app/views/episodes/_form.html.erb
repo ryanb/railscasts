@@ -21,6 +21,10 @@
       <%= f.label :published_at, 'Publish Date' %><br />
       <%= f.date_select :published_at %>
     </p>
+    <p>
+      <%= f.label :duration, 'Duration' %><br />
+      <%= f.text_field :duration %>
+    </p>
     <% for download in @episode.downloads %>
       <% fields_for_download(download) do |d| %>
         <%= error_messages_for :download, :object => download %>
@@ -33,10 +37,6 @@
         <p>
           <%= d.label :bytes, 'Size in Bytes' %><br />
           <%= d.text_field :bytes %>
-        </p>
-        <p>
-          <%= d.label :duration, 'Duration' %><br />
-          <%= d.text_field :duration %>
         </p>
       <% end %>
     <% end %>

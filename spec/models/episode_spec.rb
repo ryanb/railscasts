@@ -49,6 +49,22 @@ describe Episode do
     episode.to_param.should == "#{episode.id}-#{episode.permalink}"
   end
   
+  it "should translate single digit seconds into duration with minutes" do
+    Episode.new(:seconds => 60*8+3).duration.should == '8:03'
+  end
+  
+  it "should translate double digit seconds into duration with minutes" do
+    Episode.new(:seconds => 60*8+12).duration.should == '8:12'
+  end
+  
+  it "should return nil for duration if seconds aren't set" do
+    Episode.new(:seconds => nil).duration.should be_nil
+  end
+  
+  it "should parse duration into seconds" do
+    Episode.new(:duration => '10:03').seconds.should == 603
+  end
+  
   it "should know if it's the last published episode" do
     a = Factory(:episode, :published_at => 2.weeks.ago)
     b = Factory(:episode, :published_at => 1.week.ago)
