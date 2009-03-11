@@ -3,7 +3,7 @@
   <noscript><p>Javascript required to add comment.</p></noscript>
   <div>
     <%= f.hidden_field :episode_id %>
-    <%= enkode hidden_field_tag(:not_spam, true) %>
+    <%= enkode hidden_field_tag(:spam_key, APP_CONFIG['spam_key']) %>
   </div>
   <p id="fake_email">
     <%= label_tag :email, 'Fake Email' %> <span class="info">(SKIP THIS ONE)</span><br />

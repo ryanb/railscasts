@@ -30,19 +30,19 @@ describe CommentsController, "as guest" do
 
   it "create action should render new template when fake email filled even if model is valid" do
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :email => 'spammer', :not_spam => 'true'
+    post :create, :email => 'spammer', :spam_key => APP_CONFIG['spam_key']
     response.should render_template(:new)
   end
 
   it "create action should render new template when model is invalid" do
     Comment.any_instance.stubs(:valid?).returns(false)
-    post :create, :not_spam => true
+    post :create, :spam_key => APP_CONFIG['spam_key']
     response.should render_template(:new)
   end
 
   it "create action should render new template when preview button is pressed" do
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :not_spam => true, :preview_button => true
+    post :create, :spam_key => APP_CONFIG['spam_key'], :preview_button => true
     response.should render_template(:new)
     flash[:error].should be_nil
   end
@@ -50,7 +50,7 @@ describe CommentsController, "as guest" do
   it "create action should redirect to index action when model is valid" do
     request.stubs(:remote_ip).returns('ip')
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :not_spam => true, :comment => { :episode_id => Episode.first.id }
+    post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :episode_id => Episode.first.id }
     response.should redirect_to(episode_path(Episode.first))
     assigns[:comment].user_ip.should == 'ip'
   end
