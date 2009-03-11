@@ -37,4 +37,14 @@ describe SpamReport do
     SpamReport.report_comment(bad_2)
     report.reload.hit_count.should == 2
   end
+  
+  it "should remove matching comments when confirming" do
+    good = Factory(:comment, :name => 'good')
+    bad = Factory(:comment, :name => 'bad')
+    report = SpamReport.create!(:comment_name => 'bad')
+    report.confirm!
+    report.confirmed_at.should_not be_nil
+    Comment.exists?(bad.id).should be_false
+    Comment.exists?(good.id).should be_true
+  end
 end

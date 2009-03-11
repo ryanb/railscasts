@@ -23,6 +23,7 @@ class SpamReport < ActiveRecord::Base
   
   def confirm!
     self.update_attribute(:confirmed_at, Time.now)
+    self.matching_comments.each(&:destroy)
   end
   
   private
