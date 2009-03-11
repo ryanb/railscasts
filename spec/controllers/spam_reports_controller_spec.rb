@@ -19,8 +19,8 @@ describe SpamReportsController, "as admin" do
   
   it "create action should redirect when model is valid" do
     SpamReport.any_instance.stubs(:valid?).returns(true)
-    post :create
-    response.should redirect_to(spam_report_url(assigns[:spam_report]))
+    post :create, :comment_id => Comment.first.id
+    response.should redirect_to(spam_reports_url)
   end
   
   it "destroy action should destroy model and redirect to index action" do

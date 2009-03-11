@@ -5,6 +5,14 @@ class SpamReport < ActiveRecord::Base
   
   named_scope :unconfirmed, :conditions => "confirmed_at is null"
   
+  def self.report_comment(comment)
+    if comment.matching_spam_reports.empty?
+      create!(:comment => comment, :hit_count => 1)
+    else
+      comment.matching_spam_reports.each { |r| r.increment! :hit_count }
+    end
+  end
+  
   def matching_comments
     conditions = []
     conditions << "user_ip=#{self.class.sanitize(comment_ip)}" unless comment_ip.blank?

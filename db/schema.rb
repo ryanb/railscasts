@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090311165121) do
+ActiveRecord::Schema.define(:version => 20090311181239) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20090311165121) do
     t.datetime "confirmed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "hit_count"
   end
 
   create_table "sponsors", :force => true do |t|

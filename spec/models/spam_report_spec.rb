@@ -27,4 +27,14 @@ describe SpamReport do
     report.matching_comments.should include(bad)
     report.matching_comments.should_not include(good)
   end
+  
+  it "should increment hit count when reporting comment spam that already exists" do
+    SpamReport.delete_all # delete so comment doesn't match an older report
+    bad = Factory(:comment, :name => 'badbadbad')
+    bad_2 = Factory(:comment, :name => 'badbadbad')
+    report = SpamReport.report_comment(bad)
+    report.reload.hit_count.should == 1
+    SpamReport.report_comment(bad_2)
+    report.reload.hit_count.should == 2
+  end
 end

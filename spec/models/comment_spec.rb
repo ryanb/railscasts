@@ -37,4 +37,16 @@ describe Comment do
     c2 = Factory(:comment, :created_at => Time.now)
     Comment.recent.should == [c2, c1]
   end
+  
+  it "should find matching spam reports by name, url, or ip" do
+    report = SpamReport.create!(:comment_ip => '123.456.789.0')
+    comment = Factory(:comment, :user_ip => '123.456.789.0')
+    comment.matching_spam_reports.should include(report)
+  end
+  
+  it "should not find matching spam reports by blank values" do
+    report = SpamReport.create!(:user_ip => '')
+    comment = Factory(:comment, :user_ip => '')
+    comment.matching_spam_reports.should_not include(report)
+  end
 end
