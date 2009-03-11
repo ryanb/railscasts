@@ -1,11 +1,19 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SpamReportsController, "as guest" do
+  fixtures :all
+  integrate_views
+  
   it_should_require_admin_for_actions :index, :show, :destroy, :confirm
   
   it "create action should redirect to episode" do
     post :create, :comment_id => Comment.first
     response.should redirect_to(episode_path(Comment.first.episode_id))
+  end
+  
+  it "create action should render template on javascript request" do
+    post :create, :comment_id => Comment.first, :format => 'js'
+    response.should render_template(:create)
   end
 end
 

@@ -1,5 +1,6 @@
 class SpamReportsController < ApplicationController
   before_filter :authorize, :except => :create
+  skip_before_filter :verify_authenticity_token, :only => :create
   
   def index
     @spam_reports = SpamReport.unconfirmed
@@ -10,10 +11,13 @@ class SpamReportsController < ApplicationController
   end
    
   def create
-    comment = Comment.find(params[:comment_id])
-    SpamReport.report_comment(comment)
-    flash[:notice] = "Thank you for reporting this comment as spam."
-    redirect_to episode_path(comment.episode_id)
+    @comment = Comment.find(params[:comment_id])
+    SpamReport.report_comment(@comment)
+    flash[:notice] = "Thank you for reporting spam."
+    respond_to do |format|
+      format.html { redirect_to episode_path(@comment.episode_id) }
+      format.js
+    end
   end
   
   def destroy
