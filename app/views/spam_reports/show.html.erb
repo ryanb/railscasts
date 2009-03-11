@@ -26,5 +26,5 @@
   </p>
   <p>Look through the comments below and confirm this spam report by choosing confirm at the bottom. Otherwise you can <%= link_to 'destroy it', @spam_report, :confirm => 'Are you sure?', :method => :delete %>.</p>
   <div id="comments"><%= render :partial => @spam_report.matching_comments %></div>
-  <h3><%= link_to "Confirm Validity of Spam Report", "TODO", :confirm => "Are you sure you want to remove all comments listed here and report future ones that match as spam?" %></h3>
+  <h3><%= link_to "Confirm Validity of Spam Report", confirm_spam_report_path(@spam_report), :method => :post, :confirm => "Are you sure you want to remove all comments listed here and reject future ones that match this spam report?" %></h3>
 </div>

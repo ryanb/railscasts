@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :tags
   map.resources :episodes, :collection => { :archive => :get }
   map.resources :sessions
-  map.resources :spam_reports
+  map.resources :spam_reports, :member => { :confirm => :post }
   
   map.root :episodes
 end

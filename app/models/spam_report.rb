@@ -21,6 +21,10 @@ class SpamReport < ActiveRecord::Base
     Comment.find(:all, :conditions => conditions.join(' or '))
   end
   
+  def confirm!
+    self.update_attribute(:confirmed_at, Time.now)
+  end
+  
   private
   
   def copy_comment_attributes
