@@ -2,6 +2,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SpamReportsController, "as guest" do
   it_should_require_admin_for_actions :index, :show, :create, :destroy, :confirm
+  
+  it "create action should redirect to episode" do
+    post :create, :comment_id => Comment.first
+    response.should redirect_to(episode_path(Comment.first.episode_id))
+  end
 end
 
 describe SpamReportsController, "as admin" do
@@ -20,12 +25,6 @@ describe SpamReportsController, "as admin" do
   it "index action should render show template" do
     get :show, :id => SpamReport.first
     response.should render_template(:show)
-  end
-  
-  it "create action should redirect when model is valid" do
-    SpamReport.any_instance.stubs(:valid?).returns(true)
-    post :create, :comment_id => Comment.first
-    response.should redirect_to(spam_reports_url)
   end
   
   it "destroy action should destroy model and redirect to index action" do

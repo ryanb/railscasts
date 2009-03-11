@@ -10,9 +10,10 @@ class SpamReportsController < ApplicationController
   end
    
   def create
-    SpamReport.report_comment(Comment.find(params[:comment_id]))
+    comment = Comment.find(params[:comment_id])
+    SpamReport.report_comment(comment)
     flash[:notice] = "Successfully created spam report."
-    redirect_to spam_reports_url
+    redirect_to episode_path(comment.episode_id)
   end
   
   def destroy
