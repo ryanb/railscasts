@@ -20,11 +20,11 @@ class Comment < ActiveRecord::Base
     conditions << "comment_ip=#{self.class.sanitize(user_ip)}" unless user_ip.blank?
     conditions << "comment_site_url=#{self.class.sanitize(site_url)}" unless site_url.blank?
     conditions << "comment_name=#{self.class.sanitize(name)}" unless name.blank?
-    SpamReport.find(:all, :conditions => conditions.join(' or '))
+    SpamReport.scoped(:conditions => conditions.join(' or '))
   end
   
   def spammish?
-    !matching_spam_reports.empty?
+    matching_spam_reports.confirmed.size > 0
   end
   
   private
