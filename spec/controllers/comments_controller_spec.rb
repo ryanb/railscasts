@@ -57,7 +57,7 @@ describe CommentsController, "as guest" do
   
   it_should_require_admin_for_actions :edit, :update, :destroy
 end
-  
+
 describe CommentsController, "as admin" do
   fixtures :all
   integrate_views

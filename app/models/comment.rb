@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :episode, :counter_cache => true
+  has_many :spam_reports
   
   validates_presence_of :name, :content, :episode_id
   
