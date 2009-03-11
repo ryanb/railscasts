@@ -1,5 +1,5 @@
 class SpamReportsController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :except => :create
   
   def index
     @spam_reports = SpamReport.unconfirmed
@@ -12,7 +12,7 @@ class SpamReportsController < ApplicationController
   def create
     comment = Comment.find(params[:comment_id])
     SpamReport.report_comment(comment)
-    flash[:notice] = "Successfully created spam report."
+    flash[:notice] = "Thank you for reporting this comment as spam."
     redirect_to episode_path(comment.episode_id)
   end
   
