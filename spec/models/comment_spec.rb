@@ -42,11 +42,13 @@ describe Comment do
     report = SpamReport.create!(:comment_ip => '123.456.789.0')
     comment = Factory(:comment, :user_ip => '123.456.789.0')
     comment.matching_spam_reports.should include(report)
+    comment.should be_spammish
   end
   
   it "should not find matching spam reports by blank values" do
     report = SpamReport.create!(:user_ip => '')
     comment = Factory(:comment, :user_ip => '')
     comment.matching_spam_reports.should_not include(report)
+    comment.should_not be_spammish
   end
 end

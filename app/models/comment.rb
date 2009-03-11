@@ -23,6 +23,10 @@ class Comment < ActiveRecord::Base
     SpamReport.find(:all, :conditions => conditions.join(' or '))
   end
   
+  def spammish?
+    !matching_spam_reports.empty?
+  end
+  
   private
   
   def add_protocol_to_site_url

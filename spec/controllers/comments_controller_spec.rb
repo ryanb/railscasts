@@ -48,6 +48,7 @@ describe CommentsController, "as guest" do
   end
 
   it "create action should redirect to index action when model is valid" do
+    SpamReport.delete_all # so it doesn't think this comment is spam
     request.stubs(:remote_ip).returns('ip')
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :episode_id => Episode.first.id }

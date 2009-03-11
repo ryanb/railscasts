@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    if params[:preview_button].nil? && params[:spam_key] == APP_CONFIG['spam_key'] && params[:email].blank? # fake email to catch spammers
+    if params[:preview_button].nil? && params[:spam_key] == APP_CONFIG['spam_key'] && !@comment.spammish? && params[:email].blank? # fake email to catch spammers
       @comment.request = request
       if @comment.save
         flash[:notice] = "Successfully created comment."
