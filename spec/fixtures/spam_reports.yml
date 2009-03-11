@@ -4,7 +4,7 @@ one:
   comment_site_url: MyString
   comment_name: MyString
   user_ip: MyString
-  confirmed_at: 2009-03-11 09:51:21
+  confirmed_at:
 
 two:
   comment_id: 1

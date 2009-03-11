@@ -366,3 +366,8 @@ ul {
 #side #feeds li img, #comment_count img {
   vertical-align: text-bottom;
 }
+
+#spam_reports {
+  font-size: 12px;
+  border-collapse: collapse;
+}

@@ -4,6 +4,10 @@ class SpamReportsController < ApplicationController
   def index
     @spam_reports = SpamReport.unconfirmed
   end
+  
+  def show
+    @spam_report = SpamReport.find(params[:id])
+  end
    
   def create
     SpamReport.report_comment(Comment.find(params[:comment_id]))

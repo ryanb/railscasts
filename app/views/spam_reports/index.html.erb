@@ -1,5 +1,18 @@
 <% title "Spam Reports" %>
 
-<% for spam_report in @spam_reports %>
-  <p><%=h spam_report.comment_name %></p>
-<% end %>
+<table border="1" cellspacing="0" cellpadding="3" id="spam_reports">
+  <tr>
+    <th>Spam Report</th>
+    <th>IP Address</th>
+    <th>Site URL</th>
+    <th>Hits</th>
+  </tr>
+  <% for spam_report in @spam_reports %>
+    <tr>
+      <td><%= link_to h(spam_report.comment_name), spam_report %></td>
+      <td><%=h spam_report.comment_ip %></td>
+      <td><%=h spam_report.comment_site_url %></td>
+      <td><%=h spam_report.hit_count %></td>
+    </tr>
+  <% end %>
+</table>

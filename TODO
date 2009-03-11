@@ -19,6 +19,7 @@ Spam Reporting
 x add spam report to admin navigation
 - add AJAX report link to comments page
 - add confirm link to spam report list
-- show spam report details with matching comments
+x show spam report details with matching comments
 x add hit_count to spam report and increment upon similar reports
 - don't allow comment post if it matches spam report with enough hits
+? add user's ip to spam report or remove attribute
