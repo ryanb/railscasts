@@ -11,9 +11,14 @@ jQuery.fn.submitWithAjax = function() {
 };
 
 $(document).ready(function() {
-  // remove the inline javascript stuff
   $("#comments .spam_report").removeAttr("onclick").click(function () {
     $.post(this.href, null, null, "script");
+    return false;
+  });
+  $("#comments .destroy").removeAttr("onclick").click(function () {
+    if (confirm("Are you sure you want to destroy this comment?")) {
+      $.post(this.href, "_method=delete", null, "script");
+    }
     return false;
   });
 })

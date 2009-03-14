@@ -18,7 +18,7 @@
   <div class="actions">
     <% if admin? %>
       <%= link_to "Edit", edit_comment_path(comment) %> |
-      <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %> |
+      <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %> |
     <% end %>
     <%= link_to "Report as Spam", spam_reports_path(:comment_id => comment), :method => :post, :class => 'spam_report' %>
   </div>

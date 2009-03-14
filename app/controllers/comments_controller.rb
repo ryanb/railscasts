@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authorize, :only => [:edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => :destroy
   
   def index
     @comments = Comment.recent.all(:limit => 30)
@@ -48,6 +49,9 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:notice] = "Successfully destroyed comment."
-    redirect_to comments_path
+    respond_to do |format|
+      format.html { redirect_to comments_path }
+      format.js
+    end
   end
 end

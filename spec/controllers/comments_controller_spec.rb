@@ -90,4 +90,9 @@ describe CommentsController, "as admin" do
     response.should redirect_to(comments_path)
     Comment.exists?(comment.id).should be_false
   end
+  
+  it "destroy action should render template on javascript request" do
+    post :destroy, :id => Comment.first, :format => 'js'
+    response.should render_template(:destroy)
+  end
 end
