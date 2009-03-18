@@ -15,7 +15,7 @@ class SponsorsController < ApplicationController
       flash[:notice] = "Successfully created sponsor."
       redirect_to sponsors_url
     else
-      render :action => 'new'
+      render 'new'
     end
   end
   
@@ -29,7 +29,7 @@ class SponsorsController < ApplicationController
       flash[:notice] = "Successfully updated sponsor."
       redirect_to sponsors_url
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
   

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:error] = 'Password is incorrect.'
-      render :action => 'new'
+      render 'new'
     end
   end
   

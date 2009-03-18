@@ -52,7 +52,7 @@ class EpisodesController < ApplicationController
       flash[:notice] = "Successfully created episode."
       redirect_to @episode
     else
-      render :action => 'new'
+      render 'new'
     end
   end
 
@@ -66,7 +66,7 @@ class EpisodesController < ApplicationController
       flash[:notice] = "Successfully updated episode."
       redirect_to @episode
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
 

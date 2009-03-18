@@ -11,7 +11,7 @@
   <p class="content">No episodes found. <%= link_to "See all episodes.", episodes_path %></p>
 <% else %>
   <div class="episodes">
-    <%= render :partial => @episodes %>
+    <%= render @episodes %>
   </div>
 <% end %>
 
@@ -24,7 +24,7 @@
 <% if admin? %>
 <h1 class="content">Future Episodes</h1>
 <div class="episodes">
-  <%= render :partial => Episode.unpublished %>
+  <%= render Episode.unpublished %>
 </div>
 
 <div class="content">

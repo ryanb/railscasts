@@ -27,7 +27,7 @@
     <%= pluralize @episode.comments.size, 'comment' %>
   </h3>
   <div id="comments" class="content">
-    <%= render :partial => @episode.comments %>
+    <%= render @episode.comments %>
   </div>
 <% end %>
 

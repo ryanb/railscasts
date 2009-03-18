@@ -23,11 +23,11 @@ class CommentsController < ApplicationController
         flash[:notice] = "Successfully created comment."
         redirect_to @comment.episode
       else
-        render :action => 'new'
+        render 'new'
       end
     else
       flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com." unless params[:preview_button]
-      render :action => 'new'
+      render 'new'
     end
   end
   
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully updated comment."
       redirect_to @comment.episode
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
   
