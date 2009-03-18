@@ -2,24 +2,14 @@ Fixes
 
 Features
 - add alternative download format for linux/windows
-- provide adobe media player feed
+- add search to comments page
 
 Possible
-- remember me when logging in
-- textile for comments
-- author edit comment for short time
-- add a blog
 - try "application/quicktime" content type to open movie directly in quicktime (see apple.com/quicktime for examples)
-- sort tag page in descending order
+- provide adobe media player feed
 - integration with miro (getmiro.com)
-- add search to comments page
-- improve CSS design
-
-Spam Reporting
-x add spam report to admin navigation
-x add AJAX report link to comments page
-x add confirm link to spam report list
-x show spam report details with matching comments
-x add hit_count to spam report and increment upon similar reports
-x don't allow comment post if it matches spam report with enough hits
-? add user's ip to spam report or remove attribute
++ improve CSS design
++ author edit comment for short time
++ textile for comments
++ remember me when logging in
++ add a blog

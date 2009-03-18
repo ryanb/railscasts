@@ -2,7 +2,7 @@
 <% @comment_counter += 1 -%>
 <%= tag :hr if @comment_counter > 1 %>
 <% div_for comment do %>
-  <%- unless current_page? episode_path(comment.episode) -%>
+  <%- if comment.episode && !current_page?(comment.episode) -%>
     <h4>
       Episode #<%= comment.episode.position %>:
       <%= link_to h(comment.episode.name), episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>

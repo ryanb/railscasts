@@ -48,7 +48,7 @@ describe Comment do
   
   it "should not find matching spam reports by blank values" do
     Comment.delete_all
-    report = SpamReport.create!(:user_ip => '')
+    report = SpamReport.create!(:comment_ip => '')
     comment = Factory(:comment, :user_ip => '')
     comment.matching_spam_reports.should_not include(report)
     comment.should_not be_spammish
