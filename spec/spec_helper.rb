@@ -15,11 +15,3 @@ Spec::Runner.configure do |config|
   
   config.include(ControllerMacros, :type => :controller)
 end
-
-class Object
-  def stub(methods)
-    methods.each do |name, value|
-      stubs(name).returns(value)
-    end
-  end
-end
