@@ -1,4 +1,6 @@
-<%= tag :hr if comment_counter > 1 %>
+<% @comment_counter ||= 0 -%>
+<% @comment_counter += 1 -%>
+<%= tag :hr if @comment_counter > 1 %>
 <% div_for comment do %>
   <%= yield if block_given? %>
   <% if comment.position %>

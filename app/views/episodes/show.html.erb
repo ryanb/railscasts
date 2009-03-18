@@ -1,7 +1,7 @@
 <% title @episode.name, false %>
 
 <% content_tag :head do %>
-  <link rel="alternate" type="application/rss+xml" title="Episode Comments RSS" href="<%= formatted_episode_url(@episode, :rss) %>" />
+  <link rel="alternate" type="application/rss+xml" title="Episode Comments RSS" href="<%= episode_url(@episode, :format => 'rss') %>" />
 <% end %>
 
 <div class="episodes">
@@ -23,7 +23,7 @@
 
 <% unless @episode.comments.empty? %>
   <h3 class="content" id="comment_count">
-    <%= link_to image_tag('icons/feed.gif', :alt => "RSS Feed for Episode Comments", :size => '16x16'), formatted_episode_path(@episode, :rss) %>
+    <%= link_to image_tag('icons/feed.gif', :alt => "RSS Feed for Episode Comments", :size => '16x16'), episode_path(@episode, :format => 'rss') %>
     <%= pluralize @episode.comments.size, 'comment' %>
   </h3>
   <div id="comments" class="content">

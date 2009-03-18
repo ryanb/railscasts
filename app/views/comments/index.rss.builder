@@ -3,7 +3,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title "Railscasts Comments"
     xml.description "Recent comments for all Railscasts episodes."
-    xml.link formatted_comments_url(:rss)
+    xml.link comments_url(:format => 'rss')
     
     @comments.each do |comment|
       xml.item do

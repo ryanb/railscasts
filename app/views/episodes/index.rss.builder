@@ -51,7 +51,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
           xml.link episode_url(episode)
           xml.guid({:isPermaLink => "false"}, episode.permalink)
           xml.itunes :author, author
-          xml.itunes :subtitle, truncate(episode.description, 150)
+          xml.itunes :subtitle, truncate(episode.description, :length => 150)
           xml.itunes :summary, episode.description
           xml.itunes :explicit, 'no'
           xml.itunes :duration, episode.duration
