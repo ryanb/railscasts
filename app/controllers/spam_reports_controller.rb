@@ -3,7 +3,7 @@ class SpamReportsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   
   def index
-    @spam_reports = SpamReport.unconfirmed
+    @spam_reports = SpamReport.unconfirmed.popular
   end
   
   def show

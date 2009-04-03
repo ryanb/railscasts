@@ -5,6 +5,7 @@ class SpamReport < ActiveRecord::Base
   
   named_scope :unconfirmed, :conditions => "confirmed_at is null"
   named_scope :confirmed, :conditions => "confirmed_at is not null"
+  named_scope :popular, :order => "hit_count desc"
   
   def self.report_comment(comment)
     if comment.matching_spam_reports.empty?
