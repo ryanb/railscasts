@@ -25,6 +25,10 @@
       <%= f.label :duration, 'Duration' %><br />
       <%= f.text_field :duration %>
     </p>
+    <p>
+      <%= f.check_box :asciicasts %>
+      <%= f.label :asciicasts, "Available on ASCIIcasts" %>
+    </p>
     <% for download in @episode.downloads %>
       <% fields_for_download(download) do |d| %>
         <%= error_messages_for :download, :object => download %>

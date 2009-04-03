@@ -37,6 +37,11 @@
         </div>
       <% end %>
     </div>
+    <% if episode.asciicasts? %>
+      <div class="asciicasts">
+        <%= link_to "Read it on ASCIIcasts", "http://asciicasts.com/episodes/#{episode.to_param}" %>
+      </div>
+    <% end %>
     <%= yield if block_given? %>
   </div>
 </div>

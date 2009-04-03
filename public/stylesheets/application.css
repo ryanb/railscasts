@@ -189,6 +189,11 @@ ul {
   color: #666;
 }
 
+.episode .asciicasts {
+  margin-top: 6px;
+  font-size: 11px;
+}
+
 .episode .notes {
   font-size: 11px;
   margin-top: 10px;
