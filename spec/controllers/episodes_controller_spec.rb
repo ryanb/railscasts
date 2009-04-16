@@ -48,8 +48,8 @@ describe EpisodesController, "as guest" do
     response.should render_template(:show)
   end
   
-  it "show action should redirect to full episode URL when only id" do
-    get :show, :id => Episode.first.id
+  it "show action should redirect to full episode URL when only position" do
+    get :show, :id => Episode.first.position
     response.should redirect_to(episode_url(Episode.first))
   end
   

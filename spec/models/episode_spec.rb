@@ -44,9 +44,9 @@ describe Episode do
     episode.permalink.should == 'hello-world-2-1'
   end
   
-  it "should include id and permalink in to_param" do
+  it "should include position and permalink in to_param" do
     episode = Factory(:episode, :name => 'Foo Bar')
-    episode.to_param.should == "#{episode.id}-#{episode.permalink}"
+    episode.to_param.should == "#{episode.position}-foo-bar"
   end
   
   it "should translate single digit seconds into duration with minutes" do

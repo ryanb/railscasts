@@ -67,7 +67,7 @@ class Episode < ActiveRecord::Base
   end
   
   def to_param
-    [id, permalink].join('-')
+    [position, permalink].join('-')
   end
   
   def last_published?

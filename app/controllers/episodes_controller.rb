@@ -24,9 +24,9 @@ class EpisodesController < ApplicationController
 
   def show
     if admin?
-      @episode = Episode.find(params[:id])
+      @episode = Episode.find_by_position!(params[:id].to_i)
     else
-      @episode = Episode.published.find(params[:id])
+      @episode = Episode.published.find_by_position!(params[:id].to_i)
     end
     if params[:id] != @episode.to_param
       headers["Status"] = "301 Moved Permanently"
