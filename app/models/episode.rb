@@ -16,15 +16,18 @@ class Episode < ActiveRecord::Base
   before_create :set_permalink
   after_update :save_downloads
   
-  define_index do
-    indexes :name
-    indexes position, :sortable => true
-    indexes description
-    indexes notes
-    indexes comments.content, :as => :comment_content
-    indexes tags(:name), :as => :tag_names
+  # sometimes ThinkingSphinx isn't loaded for rake tasks
+  if respond_to? :define_index
+    define_index do
+      indexes :name
+      indexes position, :sortable => true
+      indexes description
+      indexes notes
+      indexes comments.content, :as => :comment_content
+      indexes tags(:name), :as => :tag_names
     
-    has published_at
+      has published_at
+    end
   end
   
   def self.search_published(query)
