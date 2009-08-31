@@ -376,9 +376,3 @@ ul {
   font-size: 12px;
   border-collapse: collapse;
 }
-
-#railsrumble {
-  position: fixed;
-  right: 0;
-  top: 0;
-}
