@@ -71,4 +71,5 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'ryanb-thinking-sphinx', :lib => 'thinking_sphinx', :source => 'http://gems.github.com'
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
+  config.gem "recaptcha", :lib => "recaptcha/rails", :source => 'http://gemcutter.org'
 end

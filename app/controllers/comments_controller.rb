@@ -17,16 +17,11 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    if params[:preview_button].nil? && params[:spam_key] == APP_CONFIG['spam_key'] && !@comment.spammish? && params[:email].blank? # fake email to catch spammers
-      @comment.request = request
-      if @comment.save
-        flash[:notice] = "Successfully created comment."
-        redirect_to @comment.episode
-      else
-        render 'new'
-      end
+    @comment.request = request
+    if params[:preview_button].nil? && verify_recaptcha(:model => @comment, :private_key => APP_CONFIG["recaptcha_private_key"]) && @comment.save
+      flash[:notice] = "Successfully created comment."
+      redirect_to @comment.episode
     else
-      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com." unless params[:preview_button]
       render 'new'
     end
   end

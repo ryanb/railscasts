@@ -3,12 +3,7 @@
   <noscript><p>Javascript required to add comment.</p></noscript>
   <div>
     <%= f.hidden_field :episode_id %>
-    <%= enkode hidden_field_tag(:spam_key, APP_CONFIG['spam_key']) %>
   </div>
-  <p id="fake_email">
-    <%= label_tag :email, 'Fake Email' %> <span class="info">(SKIP THIS ONE)</span><br />
-    <%= text_field_tag :email %>
-  </p>
   <p>
     <%= f.label :name, 'Name', :class => 'required' %> <span class="info">(required)</span><br />
     <%= f.text_field :name %>
@@ -29,6 +24,7 @@
     </span><br />
     <%= f.text_area :content, :rows => '12', :cols => 35 %>
   </p>
+  <%= recaptcha_tags :public_key => APP_CONFIG["recaptcha_public_key"] %>
   <p>
     <%= f.submit "Preview", :name => 'preview_button' %>
     <%= f.submit "Submit" %>
