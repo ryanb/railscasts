@@ -28,14 +28,16 @@ describe SpamReport do
     report.matching_comments.should_not include(good)
   end
   
-  it "should increment hit count when reporting comment spam that already exists" do
+  it "should increment hit count when reporting comment spam that already exists and reset confirmation" do
     SpamReport.delete_all # delete so comment doesn't match an older report
     bad = Factory(:comment, :name => 'badbadbad')
     bad_2 = Factory(:comment, :name => 'badbadbad')
     report = SpamReport.report_comment(bad)
     report.reload.hit_count.should == 1
+    report.update_attribute(:confirmed_at, Time.now)
     SpamReport.report_comment(bad_2)
     report.reload.hit_count.should == 2
+    report.confirmed_at.should be_nil
   end
   
   it "should remove matching comments when confirming" do

@@ -11,7 +11,11 @@ class SpamReport < ActiveRecord::Base
     if comment.matching_spam_reports.empty?
       create!(:comment => comment, :hit_count => 1)
     else
-      comment.matching_spam_reports.each { |r| r.increment! :hit_count }
+      comment.matching_spam_reports.each do |r|
+        r.increment :hit_count
+        r.confirmed_at = nil
+        r.save!
+      end
     end
   end
   
