@@ -7,3 +7,13 @@ task :asciicasts => :environment do
     sleep 3 # so we don't hammer the server
   end
 end
+
+desc "Reset position attribute for all comments, sometimes it gets out of sync"
+task :reset_comment_positions => :environment do
+  Episode.find_each do |episode|
+    episode.comments.all(:order => "created_at").each_with_index do |comment, index|
+      puts comment.name + " #{index}"
+      comment.update_attribute(:position, index+1)
+    end
+  end
+end
