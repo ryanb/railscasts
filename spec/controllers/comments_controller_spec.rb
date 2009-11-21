@@ -23,7 +23,6 @@ describe CommentsController, "as guest" do
   end
 
   it "create action should redirect to episode when valid" do
-    SpamReport.delete_all
     request.stubs(:remote_ip).returns('ip')
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :episode_id => Episode.first.id }
@@ -54,6 +53,34 @@ describe CommentsController, "as guest" do
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :email => 'spammer', :spam_key => APP_CONFIG['spam_key']
     response.should render_template(:new)
+  end
+  
+  it "create action should submit new comment when answering spam question properly" do
+    spam_question = SpamQuestion.create!(:question => "My name?", :answer => "Ryan")
+    session[:spam_question_id] = spam_question.id
+    Comment.any_instance.stubs(:valid?).returns(true)
+    post :create, :spam_key => APP_CONFIG['spam_key'], :spam_answer => "ryan bates", :comment => { :episode_id => Episode.first.id }
+    response.should redirect_to(episode_path(Episode.first))
+    session[:spam_question_id].should be_nil
+  end
+  
+  it "create action should not submit new comment when answering spam question incorrectly" do
+    spam_question = SpamQuestion.create!(:question => "My name?", :answer => "Ryan")
+    session[:spam_question_id] = spam_question.id
+    Comment.any_instance.stubs(:valid?).returns(true)
+    post :create, :spam_key => APP_CONFIG['spam_key'], :spam_answer => "joe", :comment => { :episode_id => Episode.first.id }
+    response.should render_template(:new)
+  end
+
+  it "create action should should display spam question if it looks spammish" do
+    SpamCheck.delete_all
+    SpamQuestion.delete_all
+    SpamCheck.create!(:regexp => "bgg", :weight => 20)
+    spam_question = SpamQuestion.create!(:question => "My name?", :answer => "Ryan")
+    Comment.any_instance.stubs(:valid?).returns(true)
+    post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :content => "bgg" }
+    response.should render_template(:new)
+    session[:spam_question_id].should == spam_question.id
   end
   
   it_should_require_admin_for_actions :edit, :update, :destroy

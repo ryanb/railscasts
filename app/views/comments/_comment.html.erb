@@ -23,7 +23,7 @@
     <%= format_comment(comment.content) %>
   </div>
   <div class="actions">
-    <%- if admin? -%>
+    <%- if admin? && !comment.new_record? -%>
       <%= link_to "Edit", edit_comment_path(comment) %> |
       <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %> |
     <%- end -%>

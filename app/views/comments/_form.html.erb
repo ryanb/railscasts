@@ -5,6 +5,12 @@
     <%= f.hidden_field :episode_id %>
     <%= enkode hidden_field_tag(:spam_key, APP_CONFIG['spam_key']) %>
   </div>
+  <% if current_spam_question %>
+    <p id="spam_question">
+      <strong><%=h current_spam_question.question %></strong><br />
+      <%= text_field_tag :spam_answer %>
+    </p>
+  <% end %>
   <p id="fake_email">
     <%= label_tag :email, 'Fake Email' %> <span class="info">(SKIP THIS ONE)</span><br />
     <%= text_field_tag :email %>

@@ -17,16 +17,11 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    if params[:preview_button].nil? && params[:spam_key] == APP_CONFIG['spam_key'] && !@comment.spammish? && params[:email].blank? # fake email to catch spammers
-      @comment.request = request
-      if params[:preview_button].nil? && @comment.save
-        flash[:notice] = "Successfully created comment."
-        redirect_to @comment.episode
-      else
-        render 'new'
-      end
+    @comment.request = request
+    if params[:preview_button].nil? && check_spam(@comment) && @comment.save
+      flash[:notice] = "Successfully created comment."
+      redirect_to @comment.episode
     else
-      flash.now[:error] = "Caught by spam filter. Make sure javascript is enabled. If it still doesn't work, please let me know: ryan [at] railscasts [dot] com." unless params[:preview_button]
       render 'new'
     end
   end
@@ -53,5 +48,29 @@ class CommentsController < ApplicationController
       format.html { redirect_to comments_path }
       format.js
     end
+  end
+  
+  private
+  
+  def check_spam(comment)
+    errors = []
+    if current_spam_question
+      if params[:spam_answer] =~ /#{current_spam_question.answer}/i
+        session[:spam_question_id] = nil
+      else
+        errors << "The given answer is incorrect, please try again."
+      end
+    elsif comment.spammish?
+      errors << "The provided comment looks like spam. Please answer the question below."
+      session[:spam_question_id] = SpamQuestion.random.id
+    end
+    errors << "Javascript must be enabled to submit a comment." if params[:spam_key] != APP_CONFIG['spam_key']
+    errors << "Don't fill in the fake email address below, it should be left blank." unless params[:email].blank? # fake email to catch spammers
+    
+    unless errors.empty?
+      errors << "If it still doesn't work, please let me know: ryan [at] railscasts [dot] com."
+      flash.now[:error] = errors.join(" ")
+    end
+    errors.empty?
   end
 end

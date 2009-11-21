@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+  
+  def current_spam_question
+    @current_spam_question ||= SpamQuestion.find(session[:spam_question_id]) if session[:spam_question_id]
+  end
+  helper_method :current_spam_question
 end

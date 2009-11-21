@@ -376,3 +376,9 @@ ul {
   font-size: 12px;
   border-collapse: collapse;
 }
+
+#spam_question {
+  background-color: #FCC;
+  border: solid 1px #C66;
+  padding: 5px 8px;
+}
