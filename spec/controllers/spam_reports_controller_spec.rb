@@ -49,4 +49,12 @@ describe SpamReportsController, "as admin" do
     response.should redirect_to(spam_reports_url)
     spam_report.reload.confirmed_at.should_not be_nil
   end
+  
+  it "confirm action should mark multiple ids confirmed and redirect to index action" do
+    spam_report = SpamReport.first
+    spam_report.confirmed_at.should be_nil
+    delete :confirm, :id => [spam_report]
+    response.should redirect_to(spam_reports_url)
+    spam_report.reload.confirmed_at.should_not be_nil
+  end
 end

@@ -28,8 +28,8 @@ class SpamReportsController < ApplicationController
   end
   
   def confirm
-    @spam_report = SpamReport.find(params[:id])
-    @spam_report.confirm!
+    @spam_reports = SpamReport.find_all_by_id(params[:id])
+    @spam_reports.each(&:confirm!)
     flash[:notice] = "Successfully confirmed spam report."
     redirect_to spam_reports_url
   end
