@@ -28,12 +28,22 @@ class Comment < ActiveRecord::Base
   end
   
   def spam_weight
-    SpamCheck.all.sum do |spam_check|
-      spam_check.weight_for self
-    end
+     spam_check_weight + spam_report_weight
   end
   
   private
+  
+  def spam_check_weight
+    SpamCheck.all.sum do |spam_check|
+      spam_check.weight_for self
+    end || 0
+  end
+  
+  def spam_report_weight
+    matching_spam_reports.all.sum do |spam_report|
+      spam_report.hit_count
+    end || 0
+  end
   
   def add_protocol_to_site_url
     self.site_url = "http://#{site_url}" unless site_url.blank? || site_url.include?('://')

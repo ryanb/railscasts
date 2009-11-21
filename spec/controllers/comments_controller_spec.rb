@@ -75,10 +75,10 @@ describe CommentsController, "as guest" do
   it "create action should should display spam question if it looks spammish" do
     SpamCheck.delete_all
     SpamQuestion.delete_all
-    SpamCheck.create!(:regexp => "bgg", :weight => 20)
+    SpamCheck.create!(:regexp => "ugg", :weight => 20)
     spam_question = SpamQuestion.create!(:question => "My name?", :answer => "Ryan")
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :content => "bgg" }
+    post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :content => "ugg" }
     response.should render_template(:new)
     session[:spam_question_id].should == spam_question.id
   end
