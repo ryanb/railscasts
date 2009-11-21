@@ -1,0 +1,12 @@
+<% form_for @spam_question do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :question %><br />
+    <%= f.text_field :question %>
+  </p>
+  <p>
+    <%= f.label :answer %><br />
+    <%= f.text_field :answer %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

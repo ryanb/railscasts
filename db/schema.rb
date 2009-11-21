@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091121172820) do
+ActiveRecord::Schema.define(:version => 20091121181751) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20091121172820) do
   create_table "spam_checks", :force => true do |t|
     t.string   "regexp"
     t.integer  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spam_questions", :force => true do |t|
+    t.string   "question"
+    t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

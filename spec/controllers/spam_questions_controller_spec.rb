@@ -1,13 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe SpamChecksController, "as guest" do
+describe SpamQuestionsController, "as guest" do
   fixtures :all
   integrate_views
   
   it_should_require_admin_for_actions :index, :new, :create, :edit, :update, :destroy
 end
  
-describe SpamChecksController, "as admin" do
+describe SpamQuestionsController, "as admin" do
   fixtures :all
   integrate_views
   
@@ -26,38 +26,38 @@ describe SpamChecksController, "as admin" do
   end
   
   it "create action should render new template when model is invalid" do
-    SpamCheck.any_instance.stubs(:valid?).returns(false)
+    SpamQuestion.any_instance.stubs(:valid?).returns(false)
     post :create
     response.should render_template(:new)
   end
   
   it "create action should redirect when model is valid" do
-    SpamCheck.any_instance.stubs(:valid?).returns(true)
+    SpamQuestion.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(spam_checks_url)
+    response.should redirect_to(spam_questions_url)
   end
   
   it "edit action should render edit template" do
-    get :edit, :id => SpamCheck.first
+    get :edit, :id => SpamQuestion.first
     response.should render_template(:edit)
   end
   
   it "update action should render edit template when model is invalid" do
-    SpamCheck.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => SpamCheck.first
+    SpamQuestion.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => SpamQuestion.first
     response.should render_template(:edit)
   end
   
   it "update action should redirect when model is valid" do
-    SpamCheck.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => SpamCheck.first
-    response.should redirect_to(spam_checks_url)
+    SpamQuestion.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => SpamQuestion.first
+    response.should redirect_to(spam_questions_url)
   end
   
   it "destroy action should destroy model and redirect to index action" do
-    spam_check = SpamCheck.first
-    delete :destroy, :id => spam_check
-    response.should redirect_to(spam_checks_url)
-    SpamCheck.exists?(spam_check.id).should be_false
+    spam_question = SpamQuestion.first
+    delete :destroy, :id => spam_question
+    response.should redirect_to(spam_questions_url)
+    SpamQuestion.exists?(spam_question.id).should be_false
   end
 end

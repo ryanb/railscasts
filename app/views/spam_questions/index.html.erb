@@ -1,0 +1,22 @@
+<% title "Spam Questions" %>
+
+<% content_for :side do %>
+  <%= render :partial => 'shared/navigation' %>
+<% end %>
+
+<table border="1" cellspacing="0" cellpadding="3" id="spam_questions">
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+  </tr>
+  <% for spam_question in @spam_questions %>
+    <tr>
+      <td><%=h spam_question.question %></td>
+      <td><%=h spam_question.answer %></td>
+      <td><%= link_to "Edit", edit_spam_question_path(spam_question) %></td>
+      <td><%= link_to "Destroy", spam_question, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Spam Question", new_spam_question_path %></p>
