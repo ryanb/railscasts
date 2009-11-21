@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.request = request
-    if params[:preview_button].nil? && verify_recaptcha(:model => @comment, :private_key => APP_CONFIG["recaptcha_private_key"]) && @comment.save
+    if params[:preview_button].nil? && @comment.save
       flash[:notice] = "Successfully created comment."
       redirect_to @comment.episode
     else

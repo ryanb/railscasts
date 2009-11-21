@@ -24,7 +24,6 @@
     </span><br />
     <%= f.text_area :content, :rows => '12', :cols => 35 %>
   </p>
-  <%= recaptcha_tags :public_key => APP_CONFIG["recaptcha_public_key"] %>
   <p>
     <%= f.submit "Preview", :name => 'preview_button' %>
     <%= f.submit "Submit" %>
