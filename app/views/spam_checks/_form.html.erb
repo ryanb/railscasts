@@ -1,0 +1,12 @@
+<% form_for @spam_check do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :regexp %><br />
+    <%= f.text_field :regexp %>
+  </p>
+  <p>
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

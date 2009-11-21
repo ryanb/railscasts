@@ -38,26 +38,17 @@ describe Comment do
     Comment.recent.should == [c2, c1]
   end
   
-  it "should find matching spam reports by name, url, or ip" do
-    Comment.delete_all
-    report = SpamReport.create!(:comment_ip => '123.456.789.0')
-    comment = Factory(:comment, :user_ip => '123.456.789.0')
-    comment.matching_spam_reports.should include(report)
-    comment.should_not be_spammish
+  it "should add up weight for matching spam checks" do
+    SpamCheck.delete_all
+    SpamCheck.create!(:regexp => "bgg", :weight => 10)
+    SpamCheck.create!(:regexp => "http", :weight => 1)
+    Comment.new(:content => "bgghttpHTTP").spam_weight.should == 12
   end
   
-  it "should not find matching spam reports by blank values" do
-    Comment.delete_all
-    report = SpamReport.create!(:comment_ip => '')
-    comment = Factory(:comment, :user_ip => '')
-    comment.matching_spam_reports.should_not include(report)
-    comment.should_not be_spammish
-  end
-  
-  it "should consider a comment spammish only if spam report has been confirmed" do
-    Comment.delete_all
-    report = SpamReport.create!(:comment_ip => '123.456.789.0', :confirmed_at => Time.now)
-    comment = Factory(:comment, :user_ip => '123.456.789.0')
-    comment.should be_spammish
+  it "should be spammish when weight is greater than 5" do
+    SpamCheck.delete_all
+    SpamCheck.create!(:regexp => "a", :weight => 1)
+    Comment.new(:content => "aaaaa").should_not be_spammish
+    Comment.new(:content => "aaaaaa").should be_spammish
   end
 end

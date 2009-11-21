@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :spam_checks
+
   map.with_options :controller => 'info' do |info|
     info.about 'about', :action => 'about'
     info.contest 'contest', :action => 'contest'

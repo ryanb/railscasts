@@ -1,0 +1,22 @@
+<% title "Spam Checks" %>
+
+<% content_for :side do %>
+  <%= render :partial => 'shared/navigation' %>
+<% end %>
+
+<table border="1" cellspacing="0" cellpadding="3" id="spam_checks">
+  <tr>
+    <th>RegEx</th>
+    <th>Weight</th>
+  </tr>
+  <% for spam_check in @spam_checks %>
+    <tr>
+      <td><%=h spam_check.regexp %></td>
+      <td><%=h spam_check.weight %></td>
+      <td><%= link_to "edit", edit_spam_check_path(spam_check) %></td>
+      <td><%= link_to "destroy", spam_check, :method => :delete, :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Spam Check", new_spam_check_path %></p>

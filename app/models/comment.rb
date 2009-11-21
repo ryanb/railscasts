@@ -24,7 +24,13 @@ class Comment < ActiveRecord::Base
   end
   
   def spammish?
-    matching_spam_reports.confirmed.size > 0
+    spam_weight > 5
+  end
+  
+  def spam_weight
+    SpamCheck.all.sum do |spam_check|
+      spam_check.weight_for self
+    end
   end
   
   private

@@ -372,7 +372,7 @@ ul {
   vertical-align: text-bottom;
 }
 
-#spam_reports {
+#spam_reports, #spam_checks {
   font-size: 12px;
   border-collapse: collapse;
 }
