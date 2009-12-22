@@ -27,6 +27,10 @@ class Comment < ActiveRecord::Base
     spam_weight > 5
   end
   
+  def spam?
+    spam_weight > 50
+  end
+  
   def spam_weight
      spam_check_weight + spam_report_weight
   end

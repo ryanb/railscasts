@@ -54,7 +54,9 @@ class CommentsController < ApplicationController
   
   def check_spam(comment)
     errors = []
-    if current_spam_question
+    if comment.spam?
+      errors << "Comment rejected. Please email me the content of your comment for approval: ryan at railscasts dot com."
+    elsif current_spam_question
       if params[:spam_answer] =~ /#{current_spam_question.answer}/i
         session[:spam_question_id] = nil
       else

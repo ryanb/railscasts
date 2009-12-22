@@ -82,6 +82,16 @@ describe CommentsController, "as guest" do
     response.should render_template(:new)
     session[:spam_question_id].should == spam_question.id
   end
+
+  it "create action should should reject comment completely when it looks like obvious spam" do
+    SpamCheck.delete_all
+    SpamQuestion.delete_all
+    SpamCheck.create!(:regexp => "ugg", :weight => 60)
+    Comment.any_instance.stubs(:valid?).returns(true)
+    post :create, :spam_key => APP_CONFIG['spam_key'], :comment => { :content => "ugg" }
+    response.should render_template(:new)
+    session[:spam_question_id].should be_nil
+  end
   
   it_should_require_admin_for_actions :edit, :update, :destroy
 end

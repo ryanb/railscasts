@@ -54,6 +54,14 @@ describe Comment do
     Comment.new(:content => "aaaaaa").should be_spammish
   end
   
+  it "should be spam when weight is greater than 50" do
+    SpamReport.delete_all
+    SpamCheck.delete_all
+    SpamCheck.create!(:regexp => "a", :weight => 10)
+    Comment.new(:content => "aaaaa").should_not be_spam
+    Comment.new(:content => "aaaaaa").should be_spam
+  end
+  
   it "should add matching spam report hits to weight" do
     SpamReport.delete_all
     SpamCheck.delete_all
