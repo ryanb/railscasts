@@ -338,10 +338,10 @@ ul {
   list-style: disc;
 }
 
-#railsrumble {
+#corner_banner {
   position: absolute;
-  top: 7px;
-  right: 10px;
+  top: 0;
+  right: 0;
 }
 
 #fake_email {
@@ -381,4 +381,32 @@ ul {
   background-color: #FCC;
   border: solid 1px #C66;
   padding: 5px 8px;
+}
+
+#give_back {
+  float: left;
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+#give_back_instructions {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+#give_back_instructions ol {
+  margin: 0;
+  padding: 0;
+}
+
+#give_back_instructions li {
+  padding: 0;
+  margin: 30px 28px;
+  margin-right: 0;
+}
+
+#give_back_instructions li li {
+  padding: 0;
+  margin: 15px 28px;
+  margin-right: 0;
 }

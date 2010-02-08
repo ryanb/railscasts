@@ -7,4 +7,7 @@ class InfoController < ApplicationController
   
   def feeds
   end
+  
+  def give_back
+  end
 end

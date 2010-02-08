@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
     info.about 'about', :action => 'about'
     info.contest 'contest', :action => 'contest'
     info.feeds 'feeds', :action => 'feeds'
+    info.give_back 'give_back', :action => 'give_back'
   end
   
   map.login 'login', :controller => 'sessions', :action => 'new'
