@@ -1,8 +1,4 @@
-jQuery.ajaxSetup({ 
-  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
-})
-
-$(document).ready(function() {
+$(function() {
   $("#comments .spam_report").removeAttr("onclick").click(function () {
     $.post(this.href, null, null, "script");
     return false;
@@ -13,4 +9,4 @@ $(document).ready(function() {
     }
     return false;
   });
-})
+});

@@ -1,7 +1,7 @@
 <% title "All Episodes" %>
 
 <div class="content">
-  <% form_tag archive_episodes_path, :method => 'get' do %>
+  <%= form_tag archive_episodes_path, :method => 'get' do %>
     <p>
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :name => nil %>
@@ -9,7 +9,7 @@
   <% end %>
 
   <% @episode_months.each do |month, episodes| %>
-    <h2><%=h month.strftime('%B %Y') %></h2>
+    <h2><%= month.strftime('%B %Y') %></h2>
     <% for episode in episodes %>
       <div>
         <%= episode.position %>.

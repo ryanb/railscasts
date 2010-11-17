@@ -1,20 +1,20 @@
 <% title @episode.name, false %>
 
-<% content_tag :head do %>
+<% content_for :head do %>
   <link rel="alternate" type="application/rss+xml" title="Episode Comments RSS" href="<%= episode_url(@episode, :format => 'rss') %>" />
 <% end %>
 
 <div class="episodes">
-  <% render :layout => @episode do %>
+  <%= render :layout => @episode do %>
     <div class="notes">
       <%= textilize @episode.notes %>
     </div>
     <div id="episode_nav">
     <% unless @episode.first? %>
-      <div id="previous_episode"><%= link_to h('< Previous Episode'), @episode.higher_item %></div>
+      <div id="previous_episode"><%= link_to '< Previous Episode', @episode.higher_item %></div>
     <% end %>
     <% unless @episode.last_published? || @episode.last? %>
-      <div id="next_episode"><%= link_to h('Next Episode >'), @episode.lower_item %></div>
+      <div id="next_episode"><%= link_to 'Next Episode >', @episode.lower_item %></div>
     <% end %>
     </div>
     <div class="clear"></div>

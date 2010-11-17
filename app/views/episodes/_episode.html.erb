@@ -11,13 +11,13 @@
     <% end %>
   </div>
   <div class="main">
-    <h2><%= link_to_unless_current h(episode.name), episode %></h2>
-    <div class="description"><%=h episode.description %></div>
+    <h2><%= link_to_unless_current episode.name, episode %></h2>
+    <div class="description"><%= episode.description %></div>
     <% unless episode.tags.empty? %>
       <div class="tags">
         Tags:
         <% for tag in episode.tags %>
-          <%= link_to h(tag.name), tag %>
+          <%= link_to tag.name, tag %>
         <% end %>
       </div>
     <% end %>

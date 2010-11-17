@@ -1,6 +1,6 @@
 <div class="content">
-  <%= error_messages_for :sponsor %>
-  <% form_for @sponsor do |f| %>
+  <%= form_for @sponsor do |f| %>
+    <%= f.error_messages %>
     <p>
       <%= f.label :name %><br />
       <%= f.text_field :name %>

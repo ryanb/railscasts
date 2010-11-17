@@ -1,24 +1,30 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :spam_questions
-
-  map.resources :spam_checks
-
-  map.with_options :controller => 'info' do |info|
-    info.about 'about', :action => 'about'
-    info.contest 'contest', :action => 'contest'
-    info.feeds 'feeds', :action => 'feeds'
-    info.give_back 'give_back', :action => 'give_back'
+Railscasts::Application.routes.draw do
+  root :to => "episodes#index"
+  
+  match "about" => "info#about", :as => "about"
+  match "contest" => "info#contest", :as => "contest"
+  match "feeds" => "info#feeds", :as => "feeds"
+  match "give_back" => "info#give_back", :as => "give_back"
+  match "login" => "sessions#new", :as => "login"
+  match "logout" => "sessions#destroy", :as => "logout"
+  
+  resources :sponsors
+  resources :comments
+  resources :tags
+  resources :episodes do
+    collection do
+      get :archive
+    end
   end
-  
-  map.login 'login', :controller => 'sessions', :action => 'new'
-  map.logout 'logout', :controller => 'sessions', :action => 'destroy'
-  
-  map.resources :sponsors
-  map.resources :comments
-  map.resources :tags
-  map.resources :episodes, :collection => { :archive => :get }
-  map.resources :sessions
-  map.resources :spam_reports, :member => { :confirm => :post }, :collection => { :confirm => :post }
-  
-  map.root :episodes
+  resources :sessions
+  resources :spam_questions
+  resources :spam_checks
+  resources :spam_reports do
+    member do
+      post :confirm
+    end
+    collection do
+      post :confirm
+    end
+  end
 end

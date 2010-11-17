@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :name, :content, :episode_id
   
-  named_scope :recent, :order => "created_at DESC"
+  scope :recent, order("created_at DESC")
   
   before_save :add_protocol_to_site_url
   

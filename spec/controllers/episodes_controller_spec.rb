@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe EpisodesController, "as guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it "index action should render index template" do
     get :index
@@ -23,14 +23,14 @@ describe EpisodesController, "as guest" do
     get :index, :format => 'rss'
     response.should render_template(:index)
     response.content_type.should == 'application/rss+xml'
-    response.should have_tag('title', :text => 'Railscasts')
+    response.should have_selector('title', :content => 'Railscasts')
   end
   
   it "index action should render index template for rss with xml for iPod" do
     get :index, :format => 'rss', :ipod => true
     response.should render_template(:index)
     response.content_type.should == 'application/rss+xml'
-    response.should have_tag('title', :text => /Railscasts.+iPod/)
+    response.should have_selector('title', :content => "Railscasts (iPod & Apple TV)")
   end
   
   it "archive action should render archive template" do
@@ -62,8 +62,8 @@ describe EpisodesController, "as guest" do
     get :show, :id => Episode.first.to_param, :format => 'rss'
     response.should render_template(:show)
     response.content_type.should == 'application/rss+xml'
-    response.should have_tag('title', :text => /Comments/)
-    response.should have_tag('item description', :text => Episode.first.comments.first.content)
+    response.should have_selector('title', :content => "Comments")
+    response.should have_selector('item description', :content => Episode.first.comments.first.content)
   end
   
   it_should_require_admin_for_actions :new, :create, :edit, :update, :destroy
@@ -71,7 +71,7 @@ end
   
 describe EpisodesController, "as admin" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     session[:admin] = true

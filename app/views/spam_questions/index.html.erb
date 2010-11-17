@@ -11,8 +11,8 @@
   </tr>
   <% for spam_question in @spam_questions %>
     <tr>
-      <td><%=h spam_question.question %></td>
-      <td><%=h spam_question.answer %></td>
+      <td><%= spam_question.question %></td>
+      <td><%= spam_question.answer %></td>
       <td><%= link_to "Edit", edit_spam_question_path(spam_question) %></td>
       <td><%= link_to "Destroy", spam_question, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

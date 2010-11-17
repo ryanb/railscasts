@@ -1,6 +1,6 @@
 <div class="content">
-  <%= error_messages_for :episode %>
-  <% form_for @episode do |f| %>
+  <%= form_for @episode do |f| %>
+    <%= f.error_messages %>
     <p>
       <%= f.label :name %><br />
       <%= f.text_field :name %>
@@ -30,9 +30,9 @@
       <%= f.label :asciicasts, "Available on ASCIIcasts" %>
     </p>
     <% for download in @episode.downloads %>
-      <% fields_for_download(download) do |d| %>
-        <%= error_messages_for :download, :object => download %>
-        <h3><%=h download.format %></h3>
+      <%= fields_for_download(download) do |d| %>
+        <%= d.error_messages %>
+        <h3><%= download.format %></h3>
         <div><%= d.hidden_field :format %></div>
         <p>
           <%= d.label :url, 'File URL' %><br />

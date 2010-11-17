@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SpamReportsController, "as guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it_should_require_admin_for_actions :index, :show, :destroy, :confirm
   
@@ -19,7 +19,7 @@ end
 
 describe SpamReportsController, "as admin" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     session[:admin] = true
@@ -43,7 +43,7 @@ describe SpamReportsController, "as admin" do
   end
   
   it "confirm action should mark as confirmed model and redirect to index action" do
-    spam_report = SpamReport.first
+    spam_report = SpamReport.create!
     spam_report.confirmed_at.should be_nil
     delete :confirm, :id => spam_report
     response.should redirect_to(spam_reports_url)
@@ -51,7 +51,7 @@ describe SpamReportsController, "as admin" do
   end
   
   it "confirm action should mark multiple ids confirmed and redirect to index action" do
-    spam_report = SpamReport.first
+    spam_report = SpamReport.create!
     spam_report.confirmed_at.should be_nil
     delete :confirm, :id => [spam_report]
     response.should redirect_to(spam_reports_url)

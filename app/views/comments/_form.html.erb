@@ -1,13 +1,13 @@
-<% form_for @comment do |f| %>
-  <%= error_messages_for :comment %>
+<%= form_for @comment do |f| %>
+  <%= f.error_messages %>
   <noscript><p>Javascript required to add comment.</p></noscript>
   <div>
     <%= f.hidden_field :episode_id %>
-    <%= enkode hidden_field_tag(:spam_key, APP_CONFIG['spam_key']) %>
+    <%= raw enkode(hidden_field_tag(:spam_key, APP_CONFIG['spam_key'])) %>
   </div>
   <% if current_spam_question %>
     <p id="spam_question">
-      <strong><%=h current_spam_question.question %></strong><br />
+      <strong><%= current_spam_question.question %></strong><br />
       <%= text_field_tag :spam_answer %>
     </p>
   <% end %>

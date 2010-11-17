@@ -11,8 +11,8 @@
   </tr>
   <% for spam_check in @spam_checks %>
     <tr>
-      <td><%=h spam_check.regexp %></td>
-      <td><%=h spam_check.weight %></td>
+      <td><%= spam_check.regexp %></td>
+      <td><%= spam_check.weight %></td>
       <td><%= link_to "edit", edit_spam_check_path(spam_check) %></td>
       <td><%= link_to "destroy", spam_check, :method => :delete, :confirm => "Are you sure?" %></td>
     </tr>

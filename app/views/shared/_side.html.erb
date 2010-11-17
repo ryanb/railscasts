@@ -9,7 +9,7 @@
   <strong>sponsored by:</strong>
   <% for sponsor in Sponsor.active.sort_by(&:position) %>
     <div class="sponsor">
-      <%= link_to image_tag(sponsor.image_url, :alt => h(sponsor.name)), sponsor.site_url %>
+      <%= link_to image_tag(sponsor.image_url, :alt => sponsor.name), sponsor.site_url %>
     </div>
   <% end %>
 </div>
@@ -17,7 +17,7 @@
   <strong>tags:</strong>
   <ul id="tags">
   <% for tag in Tag.find(:all, :order => 'name') %>
-    <li><%= link_to h(tag.name), tag_path(tag) %></li>
+    <li><%= link_to tag.name, tag_path(tag) %></li>
   <% end %>
   </ul>
 </div>

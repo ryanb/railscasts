@@ -1,4 +1,0 @@
-#!/bin/sh
-rake gems:install RAILS_ENV='test'
-script/generate rspec
-rake db:test:clone

@@ -1,33 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Railscasts - Error Occurred</title>
-    <link href="/stylesheets/application.css?1217174801" media="screen" rel="stylesheet" type="text/css" />
-  </head>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>We're sorry, but something went wrong (500)</title>
+  <style type="text/css">
+    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    div.dialog {
+      width: 25em;
+      padding: 0 4em;
+      margin: 4em auto 0 auto;
+      border: 1px solid #ccc;
+      border-right-color: #999;
+      border-bottom-color: #999;
+    }
+    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+  </style>
+</head>
 
-  <body>
-    <div id="container">
-      <div id="logo"><a href="/"><img alt="Railscasts" height="88" src="/images/logo.png" width="452" /></a></div>
-    
-      <div id="main">
-        <div class="content">
-          <h1>Error Occurred</h1>
-          <p>We're sorry, but something went wrong. If you reached this from clicking a link, please send an email to ryan AT railscasts DOT com.</p>
-        </div>
-      </div>
-    
-      <div id="side">
-        <div class="section">
-          <strong>navigation:</strong>
-          <ul id="navigation">
-            <li><a href="/">Recent Episodes</a></li>
-            <li><a href="/episodes/archive">All Episodes</a></li>
-            <li><a href="/about">About Railscasts</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </body>
+<body>
+  <!-- This file lives in public/500.html -->
+  <div class="dialog">
+    <h1>We're sorry, but something went wrong.</h1>
+    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
+  </div>
+</body>
 </html>

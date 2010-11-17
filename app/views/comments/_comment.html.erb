@@ -1,18 +1,18 @@
 <% @comment_counter ||= 0 -%>
 <% @comment_counter += 1 -%>
 <%= tag :hr if @comment_counter > 1 %>
-<% div_for comment do %>
+<%= div_for comment do %>
   <%- if comment.episode && !current_page?(comment.episode) -%>
     <h4>
       Episode #<%= comment.episode.position %>:
-      <%= link_to h(comment.episode.name), episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>
+      <%= link_to comment.episode.name, episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>
     </h4>
   <%- end -%>
   <%- if comment.position -%>
     <span class="position"><%= comment.position %>.</span>
   <%- end -%>
   <span class="name">
-    <%= link_to_unless comment.site_url.blank?, h(comment.name), h(comment.site_url), :rel => "nofollow" %>
+    <%= link_to_unless comment.site_url.blank?, comment.name, comment.site_url, :rel => "nofollow" %>
   </span>
   <%- unless comment.created_at.nil? -%>
     <span class="created_at">

@@ -2,14 +2,14 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SpamQuestionsController, "as guest" do
   fixtures :all
-  integrate_views
+  render_views
   
   it_should_require_admin_for_actions :index, :new, :create, :edit, :update, :destroy
 end
  
 describe SpamQuestionsController, "as admin" do
   fixtures :all
-  integrate_views
+  render_views
   
   before(:each) do
     session[:admin] = true

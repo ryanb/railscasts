@@ -1,6 +1,6 @@
 <% title "Free Ruby on Rails Screencasts", false %>
 
-<% form_tag episodes_path, :method => 'get' do %>
+<%= form_tag episodes_path, :method => 'get' do %>
   <p class="content">
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
@@ -16,9 +16,9 @@
 <% end %>
 
 <p class="content">
-  <%= link_to h('< Previous Page'), :overwrite_params => { :page => @episodes.previous_page } if @episodes.previous_page %>
+  <%= link_to '< Previous Page', :overwrite_params => { :page => @episodes.previous_page } if @episodes.previous_page %>
   <%= "|" if @episodes.previous_page && @episodes.next_page %>
-  <%= link_to h('Next Page >'), :overwrite_params => { :page => @episodes.next_page } if @episodes.next_page %>
+  <%= link_to 'Next Page >', :overwrite_params => { :page => @episodes.next_page } if @episodes.next_page %>
 </p>
 
 <% if admin? %>

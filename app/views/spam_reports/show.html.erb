@@ -6,24 +6,24 @@
   <% unless @spam_report.comment_ip.blank? %>
   <p>
     <strong>IP Address:</strong>
-    <%=h @spam_report.comment_ip %>
+    <%= @spam_report.comment_ip %>
   </p>
   <% end %>
   <% unless @spam_report.comment_site_url.blank? %>
   <p>
     <strong>Site URL:</strong>
-    <%=h @spam_report.comment_site_url %>
+    <%= @spam_report.comment_site_url %>
   </p>
   <% end %>
   <% unless @spam_report.comment_name.blank? %>
   <p>
     <strong>Author Name:</strong>
-    <%=h @spam_report.comment_name %>
+    <%= @spam_report.comment_name %>
   </p>
   <% end %>
   <p>
     <strong>Number of Hits:</strong>
-    <%=h @spam_report.hit_count %>
+    <%= @spam_report.hit_count %>
   </p>
   
   <p>Look through the comments below and confirm this spam report by choosing confirm at the bottom. Otherwise you can <%= link_to 'destroy it', @spam_report, :confirm => 'Are you sure?', :method => :delete %>.</p>

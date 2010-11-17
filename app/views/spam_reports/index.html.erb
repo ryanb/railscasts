@@ -4,7 +4,7 @@
   <%= render :partial => 'shared/navigation' %>
 <% end %>
 
-<% form_tag confirm_spam_reports_path do %>
+<%= form_tag confirm_spam_reports_path do %>
 <table border="1" cellspacing="0" cellpadding="3" id="spam_reports">
   <tr>
     <th></th>
@@ -16,10 +16,10 @@
   <% for spam_report in @spam_reports %>
     <tr>
       <td><%= check_box_tag "id[]", spam_report.id, false %></td>
-      <td><%= link_to h(spam_report.comment_name), spam_report %></td>
-      <td><%=h spam_report.comment_ip %></td>
-      <td><%=h spam_report.comment_site_url %></td>
-      <td><%=h spam_report.hit_count %></td>
+      <td><%= link_to spam_report.comment_name, spam_report %></td>
+      <td><%= spam_report.comment_ip %></td>
+      <td><%= spam_report.comment_site_url %></td>
+      <td><%= spam_report.hit_count %></td>
     </tr>
   <% end %>
 </table>
