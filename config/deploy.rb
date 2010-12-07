@@ -1,10 +1,17 @@
-set :application, "railscasts.com"
+# Bundler
+require "bundler/capistrano"
+
+# Whenever
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
+set :application, "beta.railscasts.com"
 role :app, application
 role :web, application
 role :db,  application, :primary => true
 
-set :user, "deploy"
-set :deploy_to, "/var/www/apps/#{application}"
+set :user, "rbates"
+set :deploy_to, "/var/apps/railscasts"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
@@ -46,7 +53,7 @@ namespace :deploy do
 
   desc "Sync the public/assets directory."
   task :assets do
-    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/www/apps/railscasts.com/shared/"
+    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/www/apps/railscasts/shared/"
   end
 
   desc "Update the crontab file"

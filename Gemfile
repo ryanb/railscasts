@@ -6,6 +6,7 @@ gem "RedCloth"
 gem "coderay"
 gem "acts_as_list"
 gem "thinking-sphinx", :require => "thinking_sphinx"
+gem "i18n"
 gem "whenever", :require => false
 gem "will_paginate", ">= 3.0.pre2"
 gem "jquery-rails"
