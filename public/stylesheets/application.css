@@ -50,7 +50,7 @@ ul {
 }
 
 #container {
-  width: 680px;
+  width: 780px;
   margin: 0 auto;
 }
 
@@ -76,12 +76,12 @@ ul {
 }
 
 #main {
-  width: 500px;
+  width: 600px;
   float: left;
 }
 
 #side {
-  margin-left: 530px;
+  margin-left: 630px;
   width: 150px;
   color: #333;
   font-size: 11px;
