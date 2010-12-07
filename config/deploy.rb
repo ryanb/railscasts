@@ -1,9 +1,7 @@
-# Bundler
-require "bundler/capistrano"
-
-# Whenever
 set :whenever_command, "bundle exec whenever"
+require "bundler/capistrano"
 require "whenever/capistrano"
+require "thinking_sphinx/deploy/capistrano"
 
 set :application, "beta.railscasts.com"
 role :app, application
@@ -60,3 +58,5 @@ end
 after "deploy", "deploy:cleanup" # keeps only last 5 releases
 after "deploy:setup", "deploy:setup_shared"
 after "deploy:update_code", "deploy:symlink_extras"
+before "deploy:update_code", "thinking_sphinx:stop"
+after "deploy:update_code", "thinking_sphinx:start"
