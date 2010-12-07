@@ -6,7 +6,7 @@ class CreateSpamChecks < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
+
   def self.down
     drop_table :spam_checks
   end

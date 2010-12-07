@@ -19,11 +19,11 @@
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <%- end -%>
-        
+
         <%- if show_title? -%>
           <h1 class="content"><%= yield(:title) %></h1>
         <%- end -%>
-        
+
         <%= yield %>
       </div>
       <div id="side">
@@ -31,14 +31,14 @@
       </div>
       <div class="clear"></div>
     </div>
-    
+
     <% unless current_page? give_back_path %>
       <%= link_to image_tag("give_back_banner.png", :size => "143x151", :alt => "Give Back to Open Source"), give_back_path, :id => "corner_banner" %>
     <% end %>
-    
+
     <!-- UserVoice Tab -->
     <script src="http://railscasts.uservoice.com/pages/general/widgets/tab.js?alignment=left&amp;color=1B97F2" type="text/javascript"></script>
-    
+
     <!-- Google Analytics -->
     <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

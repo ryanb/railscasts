@@ -1,12 +1,12 @@
 class SpamReport < ActiveRecord::Base
   belongs_to :comment
-  
+
   before_create :copy_comment_attributes
-  
+
   scope :unconfirmed, where("confirmed_at is null")
   scope :confirmed, where("confirmed_at is not null")
   scope :popular, order("hit_count desc")
-  
+
   def self.report_comment(comment)
     if comment.matching_spam_reports.empty?
       create!(:comment => comment, :hit_count => 1)
@@ -18,7 +18,7 @@ class SpamReport < ActiveRecord::Base
       end
     end
   end
-  
+
   def matching_comments
     conditions = []
     conditions << "user_ip=#{self.class.sanitize(comment_ip)}" unless comment_ip.blank?
@@ -26,14 +26,14 @@ class SpamReport < ActiveRecord::Base
     conditions << "name=#{self.class.sanitize(comment_name)}" unless comment_name.blank?
     Comment.scoped(:conditions => conditions.join(' or '))
   end
-  
+
   def confirm!
     self.update_attribute(:confirmed_at, Time.now)
     self.matching_comments.each(&:destroy)
   end
-  
+
   private
-  
+
   def copy_comment_attributes
     if comment
       self.comment_site_url = comment.site_url

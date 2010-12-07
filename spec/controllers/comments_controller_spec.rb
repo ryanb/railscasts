@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
- 
+
 describe CommentsController, "as guest" do
   fixtures :all
   render_views
-  
+
   it "index action should render index template" do
     get :index
     response.should render_template(:index)
@@ -35,7 +35,7 @@ describe CommentsController, "as guest" do
     post :create, :spam_key => APP_CONFIG['spam_key']
     response.should render_template(:new)
   end
-  
+
   it "create action should render new template when spam even if model is valid" do
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create
@@ -48,13 +48,13 @@ describe CommentsController, "as guest" do
     response.should render_template(:new)
     flash[:error].should be_nil
   end
-  
+
   it "create action should render new template when fake email filled even if model is valid" do
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :email => 'spammer', :spam_key => APP_CONFIG['spam_key']
     response.should render_template(:new)
   end
-  
+
   it "create action should submit new comment when answering spam question properly" do
     spam_question = SpamQuestion.create!(:question => "My name?", :answer => "Ryan")
     session[:spam_question_id] = spam_question.id
@@ -63,7 +63,7 @@ describe CommentsController, "as guest" do
     response.should redirect_to(episode_path(Episode.first))
     session[:spam_question_id].should be_nil
   end
-  
+
   it "create action should not submit new comment when answering spam question incorrectly" do
     spam_question = SpamQuestion.create!(:question => "My name?", :answer => "Ryan")
     session[:spam_question_id] = spam_question.id
@@ -92,18 +92,18 @@ describe CommentsController, "as guest" do
     response.should render_template(:new)
     session[:spam_question_id].should be_nil
   end
-  
+
   it_should_require_admin_for_actions :edit, :update, :destroy
 end
 
 describe CommentsController, "as admin" do
   fixtures :all
   render_views
-  
+
   before(:each) do
     session[:admin] = true
   end
-  
+
   it "edit action should render edit template" do
     get :edit, :id => Comment.first
     response.should render_template(:edit)
@@ -127,7 +127,7 @@ describe CommentsController, "as admin" do
     response.should redirect_to(comments_path)
     Comment.exists?(comment.id).should be_false
   end
-  
+
   it "destroy action should render template on javascript request" do
     post :destroy, :id => Comment.first, :format => 'js'
     response.should render_template(:destroy)

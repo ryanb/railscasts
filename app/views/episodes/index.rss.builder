@@ -17,7 +17,7 @@ end
 
 
 xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:media" => "http://search.yahoo.com/mrss/",  :version => "2.0" do
-  xml.channel do 
+  xml.channel do
     xml.title title
     xml.link 'http://railscasts.com'
     xml.description description
@@ -39,7 +39,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
     xml.itunes :category, :text => 'Education' do
       xml.itunes :category, :text => 'Training'
     end
-    
+
     @episodes.each do  |episode|
       download = episode.downloads.find_by_format(format)
       if download

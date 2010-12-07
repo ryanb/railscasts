@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
   end
-  
+
   def create
     if params[:password] == APP_CONFIG['password']
       flash[:notice] = 'Logged in successfully.'
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def destroy
     reset_session
     redirect_to root_url

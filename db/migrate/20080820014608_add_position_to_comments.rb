@@ -1,7 +1,7 @@
 class AddPositionToComments < ActiveRecord::Migration
   def self.up
     add_column :comments, :position, :integer
-    
+
     # terribly inefficient, but it gets the job done.
     Episode.all.each do |episode|
       episode.comments.each_with_index do |comment, index|

@@ -4,7 +4,7 @@ xml.rss :version => "2.0" do
     xml.title "Railscasts Comments"
     xml.description "Recent comments for all Railscasts episodes."
     xml.link comments_url(:format => 'rss')
-    
+
     @comments.each do |comment|
       xml.item do
         xml.title "Comment for Episode #{comment.episode.position}: #{comment.episode.name}"

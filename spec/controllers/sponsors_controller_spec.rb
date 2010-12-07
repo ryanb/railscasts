@@ -1,20 +1,20 @@
 require File.dirname(__FILE__) + '/../spec_helper'
- 
+
 describe SponsorsController, "as guest" do
   fixtures :all
   render_views
-  
+
   it_should_require_admin_for_actions :index, :new, :create, :edit, :update, :destroy
 end
-  
+
 describe SponsorsController, "as admin" do
   fixtures :all
   render_views
-  
+
   before(:each) do
     session[:admin] = true
   end
-  
+
   it "index action should render index template" do
     get :index
     response.should render_template(:index)

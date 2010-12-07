@@ -1,0 +1,34 @@
+<% title "User" %>
+
+<p>
+  <strong>Token:</strong>
+  <%= @user.token %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+<p>
+  <strong>Github Username:</strong>
+  <%= @user.github_username %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>Site Url:</strong>
+  <%= @user.site_url %>
+</p>
+<p>
+  <strong>Avatar Url:</strong>
+  <%= @user.avatar_url %>
+</p>
+<p>
+  <strong>Admin:</strong>
+  <%= @user.admin %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_user_path(@user) %> |
+</p>

@@ -1,14 +1,14 @@
 class SponsorsController < ApplicationController
   before_filter :authorize
-  
+
   def index
     @sponsors = Sponsor.find(:all)
   end
-  
+
   def new
     @sponsor = Sponsor.new
   end
-  
+
   def create
     @sponsor = Sponsor.new(params[:sponsor])
     if @sponsor.save
@@ -18,11 +18,11 @@ class SponsorsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @sponsor = Sponsor.find(params[:id])
   end
-  
+
   def update
     @sponsor = Sponsor.find(params[:id])
     if @sponsor.update_attributes(params[:sponsor])
@@ -32,7 +32,7 @@ class SponsorsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     @sponsor = Sponsor.find(params[:id])
     @sponsor.destroy

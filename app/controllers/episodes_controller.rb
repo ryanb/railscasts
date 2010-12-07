@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
   before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
-  
+
   def index
     if params[:search].blank?
       @episodes = Episode.published.recent
@@ -12,7 +12,7 @@ class EpisodesController < ApplicationController
       format.rss
     end
   end
-  
+
   def archive
     if params[:search].blank?
       episodes = Episode.published.recent

@@ -4,7 +4,7 @@ xml.rss :version => "2.0" do
     xml.title "Railscasts Comments for #{@episode.name}"
     xml.description "Comments for Episode #{@episode.position}: #{@episode.name}"
     xml.link comments_url(:format => 'rss')
-    
+
     # REFACTORME some duplication with comments/index.rss.builder
     @episode.comments.recent.each do |comment|
       xml.item do

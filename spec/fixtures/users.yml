@@ -1,0 +1,17 @@
+one:
+  token: MyString
+  name: MyString
+  github_username: MyString
+  email: MyString
+  site_url: MyString
+  avatar_url: MyString
+  admin: false
+
+two:
+  token: MyString
+  name: MyString
+  github_username: MyString
+  email: MyString
+  site_url: MyString
+  avatar_url: MyString
+  admin: false

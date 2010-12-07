@@ -15,9 +15,9 @@ set :branch, "master"
 namespace :deploy do
   desc "Tell Passenger to restart."
   task :restart, :roles => :web do
-    run "touch #{deploy_to}/current/tmp/restart.txt" 
+    run "touch #{deploy_to}/current/tmp/restart.txt"
   end
-  
+
   desc "Do nothing on startup so we don't get a script/spin error."
   task :start do
     puts "You may need to restart Apache."
@@ -43,12 +43,12 @@ namespace :deploy do
     put File.read("config/examples/production.sphinx.conf"), "#{shared_path}/config/production.sphinx.conf"
     puts "Now edit the config files and fill assets folder in #{shared_path}."
   end
-  
+
   desc "Sync the public/assets directory."
   task :assets do
     system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/www/apps/railscasts.com/shared/"
   end
-  
+
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
     run "cd #{release_path} && whenever --update-crontab #{application}"
