@@ -117,7 +117,6 @@ DEPENDENCIES
   autotest-rails
   coderay
   factory_girl_rails
-  i18n
   jquery-rails
   mocha
   mysql2
