@@ -30,6 +30,9 @@
         <%= content_for?(:side) ? yield(:side) : render(:partial => 'shared/side') %>
       </div>
       <div class="clear"></div>
+      <div id="footer">
+        &copy;2010 Railscasts - Hosted by <%= link_to "Linode", "http://linode.com" %>
+      </div>
     </div>
 
     <% unless current_page? give_back_path %>

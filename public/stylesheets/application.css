@@ -120,6 +120,13 @@ ul {
   clear: both;
 }
 
+#footer {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 20px;
+  color: #555;
+}
+
 
 #intro {
   margin-top: 20px;
