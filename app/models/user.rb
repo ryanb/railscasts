@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 
   def self.create_from_omniauth(omniauth)
     User.new.tap do |user|
-      user.github_username = omniauth["uid"]
+      user.github_uid = omniauth["uid"]
+      user.github_username = omniauth["user_info"]["nickname"]
       user.email = omniauth["user_info"]["email"]
       user.name = omniauth["user_info"]["name"]
       user.site_url = omniauth["user_info"]["urls"].values.first if omniauth["user_info"]["urls"]
