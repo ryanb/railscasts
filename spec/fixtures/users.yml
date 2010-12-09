@@ -4,7 +4,7 @@ one:
   github_username: MyString
   email: MyString
   site_url: MyString
-  avatar_url: MyString
+  gravatar_token: MyString
   admin: false
 
 two:
@@ -13,5 +13,5 @@ two:
   github_username: MyString
   email: MyString
   site_url: MyString
-  avatar_url: MyString
+  gravatar_token: MyString
   admin: false

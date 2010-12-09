@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
       user.github_username = omniauth["user_info"]["nickname"]
       user.email = omniauth["user_info"]["email"]
       user.name = omniauth["user_info"]["name"]
-      user.site_url = omniauth["user_info"]["urls"].values.first if omniauth["user_info"]["urls"]
-      user.avatar_url = omniauth["user_info"]["image"]
+      user.site_url = omniauth["user_info"]["urls"]["Blog"] if omniauth["user_info"]["urls"]
+      user.gravatar_token = omniauth["extra"]["gravatar_id"] if omniauth["extra"] && omniauth["extra"]["gravatar_id"].present?
       user.save!
     end
   end

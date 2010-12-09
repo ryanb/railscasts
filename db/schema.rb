@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101209224952) do
+ActiveRecord::Schema.define(:version => 20101209230056) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20101209224952) do
     t.string   "github_username"
     t.string   "email"
     t.string   "site_url"
-    t.string   "avatar_url"
+    t.string   "gravatar_token"
     t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
