@@ -51,7 +51,7 @@ namespace :deploy do
 
   desc "Sync the public/assets directory."
   task :assets do
-    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/www/apps/railscasts/shared/"
+    system "rsync -vr --exclude='.DS_Store' public/assets #{user}@#{application}:/var/apps/railscasts/shared/"
   end
 
   desc "Make sure there is something to deploy"
