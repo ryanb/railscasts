@@ -9,6 +9,7 @@ gem "thinking-sphinx", ">= 2.0.1", :require => "thinking_sphinx"
 gem "whenever", :require => false
 gem "will_paginate", ">= 3.0.pre2"
 gem "jquery-rails"
+gem "omniauth"
 
 group :development, :test do
   gem "mocha"
