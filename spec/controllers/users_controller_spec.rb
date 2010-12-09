@@ -36,7 +36,7 @@ describe UsersController do
     User.delete_all
     request.env["omniauth.auth"] = {"provider" => "github", "uid" => "foobar"}
     user = User.new
-    user.github_username = "foobar"
+    user.github_uid = "foobar"
     user.save!
     post :create
     response.should redirect_to(root_url)
