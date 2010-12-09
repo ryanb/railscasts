@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
       user.email = omniauth["user_info"]["email"]
       user.name = omniauth["user_info"]["name"]
       user.site_url = omniauth["user_info"]["urls"]["Blog"] if omniauth["user_info"]["urls"]
-      user.gravatar_token = omniauth["extra"]["gravatar_id"] if omniauth["extra"] && omniauth["extra"]["gravatar_id"].present?
+      user.gravatar_token = omniauth["extra"]["user_hash"]["gravatar_id"] if omniauth["extra"] && omniauth["extra"]["user_hash"]
       user.save!
     end
   end
