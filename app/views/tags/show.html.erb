@@ -4,8 +4,4 @@
   <%= render @episodes %>
 </div>
 
-<p class="content">
-  <%= link_to '< Previous Page', :overwrite_params => { :page => @episodes.previous_page } if @episodes.previous_page %>
-  <%= "|" if @episodes.previous_page && @episodes.next_page %>
-  <%= link_to 'Next Page >', :overwrite_params => { :page => @episodes.next_page } if @episodes.next_page %>
-</p>
+<%= render "episodes/pagination" %>

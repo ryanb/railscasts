@@ -1,0 +1,5 @@
+<p class="content">
+  <%= link_to '< Previous Page', params.merge(:page => @episodes.previous_page) if @episodes.previous_page %>
+  <%= "|" if @episodes.previous_page && @episodes.next_page %>
+  <%= link_to 'Next Page >', params.merge(:page => @episodes.next_page) if @episodes.next_page %>
+</p>
