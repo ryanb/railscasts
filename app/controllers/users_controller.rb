@@ -26,4 +26,9 @@ class UsersController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def logout
+    cookies.delete(:token)
+    redirect_to root_url, :notice => "You have been logged out."
+  end
 end

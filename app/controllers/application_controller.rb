@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def admin?
-    session[:admin]
+    current_user && current_user.admin?
   end
   helper_method :admin?
 

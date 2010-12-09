@@ -50,4 +50,12 @@ describe UsersController do
     response.should redirect_to(root_url)
     assigns[:user].name.should == "Foo Bar"
   end
+
+  it "logout action should remove token cookie" do
+    user = User.create!
+    cookies["token"] = user.token
+    get :logout
+    response.should redirect_to(root_url)
+    cookies["token"].should be_nil
+  end
 end

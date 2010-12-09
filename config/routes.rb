@@ -1,13 +1,13 @@
 Railscasts::Application.routes.draw do
   root :to => "episodes#index"
 
-  match "/auth/:provider/callback" => "users#create"
+  match "auth/:provider/callback" => "users#create"
   match "about" => "info#about", :as => "about"
   match "contest" => "info#contest", :as => "contest"
   match "feeds" => "info#feeds", :as => "feeds"
   match "give_back" => "info#give_back", :as => "give_back"
-  match "login" => "sessions#new", :as => "login"
-  match "logout" => "sessions#destroy", :as => "logout"
+  match "login" => redirect("/auth/github"), :as => "login"
+  match "logout" => "users#logout", :as => "logout"
 
   resources :users
   resources :sponsors
@@ -16,7 +16,6 @@ Railscasts::Application.routes.draw do
   resources :episodes do
     collection { get :archive }
   end
-  resources :sessions
   resources :spam_questions
   resources :spam_checks
   resources :spam_reports do
