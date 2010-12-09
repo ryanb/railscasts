@@ -10,6 +10,7 @@ gem "whenever", :require => false
 gem "will_paginate", ">= 3.0.pre2"
 gem "jquery-rails"
 gem "omniauth"
+gem "exception_notification", :git => "git://github.com/rails/exception_notification.git", :require => "exception_notifier"
 
 group :development, :test do
   gem "mocha"
