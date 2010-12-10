@@ -20,12 +20,14 @@ describe SpamReport do
     report.matching_comments.should_not include(good)
   end
 
-  it "should not find matching comments by blank values" do
+  it "should not find matching comments by blank values or user_id" do
     good = Factory(:comment, :site_url => '', :user_ip => nil, :name => 'gooooood')
     bad = Factory(:comment, :site_url => '', :user_ip => nil, :name => 'baaad')
+    good2 = Factory(:comment, :site_url => '', :user_ip => nil, :name => 'baaad', :user_id => 123)
     report = SpamReport.create!(:comment => bad)
     report.matching_comments.should include(bad)
     report.matching_comments.should_not include(good)
+    report.matching_comments.should_not include(good2)
   end
 
   it "should increment hit count when reporting comment spam that already exists and reset confirmation" do

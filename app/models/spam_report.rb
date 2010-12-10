@@ -24,7 +24,7 @@ class SpamReport < ActiveRecord::Base
     conditions << "user_ip=#{self.class.sanitize(comment_ip)}" unless comment_ip.blank?
     conditions << "site_url=#{self.class.sanitize(comment_site_url)}" unless comment_site_url.blank?
     conditions << "name=#{self.class.sanitize(comment_name)}" unless comment_name.blank?
-    Comment.scoped(:conditions => conditions.join(' or '))
+    Comment.scoped(:conditions => "user_id is null and (#{conditions.join(' or ')})")
   end
 
   def confirm!
