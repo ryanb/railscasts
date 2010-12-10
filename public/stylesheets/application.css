@@ -267,6 +267,10 @@ ul {
   color: #666;
 }
 
+.comment_profile {
+  font-size: 12px;
+}
+
 .info {
   font-style: italic;
   color: #333;

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :authorize, :only => [:edit, :update, :destroy]
+  before_filter :login_required, :only => [:new, :create]
+  before_filter :admin_required, :only => [:edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => :destroy
 
   def index
@@ -15,9 +16,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = current_user.comments.build(params[:comment])
     @comment.request = request
-    if params[:preview_button].nil? && check_spam(@comment) && @comment.save
+    if params[:preview_button].nil? && @comment.save
       redirect_to @comment.episode, :notice => "Successfully created comment."
     else
       render 'new'

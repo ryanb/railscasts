@@ -1,5 +1,5 @@
 class EpisodesController < ApplicationController
-  before_filter :authorize, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
     if params[:search].blank?

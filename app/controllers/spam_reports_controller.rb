@@ -1,5 +1,5 @@
 class SpamReportsController < ApplicationController
-  before_filter :authorize, :except => :create
+  before_filter :admin_required, :except => :create
   skip_before_filter :verify_authenticity_token, :only => :create
 
   def index

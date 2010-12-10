@@ -1,5 +1,5 @@
 class SponsorsController < ApplicationController
-  before_filter :authorize
+  before_filter :admin_required
 
   def index
     @sponsors = Sponsor.find(:all)

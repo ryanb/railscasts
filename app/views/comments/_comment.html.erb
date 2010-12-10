@@ -1,32 +1,38 @@
-<% @comment_counter ||= 0 -%>
-<% @comment_counter += 1 -%>
+<% @comment_counter ||= 0 %>
+<% @comment_counter += 1 %>
 <%= tag :hr if @comment_counter > 1 %>
 <%= div_for comment do %>
-  <%- if comment.episode && !current_page?(comment.episode) -%>
+  <% if comment.episode && !current_page?(comment.episode) %>
     <h4>
       Episode #<%= comment.episode.position %>:
       <%= link_to comment.episode.name, episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>
     </h4>
-  <%- end -%>
-  <%- if comment.position -%>
+  <% end %>
+  <% if comment.position %>
     <span class="position"><%= comment.position %>.</span>
-  <%- end -%>
+  <% end %>
   <span class="name">
-    <%= link_to_unless comment.site_url.blank?, comment.name, comment.site_url, :rel => "nofollow" %>
+    <% if comment.user %>
+      <%= link_to comment.user.name, comment.user %>
+    <% else %>
+      <%= link_to_unless comment.site_url.blank?, comment.name, comment.site_url, :rel => "nofollow" %>
+    <% end %>
   </span>
-  <%- unless comment.created_at.nil? -%>
+  <% unless comment.created_at.nil? %>
     <span class="created_at">
       <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
     </span>
-  <%- end -%>
+  <% end %>
   <div class="comment_content">
     <%= format_comment(comment.content) %>
   </div>
   <div class="actions">
-    <%- if admin? && !comment.new_record? -%>
+    <% if admin? && !comment.new_record? %>
       <%= link_to "Edit", edit_comment_path(comment) %> |
       <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %> |
-    <%- end -%>
-    <%= link_to "Report as Spam", spam_reports_path(:comment_id => comment), :method => :post, :class => 'spam_report' %>
+    <% end %>
+    <% if comment.user.nil? %>
+      <%= link_to "Report as Spam", spam_reports_path(:comment_id => comment), :method => :post, :class => 'spam_report' %>
+    <% end %>
   </div>
 <% end %>

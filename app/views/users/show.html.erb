@@ -1,3 +1,16 @@
-<% title "User #{@user.name}" %>
+<% title "#{@user.name}'s Profile" %>
 
-<p>Profile details coming soon.</p>
+<div class="content">
+  <% if @user == current_user %>
+    <p><%= link_to "Edit Profile", edit_user_path(@user) %> | <%= link_to "Log Out", logout_path %></p>
+    <p><strong>This is your profile.</strong></p>
+  <% end %>
+  <p>GitHub User: <%= link_to @user.github_username, "https://github.com/#{@user.github_username}" %></p>
+  <p>Site: <%= link_to @user.site_url, @user.site_url %></p>
+  <h3>Comments by <%= @user.name %></h3>
+  <div id="comments">
+  <% for comment in @user.comments.recent %>
+    <%= render comment %>
+  <% end %>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :site_url
   before_create :generate_token
+  has_many :comments
 
   def self.create_from_omniauth(omniauth)
     User.new.tap do |user|

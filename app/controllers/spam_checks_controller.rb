@@ -1,5 +1,5 @@
 class SpamChecksController < ApplicationController
-  before_filter :authorize
+  before_filter :admin_required
 
   def index
     @spam_checks = SpamCheck.all

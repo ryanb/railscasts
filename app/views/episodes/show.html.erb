@@ -32,6 +32,13 @@
 <% end %>
 
 <div class="content add_comment">
-  <h3>Add your comment:</h3>
-  <%= render :partial => 'comments/form' %>
+  <% if current_user %>
+    <h3>Add your comment:</h3>
+    <p class="comment_profile">
+      Signed in as <strong><%= link_to current_user.name, current_user %></strong>.
+    </p>
+    <%= render :partial => 'comments/form' %>
+  <% else %>
+    <p>You must <%= link_to "sign in through GitHub", login_path(:return_to => request.url) %> to post a comment.</p>
+  <% end %>
 </div>

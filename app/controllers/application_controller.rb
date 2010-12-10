@@ -1,17 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :admin?, :current_user
 
   private
 
   def admin?
     current_user && current_user.admin?
-  end
-  helper_method :admin?
-
-  def authorize
-    unless admin?
-      redirect_to root_url, :alert => "Not authorized to access this page."
-    end
   end
 
   def current_spam_question
@@ -30,8 +24,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def redirect_to_target_or_default(default)
-    redirect_to(session[:return_to] || default)
+  def admin_required
+    unless admin?
+      redirect_to root_url, :alert => "Not authorized to access this page."
+    end
+  end
+
+  def redirect_to_target_or_default(default, *options)
+    redirect_to(session[:return_to] || default, *options)
     session[:return_to] = nil
   end
 

@@ -1,11 +1,10 @@
 class Comment < ActiveRecord::Base
   belongs_to :episode, :counter_cache => true
+  belongs_to :user
 
-  validates_presence_of :name, :content, :episode_id
+  validates_presence_of :episode_id
 
   scope :recent, order("created_at DESC")
-
-  before_save :add_protocol_to_site_url
 
   acts_as_list :scope => :episode
 
@@ -47,9 +46,5 @@ class Comment < ActiveRecord::Base
     matching_spam_reports.all.sum do |spam_report|
       spam_report.hit_count
     end || 0
-  end
-
-  def add_protocol_to_site_url
-    self.site_url = "http://#{site_url}" unless site_url.blank? || site_url.include?('://')
   end
 end

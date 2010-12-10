@@ -1,32 +1,6 @@
 <%= form_for @comment do |f| %>
   <%= f.error_messages %>
-  <noscript><p>Javascript required to add comment.</p></noscript>
-  <div>
-    <%= f.hidden_field :episode_id %>
-    <%= raw enkode(hidden_field_tag(:spam_key, APP_CONFIG['spam_key'])) %>
-  </div>
-  <% if current_spam_question %>
-    <p id="spam_question">
-      <strong><%= current_spam_question.question %></strong><br />
-      <%= text_field_tag :spam_answer %>
-    </p>
-  <% end %>
-  <p id="fake_email">
-    <%= label_tag :email, 'Fake Email' %> <span class="info">(SKIP THIS ONE)</span><br />
-    <%= text_field_tag :email %>
-  </p>
-  <p>
-    <%= f.label :name, 'Name', :class => 'required' %> <span class="info">(required)</span><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %> <span class="info">(not shown)</span><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :site_url, 'Website URL' %><br />
-    <%= f.text_field :site_url %>
-  </p>
+  <div><%= f.hidden_field :episode_id %></div>
   <p>
     <%= f.label :content, 'Comment', :class => 'required' %>
     <span class="info">
