@@ -49,8 +49,7 @@ class EpisodesController < ApplicationController
   def create
     @episode = Episode.new(params[:episode])
     if @episode.save
-      flash[:notice] = "Successfully created episode."
-      redirect_to @episode
+      redirect_to @episode, :notice => "Successfully created episode."
     else
       render 'new'
     end
@@ -63,8 +62,7 @@ class EpisodesController < ApplicationController
   def update
     @episode = Episode.find(params[:id])
     if @episode.update_attributes(params[:episode])
-      flash[:notice] = "Successfully updated episode."
-      redirect_to @episode
+      redirect_to @episode, :notice => "Successfully updated episode."
     else
       render 'edit'
     end
@@ -73,7 +71,6 @@ class EpisodesController < ApplicationController
   def destroy
     @episode = Episode.find(params[:id])
     @episode.destroy
-    flash[:notice] = "Successfully destroyed episode."
-    redirect_to episodes_path
+    redirect_to episodes_path, :notice => "Successfully destroyed episode."
   end
 end

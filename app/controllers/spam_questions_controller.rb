@@ -12,8 +12,7 @@ class SpamQuestionsController < ApplicationController
   def create
     @spam_question = SpamQuestion.new(params[:spam_question])
     if @spam_question.save
-      flash[:notice] = "Successfully created spam question."
-      redirect_to spam_questions_url
+      redirect_to spam_questions_url, :notice => "Successfully created spam question."
     else
       render :action => 'new'
     end
@@ -26,8 +25,7 @@ class SpamQuestionsController < ApplicationController
   def update
     @spam_question = SpamQuestion.find(params[:id])
     if @spam_question.update_attributes(params[:spam_question])
-      flash[:notice] = "Successfully updated spam question."
-      redirect_to spam_questions_url
+      redirect_to spam_questions_url, :notice => "Successfully updated spam question."
     else
       render :action => 'edit'
     end
@@ -36,7 +34,6 @@ class SpamQuestionsController < ApplicationController
   def destroy
     @spam_question = SpamQuestion.find(params[:id])
     @spam_question.destroy
-    flash[:notice] = "Successfully destroyed spam question."
-    redirect_to spam_questions_url
+    redirect_to spam_questions_url, :notice => "Successfully destroyed spam question."
   end
 end

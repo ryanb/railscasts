@@ -12,8 +12,7 @@ class SponsorsController < ApplicationController
   def create
     @sponsor = Sponsor.new(params[:sponsor])
     if @sponsor.save
-      flash[:notice] = "Successfully created sponsor."
-      redirect_to sponsors_url
+      redirect_to sponsors_url, :notice => "Successfully created sponsor."
     else
       render 'new'
     end
@@ -26,8 +25,7 @@ class SponsorsController < ApplicationController
   def update
     @sponsor = Sponsor.find(params[:id])
     if @sponsor.update_attributes(params[:sponsor])
-      flash[:notice] = "Successfully updated sponsor."
-      redirect_to sponsors_url
+      redirect_to sponsors_url, :notice => "Successfully updated sponsor."
     else
       render 'edit'
     end
@@ -36,7 +34,6 @@ class SponsorsController < ApplicationController
   def destroy
     @sponsor = Sponsor.find(params[:id])
     @sponsor.destroy
-    flash[:notice] = "Successfully destroyed sponsor."
-    redirect_to sponsors_url
+    redirect_to sponsors_url, :notice => "Successfully destroyed sponsor."
   end
 end

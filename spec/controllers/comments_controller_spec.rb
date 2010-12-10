@@ -46,7 +46,7 @@ describe CommentsController, "as guest" do
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :spam_key => APP_CONFIG['spam_key'], :preview_button => true
     response.should render_template(:new)
-    flash[:error].should be_nil
+    flash[:alert].should be_nil
   end
 
   it "create action should render new template when fake email filled even if model is valid" do

@@ -12,8 +12,7 @@ class SpamChecksController < ApplicationController
   def create
     @spam_check = SpamCheck.new(params[:spam_check])
     if @spam_check.save
-      flash[:notice] = "Successfully created spam check."
-      redirect_to spam_checks_url
+      redirect_to spam_checks_url, :notice => "Successfully created spam check."
     else
       render :action => 'new'
     end
@@ -26,8 +25,7 @@ class SpamChecksController < ApplicationController
   def update
     @spam_check = SpamCheck.find(params[:id])
     if @spam_check.update_attributes(params[:spam_check])
-      flash[:notice] = "Successfully updated spam check."
-      redirect_to spam_checks_url
+      redirect_to spam_checks_url, :notice => "Successfully updated spam check."
     else
       render :action => 'edit'
     end
@@ -36,7 +34,6 @@ class SpamChecksController < ApplicationController
   def destroy
     @spam_check = SpamCheck.find(params[:id])
     @spam_check.destroy
-    flash[:notice] = "Successfully destroyed spam check."
-    redirect_to spam_checks_url
+    redirect_to spam_checks_url, :notice => "Successfully destroyed spam check."
   end
 end

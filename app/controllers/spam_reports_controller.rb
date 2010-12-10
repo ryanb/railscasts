@@ -23,14 +23,12 @@ class SpamReportsController < ApplicationController
   def destroy
     @spam_report = SpamReport.find(params[:id])
     @spam_report.destroy
-    flash[:notice] = "Successfully destroyed spam report."
-    redirect_to spam_reports_url
+    redirect_to spam_reports_url, :notice => "Successfully destroyed spam report."
   end
 
   def confirm
     @spam_reports = SpamReport.find_all_by_id(params[:id])
     @spam_reports.each(&:confirm!)
-    flash[:notice] = "Successfully confirmed spam report."
-    redirect_to spam_reports_url
+    redirect_to spam_reports_url, :notice => "Successfully confirmed spam report."
   end
 end

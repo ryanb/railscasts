@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless admin?
-      flash[:error] = "Not authorized to access this page."
-      redirect_to root_url
+      redirect_to root_url, :alert => "Not authorized to access this page."
     end
   end
 
@@ -26,9 +25,8 @@ class ApplicationController < ActionController::Base
 
   def login_required
     unless current_user
-      flash[:error] = "You must first sign in before accessing this page."
       store_target_location
-      redirect_to root_url
+      redirect_to root_url, :alert => "You must first sign in before accessing this page."
     end
   end
 

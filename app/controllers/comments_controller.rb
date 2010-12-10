@@ -11,16 +11,14 @@ class CommentsController < ApplicationController
   end
 
   def new
-    flash[:notice] = "To submit a comment, please go to a specific episode first."
-    redirect_to root_url
+    redirect_to root_url, :notice => "To submit a comment, please go to a specific episode first."
   end
 
   def create
     @comment = Comment.new(params[:comment])
     @comment.request = request
     if params[:preview_button].nil? && check_spam(@comment) && @comment.save
-      flash[:notice] = "Successfully created comment."
-      redirect_to @comment.episode
+      redirect_to @comment.episode, :notice => "Successfully created comment."
     else
       render 'new'
     end
@@ -33,8 +31,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(params[:comment])
-      flash[:notice] = "Successfully updated comment."
-      redirect_to @comment.episode
+      redirect_to @comment.episode, :notice => "Successfully updated comment."
     else
       render 'edit'
     end
@@ -71,7 +68,7 @@ class CommentsController < ApplicationController
 
     unless errors.empty?
       errors << "If it still doesn't work, please let me know: ryan [at] railscasts [dot] com."
-      flash.now[:error] = errors.join(" ")
+      flash.now[:alert] = errors.join(" ")
     end
     errors.empty?
   end
