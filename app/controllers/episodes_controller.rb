@@ -2,6 +2,7 @@ class EpisodesController < ApplicationController
   before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
+    raise "testing" if params[:raise_exception]
     if params[:search].blank?
       @episodes = Episode.published.recent
     else
