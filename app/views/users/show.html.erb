@@ -6,7 +6,9 @@
     <p><strong>This is your profile.</strong></p>
   <% end %>
   <p>GitHub User: <%= link_to @user.github_username, "https://github.com/#{@user.github_username}" %></p>
-  <p>Site: <%= link_to @user.site_url, @user.site_url %></p>
+  <% unless @user.site_url.blank? %>
+    <p>Site: <%= link_to @user.site_url, @user.site_url %></p>
+  <% end %>
   <h3>Comments by <%= @user.name %></h3>
   <div id="comments">
   <% for comment in @user.comments.recent %>

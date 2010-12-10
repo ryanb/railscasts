@@ -29,7 +29,7 @@ describe UsersController do
     user.stubs(:valid?).returns(true)
     @controller.stubs(:current_user).returns(user)
     put :update, :id => user
-    response.should redirect_to(root_url)
+    response.should redirect_to(user_path(user))
   end
 
   it "create action should sign in user when exists" do

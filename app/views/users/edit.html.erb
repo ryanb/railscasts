@@ -1,5 +1,6 @@
 <% title "Edit Profile" %>
 
+<div class="content">
 <%= form_for @user do |f| %>
   <%= f.error_messages %>
   <p>
@@ -16,3 +17,4 @@
   </p>
   <p><%= f.submit %></p>
 <% end %>
+</div>
