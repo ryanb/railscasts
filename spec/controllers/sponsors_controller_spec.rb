@@ -12,7 +12,7 @@ describe SponsorsController, "as admin" do
   render_views
 
   before(:each) do
-    session[:admin] = true
+    login_as Factory(:user, :admin => true)
   end
 
   it "index action should render index template" do

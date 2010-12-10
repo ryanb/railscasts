@@ -51,9 +51,13 @@ describe UsersController do
     assigns[:user].name.should == "Foo Bar"
   end
 
+  it "login action should redirect to /auth/github" do
+    get :login
+    response.should redirect_to("/auth/github")
+  end
+
   it "logout action should remove token cookie" do
-    user = User.create!
-    cookies["token"] = user.token
+    login_as Factory(:user)
     get :logout
     response.should redirect_to(root_url)
     cookies["token"].should be_nil

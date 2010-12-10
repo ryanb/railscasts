@@ -74,7 +74,7 @@ describe EpisodesController, "as admin" do
   render_views
 
   before(:each) do
-    session[:admin] = true
+    login_as Factory(:user, :admin => true)
   end
 
   it "show action should render show template when unpublished" do

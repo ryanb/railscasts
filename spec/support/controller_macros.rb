@@ -3,6 +3,10 @@ module ControllerMacros
     base.extend ClassMethods
   end
 
+  def login_as(user)
+    request.cookies["token"] = CGI::Cookie.new("token", user.token)
+  end
+
   module ClassMethods
     def it_should_require_admin_for_actions(*actions)
       actions.each do |action|

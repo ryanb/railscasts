@@ -27,6 +27,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+    if Rails.env.development?
+      cookies.permanent[:token] = User.first.token
+      redirect_to root_url, :notice => "Signed in successfully"
+    else
+      redirect_to "/auth/github"
+    end
+  end
+
   def logout
     cookies.delete(:token)
     redirect_to root_url, :notice => "You have been logged out."

@@ -19,3 +19,7 @@ Factory.define :sponsor do |f|
   f.image_url '/assets/sponsors/example.png'
   f.active    true
 end
+
+Factory.define :user do |f|
+  f.sequence(:github_username) { |n| "foo#{n}" }
+end

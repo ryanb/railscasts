@@ -6,7 +6,7 @@ Railscasts::Application.routes.draw do
   match "contest" => "info#contest", :as => "contest"
   match "feeds" => "info#feeds", :as => "feeds"
   match "give_back" => "info#give_back", :as => "give_back"
-  match "login" => redirect("/auth/github"), :as => "login"
+  match "login" => "users#login", :as => "login"
   match "logout" => "users#logout", :as => "logout"
 
   resources :users

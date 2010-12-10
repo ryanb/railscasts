@@ -101,7 +101,7 @@ describe CommentsController, "as admin" do
   render_views
 
   before(:each) do
-    session[:admin] = true
+    login_as Factory(:user, :admin => true)
   end
 
   it "edit action should render edit template" do
