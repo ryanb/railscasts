@@ -14,5 +14,6 @@ task :reset_comment_positions => :environment do
     episode.comments.all(:order => "created_at").each_with_index do |comment, index|
       comment.update_attribute(:position, index+1)
     end
+    episode.update_attribute(:comments_count, episode.comments.count)
   end
 end
