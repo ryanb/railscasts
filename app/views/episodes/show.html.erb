@@ -6,9 +6,6 @@
 
 <div class="episodes">
   <%= render :layout => @episode do %>
-    <div class="notes">
-      <%= textilize @episode.notes %>
-    </div>
     <div id="episode_nav">
     <% unless @episode.first? %>
       <div id="previous_episode"><%= link_to '< Previous Episode', @episode.higher_item %></div>
@@ -18,6 +15,9 @@
     <% end %>
     </div>
     <div class="clear"></div>
+    <div class="notes">
+      <%= textilize @episode.notes %>
+    </div>
   <% end %>
 </div>
 
