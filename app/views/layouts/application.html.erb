@@ -14,7 +14,7 @@
   </head>
   <body>
     <div id="container">
-      <div id="logo"><%= link_to_unless_current image_tag('logo.png', :size => '452x88', :alt => 'Railscasts'), root_path %></div>
+      <div id="logo"><%= link_to image_tag('logo.png', :size => '452x88', :alt => 'Railscasts'), root_path %></div>
       <div id="main">
         <% flash.each do |name, msg| %>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
