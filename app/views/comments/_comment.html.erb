@@ -15,7 +15,7 @@
     <% if comment.user %>
       <%= link_to comment.user.name, comment.user %>
     <% else %>
-      <%= link_to_unless comment.site_url.blank?, comment.name, comment.site_url, :rel => "nofollow" %>
+      <%= link_to_unless comment.site_url.blank?, comment.name, fix_url(comment.site_url), :rel => "nofollow" %>
     <% end %>
   </span>
   <% unless comment.created_at.nil? %>

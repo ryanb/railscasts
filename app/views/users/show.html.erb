@@ -7,7 +7,7 @@
   <% end %>
   <p>GitHub User: <%= link_to @user.github_username, "https://github.com/#{@user.github_username}" %></p>
   <% unless @user.site_url.blank? %>
-    <p>Site: <%= link_to @user.site_url, @user.site_url %></p>
+    <p>Site: <%= link_to @user.site_url, fix_url(@user.site_url) %></p>
   <% end %>
   <h3>Comments by <%= @user.name %></h3>
   <div id="comments">

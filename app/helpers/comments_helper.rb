@@ -10,4 +10,12 @@ module CommentsHelper
       end
     end.join("\n")
   end
+
+  def fix_url(url)
+    if url =~ /^https?\:\/\//
+      url
+    else
+      "http://#{url}"
+    end
+  end
 end
