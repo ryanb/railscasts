@@ -3,7 +3,7 @@ require "bundler/capistrano"
 require "whenever/capistrano"
 require "thinking_sphinx/deploy/capistrano"
 
-set :application, "beta.railscasts.com"
+set :application, "railscasts.com"
 role :app, application
 role :web, application
 role :db,  application, :primary => true
