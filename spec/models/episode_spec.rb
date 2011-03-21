@@ -15,6 +15,26 @@ describe Episode do
     Episode.unpublished.should_not include(a)
   end
 
+  it "should be marked as old if older than 3 months" do
+    Episode.delete_all
+    a = Factory(:episode, :published_at => 1.year.ago)
+    b = Factory(:episode, :published_at => 4.months.ago)
+    c = Factory(:episode, :published_at => 13.weeks.ago)
+    Episode.all.each do |e|
+      e.old?.should eq(true)
+    end
+  end
+
+  it "should not be marked as old if younger than 3 months" do
+    Episode.delete_all
+    a = Factory(:episode, :published_at => 11.weeks.ago)
+    b = Factory(:episode, :published_at => 2.weeks.ago)
+    c = Factory(:episode, :published_at => 2.weeks.from_now)
+    Episode.all do |e|
+      e.old?.should eq(false)
+    end
+  end
+
   it "should sort recent episodes in descending order" do
     Episode.delete_all
     e1 = Factory(:episode)

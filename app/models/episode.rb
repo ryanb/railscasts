@@ -103,6 +103,10 @@ class Episode < ActiveRecord::Base
     self.seconds = min*60 + sec
   end
 
+  def old?
+    self.published_at <= 3.months.ago
+  end
+
   private
 
   def self.primitive_search_conditions(query)
