@@ -1,38 +1,37 @@
-<% @comment_counter ||= 0 %>
-<% @comment_counter += 1 %>
-<%= tag :hr if @comment_counter > 1 %>
 <%= div_for comment do %>
-  <% if comment.episode && !current_page?(comment.episode) %>
-    <h4>
-      Episode #<%= comment.episode.position %>:
-      <%= link_to comment.episode.name, episode_path(:id => comment.episode, :anchor => dom_id(comment)) %>
-    </h4>
-  <% end %>
-  <% if comment.position %>
-    <span class="position"><%= comment.position %>.</span>
-  <% end %>
-  <span class="name">
-    <% if comment.user %>
-      <%= link_to comment.user.name, comment.user %>
-    <% else %>
-      <%= link_to_unless comment.site_url.blank?, comment.name, fix_url(comment.site_url), :rel => "nofollow" %>
-    <% end %>
-  </span>
-  <% unless comment.created_at.nil? %>
-    <span class="created_at">
-      <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
-    </span>
-  <% end %>
-  <div class="comment_content">
-    <%= format_comment(comment.content) %>
+  <% if comment.hidden? %>
+  <div class="hidden">
+    <div class="avatar"><%= image_tag avatar_url(comment, 24), :size => "24x24", :alt => "Avatar" %></div>
+    <div class="main">
+      <span class="name">
+        <% if comment.user %>
+          <%= link_to comment.user.display_name, comment.user %>
+        <% else %>
+          <%= link_to_unless comment.site_url.blank?, comment.name, fix_url(comment.site_url), :rel => "nofollow" %>
+        <% end %>
+      </span>
+      <span class="hidden_content">
+        <%= truncate(comment.content, :length => 90) %>
+      </span>
+      <span class="actions">
+        <%= link_to "Show", comment_path(comment, "comment[hidden]" => 0), :remote => true, :method => :put if can?(:update, comment) %>
+      </span>
+    </div>
   </div>
-  <div class="actions">
-    <% if admin? && !comment.new_record? %>
-      <%= link_to "Edit", edit_comment_path(comment) %> |
-      <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete, :class => 'destroy' %> |
-    <% end %>
-    <% if comment.user.nil? %>
-      <%= link_to "Report as Spam", spam_reports_path(:comment_id => comment), :method => :post, :class => 'spam_report' %>
-    <% end %>
-  </div>
+  <% else %>
+    <div class="avatar"><%= image_tag avatar_url(comment), :size => "64x64", :alt => "Avatar" %></div>
+    <div class="main">
+      <%= render "comments/comment_headline", :comment => comment %>
+      <div class="comment_content">
+        <%= format_comment(comment) %>
+        <div class="actions">
+          <%= link_to "Reply", new_comment_path(:parent_id => comment, :episode_id => comment.episode_id), :remote => true %>
+          <%= link_to "Edit", edit_comment_path(comment), :remote => true if can?(:update, comment) %>
+          <%= link_to "Hide", comment_path(comment, "comment[hidden]" => 1), :remote => true, :method => :put if can?(:update, comment) %>
+          <%= link_to "Destroy", comment, :confirm => "Are you sure you want to delete this comment?", :method => :delete, :remote => true if can?(:destroy, comment) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="clear"></div>
 <% end %>

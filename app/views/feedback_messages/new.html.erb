@@ -1,0 +1,27 @@
+<% title "Feedback", false %>
+
+<div class="content" id="feedback">
+  <h2>Feedback</h2>
+  <%= form_for @feedback_message do |f| %>
+    <%= f.error_messages %>
+    <div class="info">
+      <p>Do you have any suggestions for future episodes or found a problem with an existing episode? Fill out the form below, contact <a href="http://twitter.com/railscasts">@railscasts</a> on Twitter, or send an email to <script type="text/javascript">document.write(
+    "<n uers=\"znvygb:srrqonpx\100envyfpnfgf\056pbz\">srrqonpx\100envyfpnfgf\056pbz<\057n>".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));
+    </script>.</p>
+      <p>If you have a generic question about Rails, please use the <a href="http://groups.google.com/group/rubyonrails-talk?pli=1">mailing list</a>, <a href="http://stackoverflow.com/">Stack Overflow</a> or <a href="http://railsforum.com/">Rails Forum</a>.</p>
+    </div>
+    <div class="field">
+      <%= f.label :name, "Your Name" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :email, "Your Email Address" %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :content, "Message" %>
+      <%= f.text_area :content, :rows => 14, :cols => 50 %>
+    </div>
+    <div class="actions"><%= f.submit "Send Feedback" %></div>
+  <% end %>
+</div>

@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
       end while self.class.exists?(:token => token)
     end
   end
+
+  def display_name
+    name || github_username
+  end
 end

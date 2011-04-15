@@ -1,76 +1,57 @@
 class EpisodesController < ApplicationController
-  before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
+  load_and_authorize_resource :find_by => :param
 
   def index
+    @tag = Tag.find(params[:tag_id]) if params[:tag_id]
     if params[:search].blank?
-      @episodes = Episode.published.recent
+      @episodes = (@tag ? @tag.episodes : Episode).published.recent
     else
       @episodes = Episode.search_published(params[:search])
     end
     respond_to do |format|
-      format.html { @episodes = @episodes.paginate(:page => params[:page], :per_page => 10) }
+      format.html { @episodes = @episodes.paginate(:page => params[:page], :per_page => episodes_per_page) }
       format.rss
     end
   end
 
-  def archive
-    if params[:search].blank?
-      episodes = Episode.published.recent
-    else
-      episodes = Episode.search_published(params[:search]).sort_by(&:published_at).reverse
-    end
-    @episode_months = episodes.group_by(&:published_month)
-  end
-
   def show
-    if admin?
-      @episode = Episode.find_by_position!(params[:id].to_i)
-    else
-      @episode = Episode.published.find_by_position!(params[:id].to_i)
-    end
     if params[:id] != @episode.to_param
       headers["Status"] = "301 Moved Permanently"
       redirect_to episode_url(@episode)
     else
-      @comment = Comment.new(:episode => @episode)
-      respond_to do |format|
-        format.html
-        format.rss
-      end
+      @comment = Comment.new(:episode => @episode, :user => current_user)
     end
   end
 
   def new
-    @episode = Episode.new
-    @episode.downloads.build(:format => 'mov')
-    @episode.downloads.build(:format => 'm4v')
   end
 
   def create
-    @episode = Episode.new(params[:episode])
     if @episode.save
       redirect_to @episode, :notice => "Successfully created episode."
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit
-    @episode = Episode.find(params[:id])
   end
 
   def update
-    @episode = Episode.find(params[:id])
     if @episode.update_attributes(params[:episode])
       redirect_to @episode, :notice => "Successfully updated episode."
     else
-      render 'edit'
+      render :edit
     end
   end
 
-  def destroy
-    @episode = Episode.find(params[:id])
-    @episode.destroy
-    redirect_to episodes_path, :notice => "Successfully destroyed episode."
+  private
+
+  def episodes_per_page
+    case params[:view]
+    when "list" then 40
+    when "grid" then 24
+    else 10
+    end
   end
 end

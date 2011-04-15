@@ -1,0 +1,14 @@
+<% if @episode.asciicasts? %>
+  <p>
+    <%= image_tag "icons/asciicasts.png", :size => "12x15", :class => "icon" %>
+    <%= link_to "Read on ASCIIcasts", "http://asciicasts.com/episodes/#{@episode.to_param}" %>
+  </p>
+<% end %>
+
+<div class="show_notes">
+  <%= textilize @episode.notes %>
+</div>
+
+<% if can? :edit, @episode %>
+  <div class="actions"><%= link_to "Edit", edit_episode_path(@episode) %></div>
+<% end %>

@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'net/http'
 require 'yaml'
 APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
 

@@ -1,6 +1,6 @@
-# Railscasts
+# RailsCasts
 
-This is the source code for the [Railscasts site](http://railscasts.com/). If you want the source code for the episodes, see the [railscasts-episodes](http://github.com/ryanb/railscasts-episodes) project.
+This is the source code for the [RailsCasts site](http://railscasts.com/). If you want the source code for the episodes, see the [railscasts-episodes](http://github.com/ryanb/railscasts-episodes) project.
 
 Please [let me know](https://github.com/inbox/new/ryanb) if you plan to use this app for your site.
 

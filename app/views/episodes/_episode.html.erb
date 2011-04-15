@@ -1,47 +1,16 @@
 <div class="episode">
-  <div class="side">
-    <div class="number">#<%= episode.position %></div>
-    <div class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></div>
-    <div class="comments_count"><%= link_to pluralize(episode.comments.size, 'comment'), episode_path(:id => episode, :anchor => 'comments') %></div>
-    <% if admin? %>
-    <div class="actions">
-      <p><%= link_to 'Edit', edit_episode_path(episode) %></p>
-      <p><%= link_to 'Destroy', episode, :method => :delete, :confirm => 'Are you sure?' %></p>
-    </div>
-    <% end %>
-  </div>
+  <div class="screenshot"><%= link_to image_tag("/assets/episodes/stills/#{episode.asset_name}.png", :size => "200x125", :alt => episode.name), episode %></div>
   <div class="main">
-    <h2><%= link_to_unless_current episode.name, episode %></h2>
-    <div class="description"><%= episode.description %></div>
-    <% unless episode.tags.empty? %>
-      <div class="tags">
-        Tags:
-        <% for tag in episode.tags %>
-          <%= link_to tag.name, tag %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="download">
-      <% if episode.mov %>
-        <%= link_to "Download", episode.mov.url %>
-        <span class="stats">
-          (<%= number_to_human_size(episode.mov.bytes) %>, <%= episode.duration %>)
-        </span>
-      <% end %>
-      <% if episode.m4v %>
-        <div class="alt_download">
-          <%= link_to "alternative download", episode.m4v.url %> for iPod &amp; Apple TV
-          <span class="stats">
-            (<%= number_to_human_size(episode.m4v.bytes) %>, <%= episode.duration %>)
-          </span>
-        </div>
-      <% end %>
+    <div class="info">
+      <span class="number">Episode #<%= episode.position %></span> &ndash;
+      <span class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></span>
     </div>
-    <% if episode.asciicasts? %>
-      <div class="asciicasts">
-        <%= link_to "Read it on ASCIIcasts", "http://asciicasts.com/episodes/#{episode.to_param}" %>
-      </div>
-    <% end %>
-    <%= yield if block_given? %>
+    <h2><%= link_to episode.name, episode %></h2>
+    <div class="description"><%= episode.description %></div>
+    <div class="watch">
+      <%= link_to "Watch Episode", episode, :class => "watch_button" %>
+      <span class="duration">(<%= pluralize (episode.seconds/60).round, "minute" %>)</span>
+    </div>
   </div>
+  <div class="clear"></div>
 </div>

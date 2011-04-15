@@ -1,0 +1,10 @@
+<% if @comment.parent_id.present? %>
+  var container = $("#<%= dom_id(@comment.parent) %>").next(".nested_comments");
+<% else %>
+  var container = $("#comments");
+<% end %>
+<% if @comment.errors.present? %>
+  container.find("form").prepend("<%= escape_javascript error_messages_for(@comment) %>");
+<% else %>
+  container.children("#new_comment").replaceWith("<%= escape_javascript render(@comment) %>");
+<% end %>

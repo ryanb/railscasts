@@ -1,3 +1,0 @@
-module TagsHelper
-
-end

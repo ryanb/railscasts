@@ -1,44 +1,57 @@
-<% title @episode.name, false %>
+<% title "\##{@episode.position} #{@episode.name}", false %>
+<% javascript "http://cdn.sublimevideo.net/js/3s7oes9q.js" %>
 
-<% content_for :head do %>
-  <link rel="alternate" type="application/rss+xml" title="Episode Comments RSS" href="<%= episode_url(@episode, :format => 'rss') %>" />
-<% end %>
-
-<div class="episodes">
-  <%= render :layout => @episode do %>
-    <div id="episode_nav">
-    <% unless @episode.first? %>
-      <div id="previous_episode"><%= link_to '< Previous Episode', @episode.higher_item %></div>
-    <% end %>
-    <% unless @episode.last_published? || @episode.last? %>
-      <div id="next_episode"><%= link_to 'Next Episode >', @episode.lower_item %></div>
-    <% end %>
+<div id="episode" class="<%= "legacy" if @episode.legacy? %>">
+  <div class="video_wrapper">
+    <div id="video_poster">
+      <div class="banner">
+        <div class="inner">
+          <div class="inner_text">Click to Play Video</div>
+        </div>
+      </div>
+      <div class="sublimevideo">
+        Player provided by<br />
+        <%= image_tag "sublimevideo.png", :size => "178x24", :alt => "SublimeVideo" %>
+      </div>
     </div>
-    <div class="clear"></div>
-    <div class="notes">
-      <%= textilize @episode.notes %>
-    </div>
-  <% end %>
-</div>
-
-<% unless @episode.comments.empty? %>
-  <h3 class="content" id="comment_count">
-    <%= link_to image_tag('icons/feed.gif', :alt => "RSS Feed for Episode Comments", :size => '16x16'), episode_path(@episode, :format => 'rss') %>
-    <%= pluralize @episode.comments.size, 'comment' %>
-  </h3>
-  <div id="comments" class="content">
-    <%= render @episode.comments %>
   </div>
-<% end %>
-
-<div class="content add_comment">
-  <% if current_user %>
-    <h3>Add your comment:</h3>
-    <p class="comment_profile">
-      Signed in as <strong><%= link_to current_user.name, current_user %></strong>.
-    </p>
-    <%= render :partial => 'comments/form' %>
-  <% else %>
-    <p>You must <%= link_to "sign in through GitHub", login_path(:return_to => request.url) %> to post a comment.</p>
-  <% end %>
+  <script type="text/html" id="video_template">
+    <%= video_tag @episode.asset_url("videos"),
+          :poster => "/assets/episodes/posters/loading#{800 if @episode.legacy?}.png",
+          :width => (@episode.legacy? ? 800 : 960),
+          :height => 600 %>
+  </script>
+  <div class="info">
+    <h1>
+      <span class="position">#<%= @episode.position %></span>
+      <%= @episode.name %>
+    </h1>
+    <div class="details">
+      <%= @episode.published_at.strftime('%b %d, %Y') %> |
+      <%= pluralize (@episode.seconds/60).round, "minute" %> |
+      <%= raw @episode.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
+    </div>
+    <div class="social">
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= episode_url(@episode) %>" data-count="horizontal" data-via="railscasts">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </div>
+    <ul class="downloads horizontal">
+      <li>Download:</li>
+      <% for file in @episode.available_files %>
+        <li>
+          <%= link_to file[:name], file[:url] %>
+          <span class="overlay"><%= file[:info] %> (<%= number_to_human_size(file[:size]) %>)</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <ul class="nav horizontal">
+    <li class="selected"><%= tab_link "Show Notes", :view => nil %></li>
+    <li><%= tab_link pluralize(@episode.comments.size, "Comment"), :view => "comments" %></li>
+    <li><%= tab_link "Similar Episodes", :view => "similar" %></li>
+    <%= content_tag :li, link_to("Next Episode >", @episode.lower_item), :class => "next" unless @episode.last_published? || @episode.last? %>
+    <%= content_tag :li, link_to("< Previous Episode", @episode.higher_item), :class => "previous" unless @episode.first? %>
+  </ul>
+  <div class="nav_section">
+    <%= %w[comments similar].include?(params[:view]) ? render(params[:view]) : render("show_notes") %>
+  </div>
 </div>

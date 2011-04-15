@@ -1,76 +1,48 @@
 class CommentsController < ApplicationController
-  before_filter :login_required, :only => [:new, :create]
-  before_filter :admin_required, :only => [:edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, :only => :destroy
-
-  def index
-    @comments = Comment.recent.all(:limit => 30)
-    respond_to do |format|
-      format.html
-      format.rss
-    end
-  end
+  load_and_authorize_resource
 
   def new
-    redirect_to root_url, :notice => "To submit a comment, please go to a specific episode first."
+    @comment = Comment.new(:parent_id => params[:parent_id], :episode_id => params[:episode_id], :user => current_user)
   end
 
   def create
     @comment = current_user.comments.build(params[:comment])
     @comment.request = request
-    if params[:preview_button].nil? && @comment.save
-      redirect_to @comment.episode, :notice => "Successfully created comment."
-    else
-      render 'new'
-    end
-  end
-
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-
-  def update
-    @comment = Comment.find(params[:id])
-    if @comment.update_attributes(params[:comment])
-      redirect_to @comment.episode, :notice => "Successfully updated comment."
-    else
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    flash[:notice] = "Successfully destroyed comment."
+    @comment.save
     respond_to do |format|
-      format.html { redirect_to comments_path }
+      format.html do
+        if @comment.errors.present?
+          render :new
+        else
+          redirect_to(episode_path(@comment.episode, :view => "comments"))
+        end
+      end
       format.js
     end
   end
 
-  private
+  def edit
+  end
 
-  def check_spam(comment)
-    errors = []
-    if comment.spam?
-      errors << "Comment rejected. Please email me the content of your comment for approval: ryan at railscasts dot com."
-    elsif current_spam_question
-      if params[:spam_answer] =~ /#{current_spam_question.answer}/i
-        session[:spam_question_id] = nil
-      else
-        errors << "The given answer is incorrect, please try again."
+  def update
+    @comment.update_attributes(params[:comment])
+    respond_to do |format|
+      format.html do
+        if @comment.errors.present?
+          render :edit
+        else
+          redirect_to(episode_path(@comment.episode, :view => "comments"))
+        end
       end
-    elsif comment.spammish?
-      errors << "The provided comment looks like spam. Please answer the question below."
-      session[:spam_question_id] = SpamQuestion.random.id
+      format.js
     end
-    errors << "Javascript must be enabled to submit a comment." if params[:spam_key] != APP_CONFIG['spam_key']
-    errors << "Don't fill in the fake email address below, it should be left blank." unless params[:email].blank? # fake email to catch spammers
+  end
 
-    unless errors.empty?
-      errors << "If it still doesn't work, please let me know: ryan [at] railscasts [dot] com."
-      flash.now[:alert] = errors.join(" ")
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to episode_path(@comment.episode, :view => "comments") }
+      format.js
     end
-    errors.empty?
   end
 end

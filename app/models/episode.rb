@@ -2,19 +2,18 @@ class Episode < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
-  has_many :downloads, :dependent => :destroy
 
   acts_as_list
 
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
+  scope :tagged, lambda { |tag_id| tag_id ? joins(:taggings).where(:taggings => {:tag_id => tag_id}) : scoped }
   scope :recent, order('position DESC')
 
   validates_presence_of :published_at, :name
-  validates_associated :downloads, :on => :update # create automatically handles validation
+  serialize :file_sizes
 
   before_create :set_permalink
-  after_update :save_downloads
 
   # sometimes ThinkingSphinx isn't loaded for rake tasks
   if respond_to? :define_index
@@ -27,12 +26,13 @@ class Episode < ActiveRecord::Base
       indexes tags(:name), :as => :tag_names
 
       has published_at
+      has taggings.tag_id, :as => :tag_ids
     end
   end
 
-  def self.search_published(query)
+  def self.search_published(query, tag_id = nil)
     if APP_CONFIG['thinking_sphinx']
-      search(query, :conditions => { :published_at => 0..Time.now.utc.to_i },
+      search(query, :conditions => { :published_at => 0..Time.now.utc.to_i, :tag_id => tag_id },
                     :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else
       published.primitive_search(query)
@@ -42,20 +42,20 @@ class Episode < ActiveRecord::Base
     raise e
   end
 
-  def self.primitive_search(query)
-    find(:all, :conditions => primitive_search_conditions(query))
+  def self.primitive_search(query, join = "AND")
+    find(:all, :conditions => primitive_search_conditions(query, join))
   end
 
-  def published_month
-    published_at.beginning_of_month
-  end
-
-  def mov
-    downloads.find_by_format('mov')
-  end
-
-  def m4v
-    downloads.find_by_format('m4v')
+  def similar_episodes
+    if APP_CONFIG['thinking_sphinx']
+      self.class.search(name, :conditions => { :published_at => 0..Time.now.utc.to_i }, :match_mode => :any, :page => 1, :per_page => 5,
+                    :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
+    else
+      self.class.published.limit(5).primitive_search(name, "OR")
+    end
+  rescue ThinkingSphinx::ConnectionError => e
+    APP_CONFIG['thinking_sphinx'] = false
+    raise e
   end
 
   def tag_names=(names)
@@ -70,25 +70,20 @@ class Episode < ActiveRecord::Base
     [position, permalink].join('-')
   end
 
+  def asset_name
+    [padded_position, permalink].join('-')
+  end
+
+  def asset_url(path, ext = nil)
+    "http://media.railscasts.com/assets/episodes/#{path}/#{asset_name}" + (ext ? ".#{ext}" : "")
+  end
+
+  def padded_position
+    position.to_s.rjust(3, "0")
+  end
+
   def last_published?
     self == self.class.published.last
-  end
-
-  def new_download_attributes=(download_attributes)
-    download_attributes.each do |attributes|
-      downloads.build(attributes)
-    end
-  end
-
-  def existing_download_attributes=(download_attributes)
-    downloads.reject(&:new_record?).each do |download|
-      attributes = download_attributes[download.id.to_s]
-      if attributes
-        download.attributes = attributes
-      else
-        downloads.delete(download)
-      end
-    end
   end
 
   def duration
@@ -99,24 +94,59 @@ class Episode < ActiveRecord::Base
   end
 
   def duration=(duration)
-    min, sec = *duration.split(':').map(&:to_i)
-    self.seconds = min*60 + sec
+    if duration.present?
+      min, sec = *duration.split(':').map(&:to_i)
+      self.seconds = min*60 + sec
+    end
+  end
+
+  def self.find_by_param!(param)
+    find_by_position!(param.to_i)
+  end
+
+  def files
+    [
+      {:name => "source code", :info => "Project Files in Zip",   :url => asset_url("sources", "zip"),    :size => file_size("zip")},
+      {:name => "mp4",         :info => "Full Size H.264 Video",  :url => asset_url("dl/videos", "mp4"),  :size => file_size("mp4")},
+      {:name => "m4v",         :info => "Smaller H.264 Video",    :url => asset_url("dl/videos", "m4v"),  :size => file_size("m4v")},
+      {:name => "webm",        :info => "Full Size VP8 Video",    :url => asset_url("dl/videos", "webm"), :size => file_size("webm")},
+      {:name => "ogv",         :info => "Full Size Theora Video", :url => asset_url("dl/videos", "ogv"),  :size => file_size("ogv")},
+    ]
+  end
+
+  def file_size(ext)
+    (file_sizes && file_sizes[ext]).to_i
+  end
+
+  # TODO test me
+  def available_files
+    files.select { |f| f[:size].to_i > 0 }
+  end
+
+  def load_file_sizes
+    self.file_sizes = {}
+    files.each do |file|
+      ext = file[:url][/\w+$/]
+      self.file_sizes[ext] = fetch_file_size(file[:url])
+    end
+  end
+
+  def fetch_file_size(path)
+    url = URI.parse(path)
+    response = Net::HTTP.start(url.host, url.port) do |http|
+      http.request_head(url.path)
+    end
+    if response.code == "200"
+      response["content-length"]
+    end
   end
 
   private
 
-  def self.primitive_search_conditions(query)
+  def self.primitive_search_conditions(query, join)
     query.split(/\s+/).map do |word|
       '(' + %w[name description notes].map { |col| "#{col} LIKE #{sanitize('%' + word.to_s + '%')}" }.join(' OR ') + ')'
-    end.join(' AND ')
-  end
-
-  def save_downloads
-    if downloads.loaded?
-      downloads.each do |download|
-        download.save(false)
-      end
-    end
+    end.join(" #{join} ")
   end
 
   def set_permalink

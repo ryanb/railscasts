@@ -1,7 +1,0 @@
-one:
-  regexp: MyString
-  weight: 1
-
-two:
-  regexp: MyString
-  weight: 1

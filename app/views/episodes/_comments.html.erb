@@ -1,0 +1,4 @@
+<div id="comments">
+  <%= nested_comments @episode.comments.includes(:user).arrange(:order => "created_at asc") %>
+  <%= render "comments/form" %>
+</div>

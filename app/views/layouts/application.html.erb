@@ -1,46 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Railscasts - <%= content_for?(:title) ? yield(:title) : "Free Ruby on Rails Screencasts" %></title>
-  	<meta name="description" content="Short Ruby on Rails screencasts containing tips, tricks and tutorials. Great for both novice and experienced programmers." />
+    <title><%= content_for?(:title) ? yield(:title) : "Ruby on Rails Screencasts" %> - RailsCasts</title>
+  	<meta name="description" content="Short Ruby on Rails screencasts containing tips, tricks and tutorials. Great for both novice and experienced web developers." />
     <meta name="keywords" content="rails, ruby on rails, screencasts, railscast, railscasts, tips, tricks, tutorials, training, podcasts, programming" />
     <link rel="alternate" type="application/rss+xml" title="Episodes RSS" href="http://feeds.feedburner.com/railscasts" />
-    <%= stylesheet_link_tag 'application', 'coderay' %>
+    <%= stylesheet_link_tag "application", "coderay" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container">
-      <div id="logo"><%= link_to image_tag('logo.png', :size => '452x88', :alt => 'Railscasts'), root_path %></div>
-      <div id="main">
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <% end -%>
+    <div id="top">
+      <div class="logo"><%= link_to image_tag("railscasts_logo.png", :size => "423x56", :alt => "RailsCasts - Ruby on Rails Screencasts"), root_path %></div>
+      <ul class="subscribe horizontal">
+        <li>
+          <%= link_to image_tag("icons/itunes.png", :size => "34x34"), "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=218282043" %>
+          <span class="name">watch on iTunes</span>
+        </li>
+        <li>
+          <%= link_to image_tag("icons/twitter.png", :size => "34x34"), "http://twitter.com/railscasts" %>
+          <span class="name">follow on Twitter</span>
+        </li>
+        <li>
+          <%= link_to image_tag("icons/facebook.png", :size => "34x34"), "http://www.facebook.com/pages/railscasts/197415140659" %>
+          <span class="name">follow on Facebook</span>
+        </li>
+        <li>
+          <%= link_to image_tag("icons/rss.png", :size => "34x34"), "http://feeds.feedburner.com/railscasts" %>
+          <span class="name">subscribe to RSS feed</span>
+        </li>
+      </ul>
+    </div>
 
-        <% if show_title? %>
-          <h1 class="content"><%= yield(:title) %></h1>
+    <div id="nav_bar">
+      <div class="inner">
+        <ul class="nav horizontal">
+          <li><%= link_to "Browse Episodes", root_url %></li>
+          <li><%= link_to "About RailsCasts", about_path %></li>
+          <li><%= link_to "Feedback", feedback_path %></li>
+        </ul>
+        <%= form_tag episodes_path, :method => "get" do %>
+          <%= text_field_tag :search, params[:search], :size => 35 %>
+          <%= submit_tag "Search Episodes", :name => nil %>
         <% end %>
-
-        <%= yield %>
-      </div>
-      <div id="side">
-        <%= content_for?(:side) ? yield(:side) : render(:partial => 'shared/side') %>
-      </div>
-      <div class="clear"></div>
-      <div id="footer">
-        &copy;2010 Railscasts - Hosted by <%= link_to "Linode", "http://www.linode.com/?utm_source=railscast.com&utm_medium=Badge&utm_campaign=Railscast" %>
       </div>
     </div>
 
-    <% unless current_page? give_back_path %>
-      <%= link_to image_tag("give_back_banner.png", :size => "143x151", :alt => "Give Back to Open Source"), give_back_path, :id => "corner_banner" %>
-    <% end %>
+    <div id="main">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end -%>
 
-    <!-- UserVoice Tab -->
-    <script src="http://railscasts.uservoice.com/pages/general/widgets/tab.js?alignment=left&amp;color=1B97F2" type="text/javascript"></script>
+      <% if show_title? %>
+        <h1 class="content"><%= yield(:title) %></h1>
+      <% end %>
+
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <div class="inner">
+        &copy;<%= Date.today.year %> RailsCasts - Hosted by <%= link_to "Linode", "http://www.linode.com/?utm_source=railscast.com&utm_medium=Badge&utm_campaign=Railscast" %>
+      </div>
+    </div>
 
     <!-- Google Analytics -->
     <script type="text/javascript">

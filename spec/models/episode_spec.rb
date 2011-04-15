@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require "spec_helper"
 
 describe Episode do
   it "should find published" do
@@ -34,11 +34,6 @@ describe Episode do
     episode.should have(1).error_on(:name)
   end
 
-  it "should have published month" do
-    episode = Episode.new(:published_at => '2008-01-03')
-    episode.published_month.should == Time.parse('2008-01-01')
-  end
-
   it "should automatically generate permalink when creating episode" do
     episode = Factory(:episode, :name => ' Hello_ *World* 2.1. ')
     episode.permalink.should == 'hello-world-2-1'
@@ -63,6 +58,7 @@ describe Episode do
 
   it "should parse duration into seconds" do
     Episode.new(:duration => '10:03').seconds.should == 603
+    Episode.new(:duration => '').seconds.should be_nil
   end
 
   it "should know if it's the last published episode" do
@@ -74,20 +70,48 @@ describe Episode do
     c.should_not be_last_published
   end
 
-  describe "with downloads" do
-    before(:each) do
-      @episode = Factory(:episode)
-      @mov = @episode.downloads.create!(:format => 'mov')
-      @m4v = @episode.downloads.create!(:format => 'm4v')
-    end
+  it "has media.railscasts.com asset url" do
+    episode = Factory(:episode, :name => "Hello world")
+    episode.position = 23
+    episode.asset_url("videos").should == "http://media.railscasts.com/assets/episodes/videos/023-hello-world"
+    episode.asset_url("videos", "mp4").should == "http://media.railscasts.com/assets/episodes/videos/023-hello-world.mp4"
+  end
 
-    it "should find mov" do
-      @episode.mov.should == @mov
-    end
+  it "has files with file sizes" do
+    episode = Factory(:episode, :name => "Hello world", :file_sizes => {"zip" => "12345"})
+    episode.files[0][:name].should == "source code"
+    episode.files.map { |f| f[:name] }.should == ["source code", "mp4", "m4v", "webm", "ogv"]
+    episode.files.map { |f| f[:info] }.should == ["Project Files in Zip", "Full Size H.264 Video", "Smaller H.264 Video", "Full Size VP8 Video", "Full Size Theora Video"]
+    episode.files[0][:url].should include("http://media.railscasts.com/assets/episodes/sources/")
+    episode.files[0][:size].should == 12345
+  end
 
-    it "should find m4v" do
-      @episode.m4v.should == @m4v
+  it "sets file size to zero when unknown" do
+    episode = Factory(:episode, :name => "Hello world", :file_sizes => nil)
+    episode.files[0][:size].should == 0
+  end
+
+  it "loads the file sizes for each file" do
+    episode = Factory(:episode, :name => "Hello world")
+    episode.position = 42
+    %w[mp4 m4v webm ogv].each_with_index do |ext, index|
+      FakeWeb.register_uri(:head, "http://media.railscasts.com/assets/episodes/dl/videos/042-hello-world.#{ext}", :content_length => index)
     end
+    FakeWeb.register_uri(:head, "http://media.railscasts.com/assets/episodes/sources/042-hello-world.zip", :content_length => 4)
+    episode.load_file_sizes
+    episode.file_sizes.should == {
+      "mp4" => "0",
+      "m4v" => "1",
+      "webm" => "2",
+      "ogv" => "3",
+      "zip" => "4",
+    }
+  end
+
+  it "should return nil as file size when response is not 200" do
+    FakeWeb.register_uri(:head, "http://example.com/foo", :content_length => "123", :status => ["404", "Not Found"])
+    episode = Factory.build(:episode)
+    episode.fetch_file_size("http://example.com/foo").should == nil
   end
 
   describe "primitive search" do

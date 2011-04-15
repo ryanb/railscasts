@@ -1,0 +1,2 @@
+$("#<%= dom_id(@comment) %>").replaceWith("<%= escape_javascript render("form") %>");
+$("#<%= dom_id(@comment) %>").find("#comment_content")[0].focus();

@@ -1,32 +1,96 @@
-<% title "Free Ruby on Rails Screencasts", false %>
-
-<%= form_tag episodes_path, :method => 'get' do %>
-  <p class="content">
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-
-<% if @episodes.empty? %>
-  <p class="content">No episodes found. <%= link_to "See all episodes.", episodes_path %></p>
-<% else %>
-  <div class="episodes">
-    <%= render @episodes %>
-  </div>
-<% end %>
-
-<%= render "pagination" %>
-
-
-<% if admin? %>
-<h1 class="content">Future Episodes</h1>
-<div class="episodes">
-  <%= render Episode.unpublished %>
-</div>
+<% title "Ruby on Rails Screencasts", false %>
 
 <div class="content">
-  <div class="actions">
-    <p><%= link_to 'New Episode', new_episode_path %></p>
-  </div>
+  <% if @episodes.empty? %>
+    <div class="episodes">
+      <p class="content">No episodes found. <%= link_to "See all episodes.", episodes_path %></p>
+    </div>
+  <% else %>
+    <div class="side">
+      <div class="episode_views">
+        View:
+        <span class="view"><%= link_to_unless params[:view].blank?, image_tag("views/full.png", :size => "15x10"), params.merge(:view => nil, :page => nil), :title => "Full View" %></span>
+        <span class="view"><%= link_to_unless params[:view] == "list", image_tag("views/list.png", :size => "14x10"), params.merge(:view => "list", :page => nil), :title => "List View" %></span>
+        <span class="view"><%= link_to_unless params[:view] == "grid", image_tag("views/grid.png", :size => "11x10"), params.merge(:view => "grid", :page => nil), :title => "Grid View" %></span>
+      </div>
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        <% for tag in Tag.order("name") %>
+          <li><%= link_to tag.display_name, params.merge(:tag_id => tag.id, :page => nil) %></li>
+        <% end %>
+        </ul>
+      </div>
+      <div class="banner">
+        <a href="http://www.linode.com/?utm_source=railscast.com&amp;utm_medium=Badge&amp;utm_campaign=Railscast"><img alt="Linode" src="/assets/sponsors/linode.png?1291855080" /></a>
+      </div>
+      <div class="banner">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="badge">
+          <div>
+          <input type="hidden" name="cmd" value="_xclick" />
+          <input type="hidden" name="business" value="ryan@railscasts.com" />
+          <input type="hidden" name="item_name" value="Railscasts Donation" />
+          <input type="hidden" name="no_shipping" value="1" />
+          <input type="hidden" name="cn" value="Comments or Suggestions" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="tax" value="0" />
+          <input type="hidden" name="lc" value="US" />
+          <input type="hidden" name="bn" value="PP-DonationsBF" />
+          <input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="episodes">
+      <h2>
+        <% if @tag %>
+          <%= @tag.display_name %> <span class="remove"><%= link_to "(remove)", params.merge(:tag_id => nil, :page => nil) %></span> &gt;
+        <% end %>
+        <% if params[:search].present? %>
+          <%= params[:search] %> <span class="remove"><%= link_to "(remove)", params.merge(:search => nil, :page => nil) %></span> &gt;
+        <% end %>
+      </h2>
+      <% if params[:view].nil? %>
+        <div class="full">
+          <%= render @episodes %>
+        </div>
+      <% elsif params[:view] == "list" %>
+        <table class="list">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Duration</th>
+            <th>Released</th>
+          </tr>
+          <% for episode in @episodes %>
+            <tr>
+              <td><%= episode.position %></td>
+              <td><%= link_to episode.name, episode %></td>
+              <td><%= pluralize (episode.seconds/60).round, "minute" %></td>
+              <td><%= episode.published_at.strftime('%b %d, %Y') %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% elsif params[:view] == "grid" %>
+        <div class="grid">
+          <% for episode in @episodes %>
+            <div class="episode">
+              <div class="screenshot"><%= link_to image_tag("/assets/episodes/stills/#{episode.asset_name}.png", :size => "200x125"), episode %></div>
+              <div class="name">
+                #<%= episode.position %>
+                <%= link_to episode.name, episode %>
+              </div>
+            </div>
+          <% end %>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+
+      <%= will_paginate :previous_label => h("< Previous Page"),  :next_label => h("Next Page >") %>
+    </div>
+  <% end %>
+  <% if can? :create, :episodes %>
+    <div class="actions"><%= link_to "New Episode", new_episode_path %></div>
+  <% end %>
 </div>
-<% end %>

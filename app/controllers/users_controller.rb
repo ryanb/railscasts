@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update]
+  before_filter :load_current_user, :only => [:edit, :update]
+  load_and_authorize_resource
 
   def show
-    @user = User.find(params[:id])
   end
 
   def create
@@ -14,16 +14,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
-    if @user.update_attributes(params[:user])
-      redirect_to @user, :notice => "Successfully updated user."
-    else
-      render :action => "edit"
-    end
+    @user.attributes = params[:user]
+    @user.save!
+    redirect_to @user, :notice => "Successfully updated profile."
   end
 
   def login
@@ -39,5 +35,11 @@ class UsersController < ApplicationController
   def logout
     cookies.delete(:token)
     redirect_to root_url, :notice => "You have been logged out."
+  end
+
+  private
+
+  def load_current_user
+    @user = current_user
   end
 end

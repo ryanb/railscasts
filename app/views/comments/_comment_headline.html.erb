@@ -1,0 +1,17 @@
+<div class="headline">
+  <% if comment.new_record? %>
+    <span class="position">New comment as</span>
+  <% end %>
+  <span class="name">
+    <% if comment.user %>
+      <%= link_to comment.user.display_name, comment.user %>
+    <% else %>
+      <%= link_to_unless comment.site_url.blank?, comment.name, fix_url(comment.site_url), :rel => "nofollow" %>
+    <% end %>
+  </span>
+  <% unless comment.created_at.nil? %>
+    <span class="created_at">
+      <%= comment.created_at.strftime('%b %d, %Y at %H:%M') %>
+    </span>
+  <% end %>
+</div>

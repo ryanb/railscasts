@@ -1,12 +1,7 @@
-.CodeRay {
+.CodeRay, .CodeRay pre {
+  font-family: 'Menlo', 'Courier New', 'Terminal', monospace;
   background-color: #232323;
-  border: 1px solid black;
-  font-family: 'Courier New', 'Terminal', monospace;
   color: #E6E0DB;
-  padding: 3px 5px;
-  overflow: auto;
-  font-size: 12px;
-  margin: 12px 0;
 }
 .CodeRay pre {
   margin: 0px;
@@ -26,6 +21,7 @@
 .CodeRay .iv { color:#D0CFFE }                      /* instance variable */
 .CodeRay .pp { color:#E7BE69 }                      /* doctype */
 .CodeRay .r  { color:#CB7832 }                      /* keyword */
+.CodeRay .kw { color:#CB7832 }                      /* keyword */
 .CodeRay .rx { color:#A4C260 }                      /* regex */
 .CodeRay .s  { color:#A4C260 }                      /* string */
 .CodeRay .sy { color:#6C9CBD }                      /* symbol */

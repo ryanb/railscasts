@@ -1,6 +1,10 @@
 module CommentsHelper
-  def format_comment(content)
-    simple_format(keep_spaces_at_beginning(h(content)))
+  def format_comment(comment)
+    if comment.legacy?
+      simple_format(keep_spaces_at_beginning(h(comment.content)))
+    else
+      CodeFormatter.new(comment.content).to_html.html_safe
+    end
   end
 
   def keep_spaces_at_beginning(content)
@@ -17,5 +21,11 @@ module CommentsHelper
     else
       "http://#{url}"
     end
+  end
+
+  def nested_comments(comments)
+    comments.map do |comment, sub_comments|
+      render(comment) + content_tag(:div, nested_comments(sub_comments), :class => "nested_comments")
+    end.join.html_safe
   end
 end
