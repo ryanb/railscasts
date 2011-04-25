@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :destroy
 
   def index
-    @comments = Comment.recent.all(:limit => 30)
+    @comments = Comment.recent.limit(30)
     respond_to do |format|
       format.html
       format.rss
