@@ -82,6 +82,12 @@ describe "Episodes request" do
     page.current_path.should == episode_path("#{episode.position}-#{episode.permalink}")
   end
 
+  it "reports unauthorized access when attempting to create an episode as a normal user" do
+    Factory(:episode, :name => "Blast from the Past", :published_at => 2.days.ago)
+    visit new_episode_path
+    page.should have_content("not authorized")
+  end
+
   it "creates a new episode" do
     login Factory(:user, :admin => true)
     visit episodes_path
