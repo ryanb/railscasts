@@ -32,7 +32,7 @@ class CodeFormatter
     when /\.js$/ then "java_script"
     when /\.erb$/, /\.html$/ then "rhtml"
     when /\.rb$/, /\.rake$/, /\.gemspec/, /file$/, /console$/ then "ruby"
-    when /\./ then path[/\.(.+?)$/, 1]
+    when /\./ then path[/\.([^.]+?)$/, 1]
     else path
     end
   end
