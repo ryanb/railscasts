@@ -60,6 +60,7 @@
           <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Comments</th>
             <th>Duration</th>
             <th>Released</th>
           </tr>
@@ -67,6 +68,7 @@
             <tr>
               <td><%= episode.position %></td>
               <td><%= link_to episode.name, episode %></td>
+              <td><%= link_to pluralize(episode.comments.size, "comment"), episode_path(episode, :view => "comments"), :class => "comment_count" %></td>
               <td><%= pluralize (episode.seconds/60).round, "minute" %></td>
               <td><%= episode.published_at.strftime('%b %d, %Y') %></td>
             </tr>

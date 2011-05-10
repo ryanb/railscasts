@@ -265,11 +265,15 @@ label {
   margin-bottom: 17px;
 }
 
-.full .duration {
+.full .stats {
   font-size: 11px;
   color: #777;
   font-weight: normal;
   padding-left: 5px;
+}
+
+.full .stats a {
+  color: #777;
 }
 
 .full .watch_button {
@@ -311,6 +315,10 @@ label {
   padding: 5px;
   text-align: left;
   color: #777;
+}
+
+.list .comment_count {
+  color: #000;
 }
 
 

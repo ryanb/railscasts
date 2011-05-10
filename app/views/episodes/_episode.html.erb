@@ -9,7 +9,7 @@
     <div class="description"><%= episode.description %></div>
     <div class="watch">
       <%= link_to "Watch Episode", episode, :class => "watch_button" %>
-      <span class="duration">(<%= pluralize (episode.seconds/60).round, "minute" %>)</span>
+      <span class="stats">(<%= pluralize (episode.seconds/60).round, "minute" %>, <%= link_to pluralize(episode.comments.size, "comment"), episode_path(episode, :view => "comments") %>)</span>
     </div>
   </div>
   <div class="clear"></div>
