@@ -894,10 +894,20 @@ pre code {
 /*** FEEDBACK ***/
 
 #feedback {
-  width: 750px;
+  width: 680px;
+  float: left;
 }
 
-#feedback h2 {
+#feedback_instructions {
+  margin-left: 700px;
+  min-width: 225px;
+}
+
+#feedback_instructions li {
+  margin: 5px 0;
+}
+
+#feedback h2.bar {
   padding: 4px 20px;
   margin: 0;
   font-weight: normal;

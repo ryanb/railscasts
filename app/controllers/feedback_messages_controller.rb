@@ -1,6 +1,10 @@
 class FeedbackMessagesController < ApplicationController
   def new
     @feedback_message = FeedbackMessage.new
+    if current_user
+      @feedback_message.name = current_user.name
+      @feedback_message.email = current_user.email
+    end
   end
 
   def create
