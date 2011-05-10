@@ -60,6 +60,12 @@ GEM
       activerecord (>= 2.2.2)
     arel (2.0.9)
     builder (2.1.2)
+    capistrano (2.6.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     capybara-webkit (0.2.0)
       capybara (~> 0.4.1)
     childprocess (0.1.8)
@@ -87,6 +93,7 @@ GEM
       thor (~> 0.14.6)
     guard-rspec (0.3.1)
       guard (>= 0.2.2)
+    highline (1.6.1)
     i18n (0.5.0)
     jquery-rails (0.2.5)
       rails (~> 3.0)
@@ -105,6 +112,13 @@ GEM
     multipart-post (1.1.0)
     mysql2 (0.2.6)
     net-ldap (0.1.1)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.1.4)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     nifty-generators (0.4.2)
     nokogiri (1.4.4)
     oa-basic (0.2.2)
@@ -170,7 +184,6 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
-    rb-fsevent (0.4.0)
     redcarpet (1.10.0)
     rest-client (1.6.1)
       mime-types (>= 1.16)
@@ -223,6 +236,7 @@ DEPENDENCIES
   acts_as_list
   ancestry
   cancan!
+  capistrano
   capybara!
   capybara-webkit
   coderay
@@ -238,7 +252,6 @@ DEPENDENCIES
   nifty-generators
   omniauth (>= 0.2.2)
   rails (= 3.0.7)
-  rb-fsevent
   redcarpet
   rspec-rails
   simplecov

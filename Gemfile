@@ -26,7 +26,6 @@ group :test do
   gem "database_cleaner"
   gem "guard"
   gem "guard-rspec"
-  gem "rb-fsevent", :require => false if RUBY_PLATFORM.downcase.include?("darwin")
   gem "fakeweb"
   gem "simplecov", :require => false
 end
@@ -34,4 +33,5 @@ end
 group :development do
   gem "thin"
   gem "nifty-generators"
+  gem "capistrano"
 end
