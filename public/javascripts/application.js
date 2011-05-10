@@ -19,7 +19,9 @@ $(function() {
       $(this).addClass("selected");
       $("#episode .nav_section").append('<div class="progress"><img src="/images/progress_large.gif" width="32" height="32" alt="" /></div>');
       $.getScript(this.href);
-      history.replaceState(null, document.title, this.href);
+      if (history && history.replaceState) {
+        history.replaceState(null, document.title, this.href);
+      }
       e.preventDefault();
     });
 
