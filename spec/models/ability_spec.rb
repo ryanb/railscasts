@@ -53,12 +53,13 @@ describe "Ability" do
       @ability.should_not be_able_to(:update, User.new)
     end
 
-    it "can create comments and update/destroy within 15 minutes" do
+    it "can create comments and update/destroy within 15 minutes if he owns them" do
       @ability.should be_able_to(:create, :comments)
-      @ability.should be_able_to(:update, Factory(:comment, :created_at => 10.minutes.ago))
-      @ability.should_not be_able_to(:update, Factory(:comment, :created_at => 20.minutes.ago))
-      @ability.should be_able_to(:destroy, Factory(:comment, :created_at => 10.minutes.ago))
-      @ability.should_not be_able_to(:destroy, Factory(:comment, :created_at => 20.minutes.ago))
+      @ability.should be_able_to(:update, Factory(:comment, :user => @user, :created_at => 10.minutes.ago))
+      @ability.should_not be_able_to(:update, Factory(:comment, :user => @user, :created_at => 20.minutes.ago))
+      @ability.should be_able_to(:destroy, Factory(:comment, :user => @user, :created_at => 10.minutes.ago))
+      @ability.should_not be_able_to(:destroy, Factory(:comment, :user => @user, :created_at => 20.minutes.ago))
+      @ability.should_not be_able_to(:destroy, Factory(:comment, :user => User.new, :created_at => 10.minutes.ago))
     end
 
     it "can create feedback messages" do

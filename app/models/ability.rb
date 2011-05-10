@@ -14,7 +14,7 @@ class Ability
       can :update, :users, :id => user.id
       can :create, :comments
       can [:update, :destroy], :comments do |comment|
-        comment.created_at >= 15.minutes.ago
+        comment.created_at >= 15.minutes.ago && comment.user_id == user.id
       end
 
       if user.admin?
