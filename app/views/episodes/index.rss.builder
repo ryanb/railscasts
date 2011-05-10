@@ -44,7 +44,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
         xml.title "\##{episode.position} #{episode.name}"
         xml.description episode.description
         xml.pubDate episode.published_at.to_s(:rfc822)
-        xml.enclosure :url => episode.asset_url("dl/videos", ext), :length => episode.file_size(ext), :type => 'video/mp4'
+        xml.enclosure :url => episode.asset_url("videos", ext), :length => episode.file_size(ext), :type => 'video/mp4'
         xml.link episode_url(episode)
         xml.guid({:isPermaLink => "false"}, episode.permalink)
         xml.itunes :author, author
