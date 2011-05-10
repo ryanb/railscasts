@@ -453,7 +453,7 @@ label {
 /*** EPISODE ***/
 
 #episode {
-  margin-left: 100px;
+  margin: 0 auto;
   width: 962px;
 }
 
