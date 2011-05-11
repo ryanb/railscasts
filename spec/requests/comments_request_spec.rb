@@ -38,7 +38,7 @@ describe "Comments request" do
     episode = Factory(:episode, :name => "Blast from the Past")
     Factory(:comment, :content => "Hello world!", :episode_id => episode.id)
     visit episode_path(episode, :view => "comments")
-    click_on "Destroy"
+    click_on "Delete"
     page.should_not have_content("Hello world!")
   end
 end
