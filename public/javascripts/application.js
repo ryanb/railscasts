@@ -1,16 +1,23 @@
 $(function() {
   if ($("#episode").length > 0) {
     sublimevideo.ready(function() {
-      $("#video_poster").click(function(e) {
-        var video = $('<div id="video_container"></div>').hide().html($("#video_template").html());
-        $(this).after(video);
+      if ($("#episode video").length > 0) {
         sublimevideo.prepareAndPlay($("#episode video")[0]);
         $("#episode video.sublimed").attr("poster", $("#episode video.sublimed").data("poster"));
-        setTimeout(function() {
-          $("#video_poster").hide();
-          $("#video_container").show();
-        }, 200);
-      });
+      } else {
+        $("#watch_button").click(function(e) {
+          $("#episode ")
+          var video = $('<div id="video_container"></div>').hide().html($("#video_template").html());
+          $(this).after(video);
+          sublimevideo.prepareAndPlay($("#episode video")[0]);
+          $("#episode video.sublimed").attr("poster", $("#episode video.sublimed").data("poster"));
+          setTimeout(function() {
+            $("#watch_button").hide();
+            $("#video_container").show();
+          }, 200);
+          e.preventDefault();
+        });
+      }
     });
     sublimevideo.load();
 

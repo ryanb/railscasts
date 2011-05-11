@@ -42,7 +42,7 @@ module ApplicationHelper
 
   def video_tag(path, options = {})
     xml = Builder::XmlMarkup.new
-    xml.video :width => options[:width], :height => options[:height], :poster => options[:poster], :controls => "controls" do
+    xml.video :width => options[:width], :height => options[:height], :poster => options[:poster], :controls => "controls", :preload => "none" do
       xml.source :src => "#{path}.mp4", :type => "video/mp4"
       xml.source :src => "#{path}.m4v", :type => "video/mp4"
       xml.source :src => "#{path}.webm", :type => "video/webm"
