@@ -37,9 +37,9 @@
     <div id="nav_bar">
       <div class="inner">
         <ul class="nav horizontal">
-          <li><%= link_to "Browse Episodes", root_url %></li>
-          <li><%= link_to "About RailsCasts", about_path %></li>
-          <li><%= link_to "Feedback", feedback_path %></li>
+          <li><%= link_to_unless_current "Browse Episodes", root_url %></li>
+          <li><%= link_to_unless_current "About RailsCasts", about_path %></li>
+          <li><%= link_to_unless_current "Feedback", feedback_path %></li>
         </ul>
         <%= form_tag episodes_path, :method => "get" do %>
           <%= text_field_tag :search, params[:search], :size => 35 %>
