@@ -150,7 +150,7 @@ label {
 }
 
 #nav_bar {
-  border: solid 3px #F38718;
+  border-bottom: solid 2px #DE9F15;
   border-left: none;
   border-right: none;
   margin-bottom: 30px;
@@ -158,9 +158,11 @@ label {
 
 #nav_bar .inner {
   padding: 8px 100px;
-  background-color: #000;
+  background-color: #333;
   border-top: solid 1px #FFF;
-  border-bottom: solid 1px #FFF;
+  background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#111));
+  background: -moz-linear-gradient(top,  #EEE, #FFF);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEE', endColorstr='#FFF');
 }
 
 #nav_bar .nav {
@@ -171,7 +173,7 @@ label {
 #nav_bar .nav li {
   padding-left: 25px;
   font-size: 14px;
-  color: #AAA;
+  color: #BBB;
 }
 
 #nav_bar .nav li a {
