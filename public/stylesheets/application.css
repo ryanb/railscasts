@@ -968,6 +968,10 @@ pre code {
   font-size: 14px;
 }
 
+form .special_email_field {
+  display: hidden;
+}
+
 
 /*** GIVE BACK ***/
 

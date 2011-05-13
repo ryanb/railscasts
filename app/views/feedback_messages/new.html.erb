@@ -10,6 +10,11 @@
       "<n uers=\"znvygb:srrqonpx\100envyfpnfgf\056pbz\">srrqonpx\100envyfpnfgf\056pbz<\057n>".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));
       </script>.</p>
       </div>
+      <div class="special_email_field">
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+        (do not fill)
+      </div>
       <div class="field">
         <%= f.label :name, "Your Name" %>
         <%= f.text_field :name %>
