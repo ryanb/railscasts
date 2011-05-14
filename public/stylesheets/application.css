@@ -478,6 +478,10 @@ label {
 /*  -webkit-box-shadow: 5px 5px 8px #555;*/
 }
 
+#episode video {
+  display: block;
+}
+
 #watch_button {
   display: block;
   text-align: center;
