@@ -71,6 +71,10 @@ ul.horizontal li {
   margin: 10px 0;
 }
 
+.special_email_field {
+  display: none;
+}
+
 label {
   display: block;
 }
