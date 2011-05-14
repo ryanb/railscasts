@@ -35,17 +35,15 @@
     </div>
 
     <div id="nav_bar">
-      <div class="inner">
-        <ul class="nav horizontal">
-          <li><%= link_to_unless_current "Browse Episodes", root_url %></li>
-          <li><%= link_to_unless_current "About RailsCasts", about_path %></li>
-          <li><%= link_to_unless_current "Feedback", feedback_path %></li>
-        </ul>
-        <%= form_tag episodes_path, :method => "get" do %>
-          <%= text_field_tag :search, params[:search], :size => 35 %>
-          <%= submit_tag "Search Episodes", :name => nil %>
-        <% end %>
-      </div>
+      <ul class="nav horizontal">
+        <li><%= link_to_unless_current "Browse Episodes", root_url %></li>
+        <li><%= link_to_unless_current "About RailsCasts", about_path %></li>
+        <li><%= link_to_unless_current "Feedback", feedback_path %></li>
+      </ul>
+      <%= form_tag episodes_path, :method => "get" do %>
+        <%= text_field_tag :search, params[:search], :size => 35 %>
+        <%= submit_tag "Search Episodes", :name => nil %>
+      <% end %>
     </div>
 
     <div id="main">

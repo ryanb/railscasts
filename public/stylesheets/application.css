@@ -150,19 +150,15 @@ label {
 }
 
 #nav_bar {
-  border-bottom: solid 2px #DE9F15;
-  border-left: none;
-  border-right: none;
-  margin-bottom: 30px;
-}
-
-#nav_bar .inner {
+  position: relative;
   padding: 8px 100px;
   background-color: #333;
   border-top: solid 1px #FFF;
-  background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#111));
-  background: -moz-linear-gradient(top,  #EEE, #FFF);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEE', endColorstr='#FFF');
+  background: -webkit-gradient(linear, left top, left bottom, from(#5C5C5C), to(#111));
+  background: -moz-linear-gradient(top,  #5C5C5C, #111);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5C5C5C', endColorstr='#111');
+  border-bottom: solid 3px #DE9F00;
+  margin-bottom: 30px;
 }
 
 #nav_bar .nav {
