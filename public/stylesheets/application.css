@@ -474,6 +474,24 @@ label {
 /*  -webkit-box-shadow: 5px 5px 8px #555;*/
 }
 
+#watch_button {
+  display: block;
+  float: left;
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 10px;
+  font-weight: bold;
+  border: 1px solid #466A98;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  color: #FFF;
+  background: #386FB2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#67B0EF), to(#2B5EA4));
+  background: -moz-linear-gradient(top,  #579CEA,  #2B5EA4);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#579CEA', endColorstr='#2B5EA4');
+  text-decoration: none;
+}
+
 #video_poster {
   padding-top: 1px;
 }

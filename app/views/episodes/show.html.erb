@@ -1,25 +1,20 @@
 <% title "\##{@episode.position} #{@episode.name}", false %>
 
 <div id="episode" class="<%= "legacy" if @episode.legacy? %>">
-  <div class="video_wrapper">
-    <div id="video_poster">
-      <div class="banner">
-        <div class="inner">
-          <div class="inner_text">Click to Play Video</div>
-        </div>
-      </div>
+  <%= link_to "Watch Episode >", {:autoplay => true}, {:id => "watch_button"} %>
+  <% if params[:autoplay] %>
+    <div id="video_wrapper"><%= episode_video_tag @episode %></div>
+  <% else %>
+    <!-- <div id="watch_button">
       <div class="sublimevideo">
         Player provided by<br />
         <%= image_tag "sublimevideo.png", :size => "178x24", :alt => "SublimeVideo" %>
       </div>
-    </div>
-  </div>
-  <script type="text/html" id="video_template">
-    <%= video_tag @episode.asset_url("videos"),
-          :poster => "/assets/episodes/posters/loading#{800 if @episode.legacy?}.png",
-          :width => (@episode.legacy? ? 800 : 960),
-          :height => 600 %>
-  </script>
+    </div> -->
+    <script type="text/html" id="video_template">
+      <div id="video_wrapper"><%= episode_video_tag @episode %></div>
+    </script>
+  <% end %>
   <div class="info">
     <h1>
       <span class="position">#<%= @episode.position %></span>
