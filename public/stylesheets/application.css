@@ -288,7 +288,7 @@ label {
   background: -moz-linear-gradient(top,  #579CEA,  #2B5EA4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#579CEA', endColorstr='#2B5EA4');
   text-decoration: none;
-	text-shadow:0 -1px 0 #036;
+  text-shadow: 0 -1px 0 #036;
 }
 
 .full .notes {
@@ -469,16 +469,16 @@ label {
   width: 802px;
 }
 
-#episode .video_wrapper {
+#episode #video_wrapper {
   border: solid 1px #777;
 /*  -webkit-box-shadow: 5px 5px 8px #555;*/
 }
 
 #watch_button {
   display: block;
-  float: left;
+  text-align: center;
   font-size: 16px;
-  margin-right: 10px;
+  margin-bottom: 15px;
   padding: 10px;
   font-weight: bold;
   border: 1px solid #466A98;
@@ -490,6 +490,7 @@ label {
   background: -moz-linear-gradient(top,  #579CEA,  #2B5EA4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#579CEA', endColorstr='#2B5EA4');
   text-decoration: none;
+  text-shadow: 0 -1px 0 #036;
 }
 
 #video_poster {

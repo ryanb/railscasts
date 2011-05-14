@@ -6,14 +6,13 @@ $(function() {
         $("#episode video.sublimed").attr("poster", $("#episode video.sublimed").data("poster"));
       } else {
         $("#watch_button").click(function(e) {
-          $("#episode ")
-          var video = $('<div id="video_container"></div>').hide().html($("#video_template").html());
-          $(this).after(video);
+          var video = $('<div id="video_wrapper"></div>').hide().html($("#video_template").html());
+          $("#video_template").before(video);
           sublimevideo.prepareAndPlay($("#episode video")[0]);
           $("#episode video.sublimed").attr("poster", $("#episode video.sublimed").data("poster"));
           setTimeout(function() {
             $("#watch_button").hide();
-            $("#video_container").show();
+            $("#video_wrapper").show();
           }, 200);
           e.preventDefault();
         });

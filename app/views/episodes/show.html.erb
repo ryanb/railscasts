@@ -1,18 +1,11 @@
 <% title "\##{@episode.position} #{@episode.name}", false %>
 
 <div id="episode" class="<%= "legacy" if @episode.legacy? %>">
-  <%= link_to "Watch Episode >", {:autoplay => true}, {:id => "watch_button"} %>
   <% if params[:autoplay] %>
     <div id="video_wrapper"><%= episode_video_tag @episode %></div>
   <% else %>
-    <!-- <div id="watch_button">
-      <div class="sublimevideo">
-        Player provided by<br />
-        <%= image_tag "sublimevideo.png", :size => "178x24", :alt => "SublimeVideo" %>
-      </div>
-    </div> -->
     <script type="text/html" id="video_template">
-      <div id="video_wrapper"><%= episode_video_tag @episode %></div>
+      <%= episode_video_tag @episode %>
     </script>
   <% end %>
   <div class="info">
@@ -38,6 +31,11 @@
       <% end %>
     </ul>
   </div>
+  <% if !params[:autoplay] %>
+    <%= link_to({:autoplay => true}, {:id => "watch_button"}) do %>
+      Click to Play Video &#9654;
+    <% end %>
+  <% end %>
   <ul class="nav horizontal">
     <li class="selected"><%= tab_link "Show Notes", :view => nil %></li>
     <li><%= tab_link pluralize(@episode.comments.size, "Comment"), :view => "comments" %></li>
