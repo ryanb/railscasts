@@ -9,7 +9,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rspec"
 
-Capybara.javascript_driver = :webkit
+# Capybara.javascript_driver = :webkit
 
 FakeWeb.allow_net_connect = false
 

@@ -66,8 +66,6 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capybara-webkit (0.2.0)
-      capybara (~> 0.4.1)
     childprocess (0.1.8)
       ffi (~> 1.0.6)
     coderay (0.9.5)
@@ -238,7 +236,6 @@ DEPENDENCIES
   cancan!
   capistrano
   capybara!
-  capybara-webkit
   coderay
   database_cleaner
   exception_notification!

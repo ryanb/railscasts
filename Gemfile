@@ -22,7 +22,7 @@ end
 group :test do
   gem "factory_girl_rails"
   gem "capybara", :git => "git://github.com/jnicklas/capybara.git"
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
   gem "database_cleaner"
   gem "guard"
   gem "guard-rspec"
