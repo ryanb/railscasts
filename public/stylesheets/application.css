@@ -6,12 +6,12 @@ body {
 }
 
 a {
-	color: #1B97F2;
-	text-decoration: none;
+  color: #1B97F2;
+  text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 a img {
@@ -991,10 +991,6 @@ pre code {
 
 #feedback input, #feedback textarea {
   font-size: 14px;
-}
-
-form .special_email_field {
-  display: hidden;
 }
 
 
