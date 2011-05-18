@@ -37,6 +37,11 @@ describe CodeFormatter do
     format("```\nfoo\n```").strip.should include("<div class=\"code_block\">")
   end
 
+  it "handle back-slashes in code block" do
+    # This could use some more extensive tests
+    format("```\nf\\'oo\n```").strip.should include("f\\'oo")
+  end
+
   it "does not allow html" do
     format("<img>").strip.should == "<p>&lt;img&gt;</p>"
   end

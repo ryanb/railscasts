@@ -13,15 +13,17 @@ class CodeFormatter
     end
     html = Redcarpet.new(text, :filter_html, :hard_wrap, :autolink).to_html
     codes.each do |code|
-      html.sub!("<p>#{code[:id]}</p>", <<-EOS)
-        <div class="code_block">
-          <div class="code_header">
-            #{CGI.escapeHTML(code[:name].to_s)}
-            #{clippy(code[:content])}
+      html.sub!("<p>#{code[:id]}</p>") do
+        <<-EOS
+          <div class="code_block">
+            <div class="code_header">
+              #{CGI.escapeHTML(code[:name].to_s)}
+              #{clippy(code[:content])}
+            </div>
+            #{CodeRay.scan(code[:content], language(code[:name])).div(:css => :class)}
           </div>
-          #{CodeRay.scan(code[:content], language(code[:name])).div(:css => :class)}
-        </div>
-      EOS
+        EOS
+      end
     end
     html
   end
