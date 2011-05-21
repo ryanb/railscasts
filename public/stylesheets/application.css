@@ -532,6 +532,11 @@ label {
 #episode .info .description {
   margin-top: 6px;
   margin-bottom: 18px;
+  margin-right: 140px;
+}
+
+#episode.legacy .info .description {
+  margin-right: 0;
 }
 
 #episode .info .social {
