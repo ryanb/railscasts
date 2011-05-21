@@ -238,8 +238,9 @@ label {
   float: left;
 }
 
-.full .screenshot img {
+.screenshot img {
   border: solid 1px #999;
+  display: block;
 }
 
 .full .main {
@@ -335,10 +336,6 @@ label {
   margin-right: 20px;
   margin-bottom: 50px;
   position: relative;
-}
-
-.grid .screenshot img {
-  border: solid 1px #999;
 }
 
 .grid .name {
@@ -475,23 +472,50 @@ label {
 
 #episode #video_wrapper {
   border: solid 1px #777;
-/*  -webkit-box-shadow: 5px 5px 8px #555;*/
 }
 
 #episode video {
   display: block;
 }
 
-#watch_button {
-  display: block;
-  text-align: center;
-  font-size: 16px;
+#episode .info {
+  position: relative;
+  margin-top: 14px;
   margin-bottom: 15px;
-  padding: 10px;
+}
+
+#episode .info .screenshot {
+  float: left;
+  padding-right: 14px;
+}
+
+#episode .info h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+#episode .info h1 .position {
+  color: #999;
+}
+
+#episode .info .details {
+  color: #777;
+  font-size: 12px;
+}
+
+#episode .info .watch {
+  padding-bottom: 8px;
+}
+
+#episode .info .watch_button {
+  font-size: 13px;
+  padding: 5px 10px 6px 10px;
   font-weight: bold;
   border: 1px solid #466A98;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
   color: #FFF;
   background: #386FB2;
   background: -webkit-gradient(linear, left top, left bottom, from(#67B0EF), to(#2B5EA4));
@@ -501,106 +525,49 @@ label {
   text-shadow: 0 -1px 0 #036;
 }
 
-#video_poster {
-  padding-top: 1px;
-}
-
-#video_poster {
-  height: 600px;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-#video_poster .banner {
-  margin-top: 268px;
-  border: solid 4px #F98E10;
-  border-left: none;
-  border-right: none;
-}
-
-#video_poster .banner .inner {
-  background-color: #000;
-  border-top: solid 2px #FFF;
-  border-bottom: solid 2px #FFF;
-  height: 50px;
-  position: relative;
-}
-
-#video_poster .banner .inner_text {
-  padding-top: 15px;
-  color: #FFF;
-  text-align: center;
-  font-family: Menlo;
-  font-size: 16px;
-}
-
-#video_poster .sublimevideo {
-  padding-top: 90px;
-  color: #AAA;
-  font-size: 12px;
-  text-align: center;
-}
-
-#video_poster .sublimevideo img {
-  padding-top: 10px;
-}
-
-#episode .info {
-  position: relative;
-  margin-top: 14px;
-}
-
-#episode h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  margin-bottom: 3px;
-}
-
-#episode h1 .position {
-  color: #999;
-}
-
-#episode .details {
-  color: #777;
-  font-size: 12px;
-  margin-bottom: 15px;
-}
-
-#episode .details a {
+#episode .info .details a {
   color: #777;
 }
 
-#episode .social {
+#episode .info .description {
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
+#episode .info .social {
   position: absolute;
   right: -14px;
-  top: 0;
+  bottom: 18px;
 }
 
-#episode .downloads {
+#episode .info .downloads {
   position: absolute;
-  top: 25px;
+  bottom: 0;
   right: 0;
   font-size: 13px;
 }
 
-#episode .downloads li {
+#episode .info .downloads li {
   margin-left: 8px;
 }
 
-#episode .downloads li .overlay {
+#episode .info .downloads li .overlay {
   font-size: 12px;
   display: none;
   color: #999;
   position: absolute;
-  top: -24px;
+  top: -22px;
   right: 110px;
   width: 220px;
   text-align: right;
 }
 
-#episode .downloads li:hover .overlay {
+#episode .info .downloads li:hover .overlay {
   display: block;
+}
+
+#episode .video_info .screenshot, #episode .video_info .description, #episode .video_info .watch {
+  display: none;
 }
 
 /*#top .subscribe {

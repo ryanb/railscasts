@@ -8,7 +8,8 @@
       <%= episode_video_tag @episode %>
     </script>
   <% end %>
-  <div class="info">
+  <div class="info<%= " video_info" if params[:autoplay] %>">
+    <div class="screenshot"><%= link_to image_tag("/assets/episodes/stills/#{@episode.asset_name}.png", :size => "200x125", :alt => @episode.name), {:autoplay => true}, :class => "play_video" %></div>
     <h1>
       <span class="position">#<%= @episode.position %></span>
       <%= @episode.name %>
@@ -17,6 +18,12 @@
       <%= @episode.published_at.strftime('%b %d, %Y') %> |
       <%= pluralize (@episode.seconds/60).round, "minute" %> |
       <%= raw @episode.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
+    </div>
+    <div class="description"><%= @episode.description %></div>
+    <div class="watch">
+      <%= link_to({:autoplay => true}, {:class => "play_video", :class => "watch_button"}) do %>
+        Click to Play Video &#9654;
+      <% end %>
     </div>
     <div class="social">
       <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= episode_url(@episode) %>" data-text="Watching <%= @episode.name %> on RailsCasts" data-count="horizontal" data-via="railscasts">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
@@ -30,12 +37,8 @@
         </li>
       <% end %>
     </ul>
+    <div class="clear"></div>
   </div>
-  <% if !params[:autoplay] %>
-    <%= link_to({:autoplay => true}, {:id => "watch_button"}) do %>
-      Click to Play Video &#9654;
-    <% end %>
-  <% end %>
   <ul class="nav horizontal">
     <li class="selected"><%= tab_link "Show Notes", :view => nil %></li>
     <li><%= tab_link pluralize(@episode.comments.size, "Comment"), :view => "comments" %></li>

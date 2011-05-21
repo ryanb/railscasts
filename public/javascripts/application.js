@@ -5,13 +5,13 @@ $(function() {
         sublimevideo.prepareAndPlay($("#episode video")[0]);
         $("#episode video.sublimed").attr("poster", $("#episode video.sublimed").data("poster"));
       } else {
-        $("#watch_button").click(function(e) {
+        $(".play_video").click(function(e) {
           var video = $('<div id="video_wrapper"></div>').hide().html($("#video_template").html());
           $("#video_template").before(video);
           sublimevideo.prepareAndPlay($("#episode video")[0]);
           $("#episode video.sublimed").attr("poster", $("#episode video.sublimed").data("poster"));
           setTimeout(function() {
-            $("#watch_button").hide();
+            $("#episode > .info").addClass("video_info");
             $("#video_wrapper").show();
           }, 200);
           e.preventDefault();
