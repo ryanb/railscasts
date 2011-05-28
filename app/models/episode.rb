@@ -109,10 +109,10 @@ class Episode < ActiveRecord::Base
   def files
     [
       {:name => "source code", :info => "Project Files in Zip",   :url => asset_url("sources", "zip"),    :size => file_size("zip")},
-      {:name => "mp4",         :info => "Full Size H.264 Video",  :url => asset_url("dl/videos", "mp4"),  :size => file_size("mp4")},
-      {:name => "m4v",         :info => "Smaller H.264 Video",    :url => asset_url("dl/videos", "m4v"),  :size => file_size("m4v")},
-      {:name => "webm",        :info => "Full Size VP8 Video",    :url => asset_url("dl/videos", "webm"), :size => file_size("webm")},
-      {:name => "ogv",         :info => "Full Size Theora Video", :url => asset_url("dl/videos", "ogv"),  :size => file_size("ogv")},
+      {:name => "mp4",         :info => "Full Size H.264 Video",  :url => asset_url("videos", "mp4"),  :size => file_size("mp4")},
+      {:name => "m4v",         :info => "Smaller H.264 Video",    :url => asset_url("videos", "m4v"),  :size => file_size("m4v")},
+      {:name => "webm",        :info => "Full Size VP8 Video",    :url => asset_url("videos", "webm"), :size => file_size("webm")},
+      {:name => "ogv",         :info => "Full Size Theora Video", :url => asset_url("videos", "ogv"),  :size => file_size("ogv")},
     ]
   end
 

@@ -95,7 +95,7 @@ describe Episode do
     episode = Factory(:episode, :name => "Hello world")
     episode.position = 42
     %w[mp4 m4v webm ogv].each_with_index do |ext, index|
-      FakeWeb.register_uri(:head, "http://media.railscasts.com/assets/episodes/dl/videos/042-hello-world.#{ext}", :content_length => index)
+      FakeWeb.register_uri(:head, "http://media.railscasts.com/assets/episodes/videos/042-hello-world.#{ext}", :content_length => index)
     end
     FakeWeb.register_uri(:head, "http://media.railscasts.com/assets/episodes/sources/042-hello-world.zip", :content_length => 4)
     episode.load_file_sizes
