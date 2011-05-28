@@ -1,4 +1,4 @@
-Name: <%= @message.name %>
-Email: <%= @message.email %>
+Name: <%= raw @message.name %>
+Email: <%= raw @message.email %>
 
-<%= @message.content %>
+<%= raw @message.content %>
