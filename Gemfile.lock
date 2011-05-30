@@ -249,6 +249,7 @@ DEPENDENCIES
   nifty-generators
   omniauth (>= 0.2.2)
   rails (= 3.0.7)
+  rake (= 0.8.7)
   redcarpet
   rspec-rails
   simplecov

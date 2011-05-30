@@ -18,6 +18,7 @@ describe CodeFormatter do
     formatter.language("foo.gemspec").should == "ruby"
     formatter.language("rails console").should == "ruby"
     formatter.language("hello.js.rjs").should == "rjs"
+    formatter.language("hello.scss").should == "css"
   end
 
   it "converts to markdown" do

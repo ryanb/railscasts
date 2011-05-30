@@ -32,6 +32,7 @@ class CodeFormatter
     case path
     when /\.yml$/ then "yaml"
     when /\.js$/ then "java_script"
+    when /\.scss$/ then "css"
     when /\.erb$/, /\.html$/ then "rhtml"
     when /\.rb$/, /\.rake$/, /\.gemspec/, /file$/, /console$/ then "ruby"
     when /\./ then path[/\.([^.]+?)$/, 1]
