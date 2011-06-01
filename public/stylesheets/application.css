@@ -180,6 +180,10 @@ label {
   color: #FFF;
 }
 
+#main {
+  max-width: 1500px;
+}
+
 #footer {
   clear: both;
   font-size: 11px;
