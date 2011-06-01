@@ -345,6 +345,25 @@ label {
   left: 0;
 }
 
+/*** FILTERS ***/
+
+.episodes .filters {
+  margin-bottom: 15px;
+}
+
+.episodes .filter {
+  border: solid 1px #999;
+  border-radius: 10px;
+  background-color: #DDD;
+  padding: 2px 8px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.episodes .filter a {
+  padding-left: 5px;
+}
+
 
 /*** PAGINATION ***/
 
