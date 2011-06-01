@@ -506,7 +506,7 @@ label {
   display: block;
 }
 
-#episode .info {
+#episode > .info {
   position: relative;
   margin-top: 14px;
   margin-bottom: 15px;
@@ -700,6 +700,10 @@ label {
   margin-top: -10px; /* quick hack to move resources list under headline */
   padding-top: 0;
   margin-bottom: 20px;
+}
+
+#episode .similar {
+  margin-top: 15px;
 }
 
 #episode .similar .episode:last-child {
