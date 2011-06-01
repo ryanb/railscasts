@@ -32,7 +32,8 @@ class Episode < ActiveRecord::Base
 
   def self.search_published(query, tag_id = nil)
     if APP_CONFIG['thinking_sphinx']
-      search(query, :conditions => { :published_at => 0..Time.now.utc.to_i, :tag_id => tag_id },
+      with = tag_id ? {:tag_ids => tag_id.to_i} : {}
+      search(query, :conditions => { :published_at => 0..Time.now.utc.to_i }, :with => with,
                     :field_weights => { :name => 20, :description => 15, :notes => 5, :tag_names => 10 })
     else
       published.primitive_search(query)

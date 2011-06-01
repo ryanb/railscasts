@@ -6,7 +6,7 @@ class EpisodesController < ApplicationController
     if params[:search].blank?
       @episodes = (@tag ? @tag.episodes : Episode).accessible_by(current_ability).recent
     else
-      @episodes = Episode.search_published(params[:search])
+      @episodes = Episode.search_published(params[:search], params[:tag_id])
     end
     respond_to do |format|
       format.html { @episodes = @episodes.paginate(:page => params[:page], :per_page => episodes_per_page) }
