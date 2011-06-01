@@ -17,6 +17,17 @@ $(function() {
           e.preventDefault();
         });
       }
+      $(document).keypress(function(e) {
+        if (e.which === 32 && !$(e.target).is('input, textarea') && $("#episode video").length > 0) {
+          var video = $("#episode video")[0];
+          if (video.paused) {
+            sublimevideo.play();
+          } else {
+            sublimevideo.pause();
+          }
+          e.preventDefault();
+        }
+      });
     });
     sublimevideo.load();
 
