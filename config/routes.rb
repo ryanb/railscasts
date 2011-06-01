@@ -8,11 +8,11 @@ Railscasts::Application.routes.draw do
   match "logout" => "users#logout", :as => "logout"
   match "feedback" => "feedback_messages#new", :as => "feedback"
 
-  match "tags/:id" => redirect("/?tag_id=%{id}")
-  match "episodes/archive" => redirect("/?view=list")
-
   resources :users
   resources :comments
   resources :episodes
   resources :feedback_messages
+
+  match "tags/:id" => redirect("/?tag_id=%{id}")
+  match "episodes/archive" => redirect("/?view=list")
 end
