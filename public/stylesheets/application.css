@@ -514,6 +514,7 @@ label {
   position: relative;
   margin-top: 14px;
   margin-bottom: 15px;
+  background-color: #FFF;
 }
 
 #episode .info .screenshot {
