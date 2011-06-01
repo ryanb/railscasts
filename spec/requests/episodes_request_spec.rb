@@ -35,7 +35,7 @@ describe "Episodes request" do
     click_on "Search Episodes"
     page.should have_content("Blast from the Past")
     page.should_not have_content("Back to the Future")
-    click_on "remove"
+    click_on "x"
     page.should have_content("Blast from the Past")
     page.should have_content("Back to the Future")
   end
@@ -47,7 +47,7 @@ describe "Episodes request" do
     click_on "Oldtimes"
     page.should have_content("Blast from the Past")
     page.should_not have_content("Back to the Future")
-    click_on "remove"
+    click_on "x"
     page.should have_content("Blast from the Past")
     page.should have_content("Back to the Future")
   end
