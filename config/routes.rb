@@ -7,6 +7,7 @@ Railscasts::Application.routes.draw do
   match "login" => "users#login", :as => "login"
   match "logout" => "users#logout", :as => "logout"
   match "feedback" => "feedback_messages#new", :as => "feedback"
+  match "episodes/archive" => redirect("/?view=list")
 
   resources :users
   resources :comments
@@ -14,5 +15,4 @@ Railscasts::Application.routes.draw do
   resources :feedback_messages
 
   match "tags/:id" => redirect("/?tag_id=%{id}")
-  match "episodes/archive" => redirect("/?view=list")
 end

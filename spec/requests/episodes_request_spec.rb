@@ -115,4 +115,9 @@ describe "Episodes request" do
     page.current_path.should == episode_path(episode)
     page.should have_content("Back to the Future")
   end
+
+  it "redirects /episodes/archive to episodes list" do
+    visit "/episodes/archive"
+    page.current_url.should == root_url(:view => "list")
+  end
 end
