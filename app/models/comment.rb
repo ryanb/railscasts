@@ -6,6 +6,7 @@ class Comment < ActiveRecord::Base
 
   scope :recent, order("created_at DESC")
 
+  has_paper_trail
   has_ancestry
   acts_as_list :scope => :episode
 

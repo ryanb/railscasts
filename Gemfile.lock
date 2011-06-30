@@ -158,6 +158,8 @@ GEM
       oa-more (= 0.2.2)
       oa-oauth (= 0.2.2)
       oa-openid (= 0.2.2)
+    paper_trail (2.2.5)
+      rails (~> 3)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.2)
     rack (1.2.2)
@@ -251,6 +253,7 @@ DEPENDENCIES
   mysql2
   nifty-generators
   omniauth (>= 0.2.2)
+  paper_trail
   rails (= 3.0.7)
   rake (= 0.8.7)
   redcarpet

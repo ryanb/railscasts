@@ -3,6 +3,7 @@ class Episode < ActiveRecord::Base
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
 
+  has_paper_trail
   acts_as_list
 
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }

@@ -14,6 +14,7 @@ gem "omniauth", ">= 0.2.2"
 gem "exception_notification", :git => "git://github.com/rails/exception_notification.git", :require => "exception_notifier"
 gem "ancestry"
 gem "cancan", :git => "git://github.com/ryanb/cancan.git", :branch => "2.0"
+gem "paper_trail"
 
 group :development, :test do
   gem "rspec-rails"
