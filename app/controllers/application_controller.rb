@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def user_for_paper_trail
+    current_user && current_user.id
+  end
+
   def current_user
     @current_user ||= User.find_by_token(cookies[:token]) if cookies[:token]
   end

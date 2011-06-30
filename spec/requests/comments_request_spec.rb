@@ -20,9 +20,10 @@ describe "Comments request" do
   end
 
   it "updates a comment" do
-    login Factory(:user, :admin => true)
+    user = Factory(:user, :admin => true)
+    login user
     episode = Factory(:episode, :name => "Blast from the Past")
-    Factory(:comment, :content => "Hello world!", :episode_id => episode.id)
+    comment = Factory(:comment, :content => "Hello world!", :episode_id => episode.id)
     visit episode_path(episode, :view => "comments")
     click_on "Edit"
     fill_in "comment_content", :with => ""
@@ -31,6 +32,8 @@ describe "Comments request" do
     fill_in "comment_content", :with => "Hello back."
     click_on "Update Comment"
     page.should have_content("Hello back.")
+    comment.versions(true).size.should eq(2)
+    comment.versions.last.whodunnit.to_i.should eq(user.id)
   end
 
   it "destroys a comment" do
