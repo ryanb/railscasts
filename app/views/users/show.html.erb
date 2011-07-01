@@ -8,6 +8,9 @@
   <% if @user.moderator? %>
     <p><strong>This user is a moderator.</strong></p>
   <% end %>
+  <% if @user.banned? %>
+    <p><strong>This user is banned from comments.</strong></p>
+  <% end %>
   <p>GitHub User: <%= link_to @user.github_username, "https://github.com/#{@user.github_username}" %></p>
   <% unless @user.site_url.blank? %>
     <p>Site: <%= link_to @user.site_url, fix_url(@user.site_url) %></p>

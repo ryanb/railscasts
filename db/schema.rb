@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701001805) do
+ActiveRecord::Schema.define(:version => 20110701025738) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20110701001805) do
     t.integer  "user_id"
     t.string   "ancestry"
     t.boolean  "legacy",     :default => false, :null => false
-    t.boolean  "hidden",     :default => false, :null => false
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"

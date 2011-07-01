@@ -1,38 +1,16 @@
 <%= div_for comment do %>
-  <% if comment.hidden? %>
-  <div class="hidden">
-    <div class="avatar"><%= image_tag avatar_url(comment, 24), :size => "24x24", :alt => "Avatar" %></div>
-    <div class="main">
-      <span class="name">
-        <% if comment.user %>
-          <%= link_to comment.user.display_name, comment.user %>
-        <% else %>
-          <%= link_to_unless comment.site_url.blank?, comment.name, fix_url(comment.site_url), :rel => "nofollow" %>
-        <% end %>
-      </span>
-      <span class="hidden_content">
-        <%= truncate(comment.content, :length => 90) %>
-      </span>
-      <span class="actions">
-        <%= link_to "Show", comment_path(comment, "comment[hidden]" => 0), :remote => true, :method => :put if can?(:update, comment) %>
-      </span>
-    </div>
-  </div>
-  <% else %>
-    <div class="avatar"><%= image_tag avatar_url(comment), :size => "64x64", :alt => "Avatar" %></div>
-    <div class="main">
-      <%= render "comments/comment_headline", :comment => comment %>
-      <div class="comment_content">
-        <%= format_comment(comment) %>
-        <div class="actions">
-          <%= link_to "Reply", new_comment_path(:parent_id => comment, :episode_id => comment.episode_id), :remote => true if can?(:create, :comments) %>
-          <%= link_to "Edit", edit_comment_path(comment), :remote => true if can?(:update, comment) %>
-          <%# link_to "Ban User", comment_path(comment, "comment[hidden]" => 1), :remote => true, :method => :put if can?(:update, comment) %>
-          <%= link_to "Delete", comment, :confirm => "Are you sure you want to delete this comment?", :method => :delete, :remote => true if can?(:destroy, comment) %>
-          <%= link_to "Ban User", ban_user_path(comment.user), :confirm => "Are you certain you want to ban this user? It will delete all of his comments and not allow him to comment again.", :remote => true, :method => :put if comment.user && can?(:ban, comment.user) %>
-        </div>
+  <div class="avatar"><%= image_tag avatar_url(comment), :size => "64x64", :alt => "Avatar" %></div>
+  <div class="main">
+    <%= render "comments/comment_headline", :comment => comment %>
+    <div class="comment_content">
+      <%= format_comment(comment) %>
+      <div class="actions">
+        <%= link_to "Reply", new_comment_path(:parent_id => comment, :episode_id => comment.episode_id), :remote => true if can?(:create, :comments) %>
+        <%= link_to "Edit", edit_comment_path(comment), :remote => true if can?(:update, comment) %>
+        <%= link_to "Delete", comment, :confirm => "Are you sure you want to delete this comment?", :method => :delete, :remote => true if can?(:destroy, comment) %>
+        <%= link_to "Ban User", ban_user_path(comment.user), :confirm => "Are you certain you want to ban this user? It will delete all of his comments and not allow him to comment again.", :remote => true, :method => :put if comment.user && can?(:ban, comment.user) %>
       </div>
     </div>
-  <% end %>
+  </div>
   <div class="clear"></div>
 <% end %>

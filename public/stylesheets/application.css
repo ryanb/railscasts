@@ -116,7 +116,6 @@ label {
 }
 
 
-
 /*** SECTIONS ***/
 
 #top {
@@ -192,7 +191,6 @@ label {
   color: #555;
 }
 
-
 .content, #flash_notice, #flash_error {
   margin: 0 100px;
 }
@@ -219,7 +217,6 @@ label {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5F5F5', endColorstr='#DDD');
   text-decoration: none;
 }
-
 
 
 /*** EPISODES ***/
@@ -307,8 +304,6 @@ label {
   margin-top: 10px;
 }
 
-
-
 .list {
   border-collapse: collapse;
   width: 100%;
@@ -350,6 +345,7 @@ label {
   top: 135px;
   left: 0;
 }
+
 
 /*** FILTERS ***/
 
@@ -490,7 +486,6 @@ label {
 }
 
 
-
 /*** EPISODE ***/
 
 #episode {
@@ -608,19 +603,6 @@ label {
 #episode .video_info .screenshot, #episode .video_info .description, #episode .video_info .watch {
   display: none;
 }
-
-/*#top .subscribe {
-  position: absolute;
-  bottom: 10px;
-  right: 100px;
-}
-
-#top .subscribe li {
-  position: relative;
-  margin-left: 8px;
-  font-size: 12px;
-}
-*/
 
 #episode .nav {
   padding: 0 8px;
@@ -799,39 +781,6 @@ label {
   color: #777;
 }
 
-.comment .hidden .avatar {
-  padding: 2px;
-}
-
-.comment .hidden .main {
-  margin-left: 34px;
-  padding: 7px 10px;
-  background-color: #EEE;
-  border: solid 1px #CCC;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  font-size: 12px;
-  color: #777;
-  position: relative;
-}
-
-.comment .hidden .name a {
-  color: #777;
-}
-
-.comment .hidden .main .actions {
-  position: absolute;
-  right: 5px;
-  top: 0;
-  display: none;
-}
-
-.comment .hidden .main:hover .actions {
-  display: block;
-}
-
-
 
 #add_comment {
   margin-top: 30px;
@@ -913,7 +862,6 @@ pre code {
   background-color: #EEE;
   padding: 5px 7px;
 }
-
 
 
 /*** ABOUT ***/
