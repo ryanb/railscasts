@@ -1,34 +1,13 @@
 <div class="content">
   <%= form_for @episode do |f| %>
     <%= f.error_messages %>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :tag_names, "Tags" %>
-      <%= f.text_field :tag_names %>
-    </div>
-    <div class="field">
-      <%= f.label :description %>
-      <%= f.text_area :description, :rows => 6 %>
-    </div>
-    <div class="field">
-      <%= f.label :notes %>
-      <%= f.text_area :notes, :rows => 10 %>
-    </div>
-    <div class="field">
-      <%= f.label :published_at, "Publish Date" %>
-      <%= f.date_select :published_at %>
-    </div>
-    <div class="field">
-      <%= f.label :duration %>
-      <%= f.text_field :duration %>
-    </div>
-    <div class="field">
-      <%= f.label :asciicasts, "Available on ASCIIcasts" %>
-      <%= f.check_box :asciicasts %>
-    </div>
+    <%= field f, :name %>
+    <%= field f, :tag_names, :label => "Tags" %>
+    <%= field f, :description, :type => :text_area, :rows => 6 %>
+    <%= field f, :notes, :type => :text_area, :rows => 10 %>
+    <%= field f, :published_at, :type => :date_select, :label => "Publish Date" %>
+    <%= field f, :duration %>
+    <%= field f, :asciicasts, :type => :check_box, :label => "Available on ASCIIcasts" %>
     <div class="actions"><%= f.submit %></div>
   <% end %>
 </div>

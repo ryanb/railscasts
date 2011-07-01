@@ -17,6 +17,12 @@ class Ability
         comment.created_at >= 15.minutes.ago && comment.user_id == user.id
       end
 
+      if user.moderator?
+        can :show, :episodes
+        can :update, :episodes, :notes
+        can [:update, :destroy], :comments
+      end
+
       if user.admin?
         can :access, :all
       end

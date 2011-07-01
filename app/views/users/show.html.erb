@@ -5,6 +5,9 @@
     <p><%= link_to "Edit Profile", edit_user_path(@user) %> | <%= link_to "Log Out", logout_path %></p>
     <p><strong>This is your profile.</strong></p>
   <% end %>
+  <% if @user.moderator? %>
+    <p><strong>This user is a moderator.</strong></p>
+  <% end %>
   <p>GitHub User: <%= link_to @user.github_username, "https://github.com/#{@user.github_username}" %></p>
   <% unless @user.site_url.blank? %>
     <p>Site: <%= link_to @user.site_url, fix_url(@user.site_url) %></p>

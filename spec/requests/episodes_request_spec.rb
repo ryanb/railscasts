@@ -102,7 +102,7 @@ describe "Episodes request" do
     page.should have_content("15 minutes")
   end
 
-  it "edits an episode" do
+  it "edits an episode as admin" do
     login Factory(:user, :admin => true)
     episode = Factory(:episode, :name => "Blast from the Past")
     visit episode_path(episode)
@@ -114,6 +114,17 @@ describe "Episodes request" do
     click_on "Update"
     page.current_path.should == episode_path(episode)
     page.should have_content("Back to the Future")
+  end
+
+  it "edits an episode show notes as moderator" do
+    login Factory(:user, :moderator => true)
+    episode = Factory(:episode)
+    visit episode_path(episode)
+    click_on "Edit"
+    page.should_not have_content("Name")
+    fill_in "Notes", :with => "Updating notes!"
+    click_on "Update"
+    page.should have_content("Updating notes!")
   end
 
   it "redirects /episodes/archive to episodes list" do

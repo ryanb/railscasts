@@ -80,6 +80,29 @@ describe "Ability" do
     end
   end
 
+  describe "as moderator" do
+    before(:each) do
+      @user = Factory(:user, :moderator => true)
+      @ability = Ability.new(@user)
+    end
+
+    it "can update and destroy any any comments" do
+      @ability.should be_able_to(:update, Factory(:comment, :user => User.new, :created_at => 20.minutes.ago))
+      @ability.should be_able_to(:destroy, Factory(:comment, :user => User.new, :created_at => 20.minutes.ago))
+    end
+
+    it "can view episodes which are not yet published" do
+      @ability.should be_able_to(:show, Factory.build(:episode, :published_at => 2.days.from_now))
+    end
+
+    it "can update episode show notes, nothing else" do
+      @ability.should be_able_to(:update, :episodes, :notes)
+      @ability.should_not be_able_to(:update, :episodes, :name)
+      @ability.should_not be_able_to(:update, :episodes, :name)
+      @ability.should_not be_able_to(:destroy, :episodes)
+    end
+  end
+
   describe "as admin" do
     before(:each) do
     end
