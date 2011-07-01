@@ -15,6 +15,9 @@
   <% unless @user.site_url.blank? %>
     <p>Site: <%= link_to @user.site_url, fix_url(@user.site_url) %></p>
   <% end %>
+  <div class="actions">
+    <p><%= link_to "Ban this User", ban_user_path(@user), :confirm => "Are you certain you want to ban this user? It will delete all of his comments and not allow him to comment again.", :remote => true, :method => :put if can?(:ban, @user) && !@user.banned? %></p>
+  </div>
   <h3>Comments by <%= @user.name %></h3>
   <div id="comments">
   <% for comment in @user.comments.recent %>

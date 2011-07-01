@@ -26,15 +26,6 @@
 "<n uers=\"znvygb:srrqonpx\100envyfpnfgf\056pbz\">srrqonpx\100envyfpnfgf\056pbz<\057n>".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));
 </script>.</p>
 
-  <h2>Moderators</h2>
-  <p>Special thanks to all moderators.</p>
-  <ul>
-    <% for user in User.where(:moderator => true) %>
-      <li><%= link_to user.name, user %></li>
-    <% end %>
-  </ul>
-  <p>If you are interested in becoming a moderator, see the <%= link_to "moderator guidelines", moderators_path %>.</p>
-
   <h2>ASCIIcasts</h2>
   <p>If you prefer text over video, please visit <%= link_to "ASCIIcasts", "http://asciicasts.com/" %> where Eifion Bedford has done a wonderful job of translating the majority of the episodes into textual form.</p>
 
@@ -43,6 +34,13 @@
 
   <h2>Special Thanks</h2>
   <p>Special thanks to <%= link_to "Linode", "http://www.linode.com/?utm_source=railscasts.com&utm_medium=Badge&utm_campaign=Railscasts" %> for providing hosting for this site and <%= link_to "SublimeVideo", "http://sublimevideo.net/" %> for providing the episode player.</p>
+  <p>Also thanks to all moderators:</p>
+  <ul>
+    <% for user in User.where(:moderator => true) %>
+      <li><%= link_to user.name, user %></li>
+    <% end %>
+  </ul>
+  <p>If you are interested in becoming a moderator, see the <%= link_to "moderator guidelines", moderators_path %>.</p>
 
   <h2>License</h2>
   <p>All RailsCasts episodes are under the <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons license</a>. You are free to distribute unedited versions of the episodes for non-commercial purposes. You are also free to translate them into any language. If you would like to edit the video please contact me.</p>
