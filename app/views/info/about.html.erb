@@ -26,6 +26,15 @@
 "<n uers=\"znvygb:srrqonpx\100envyfpnfgf\056pbz\">srrqonpx\100envyfpnfgf\056pbz<\057n>".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));
 </script>.</p>
 
+  <h2>Moderators</h2>
+  <p>Special thanks to all moderators.</p>
+  <ul>
+    <% for user in User.where(:moderator => true) %>
+      <li><%= link_to user.name, user %></li>
+    <% end %>
+  </ul>
+  <p>If you are interested in becoming a moderator, see the <%= link_to "moderator guidelines", moderators_path %>.</p>
+
   <h2>ASCIIcasts</h2>
   <p>If you prefer text over video, please visit <%= link_to "ASCIIcasts", "http://asciicasts.com/" %> where Eifion Bedford has done a wonderful job of translating the majority of the episodes into textual form.</p>
 
