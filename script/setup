@@ -12,5 +12,5 @@ end
 
 # run rake and setup tasks
 system "bundle"
-system "rake db:create:all"
-system "rake db:migrate --trace"
+system "bundle exec rake db:create:all"
+system "bundle exec rake db:migrate --trace"
