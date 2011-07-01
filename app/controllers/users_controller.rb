@@ -40,8 +40,12 @@ class UsersController < ApplicationController
   def ban
     @user = User.find(params[:id])
     @user.update_attribute(:banned_at, Time.now)
-    @user.comments.find_each(&:destroy)
-    redirect_to :back, :notice => "User #{@user.name} has been banned."
+    @comments = @user.comments
+    @comments.each(&:destroy)
+    respond_to do |format|
+      format.html { redirect_to :back, :notice => "User #{@user.name} has been banned." }
+      format.js
+    end
   end
 
   private

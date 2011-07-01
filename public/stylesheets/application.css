@@ -706,6 +706,7 @@ label {
 
 .comment {
   margin: 20px 0;
+  position: relative;
 }
 
 .comment .avatar {
@@ -717,6 +718,11 @@ label {
 
 .comment .avatar img {
   display: block;
+}
+
+.comment .user_actions {
+  position: absolute;
+  top: 72px;
 }
 
 .comment .main {

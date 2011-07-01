@@ -1,5 +1,8 @@
 <%= div_for comment do %>
   <div class="avatar"><%= image_tag avatar_url(comment), :size => "64x64", :alt => "Avatar" %></div>
+  <div class="actions user_actions">
+    <%= link_to "Ban User", ban_user_path(comment.user), :confirm => "Are you certain you want to ban this user? It will delete all of his comments and not allow him to comment again.", :remote => true, :method => :put if comment.user && can?(:ban, comment.user) %>
+  </div>
   <div class="main">
     <%= render "comments/comment_headline", :comment => comment %>
     <div class="comment_content">
@@ -8,7 +11,6 @@
         <%= link_to "Reply", new_comment_path(:parent_id => comment, :episode_id => comment.episode_id), :remote => true if can?(:create, :comments) %>
         <%= link_to "Edit", edit_comment_path(comment), :remote => true if can?(:update, comment) %>
         <%= link_to "Delete", comment, :confirm => "Are you sure you want to delete this comment?", :method => :delete, :remote => true if can?(:destroy, comment) %>
-        <%= link_to "Ban User", ban_user_path(comment.user), :confirm => "Are you certain you want to ban this user? It will delete all of his comments and not allow him to comment again.", :remote => true, :method => :put if comment.user && can?(:ban, comment.user) %>
       </div>
     </div>
   </div>
