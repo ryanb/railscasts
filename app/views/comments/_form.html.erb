@@ -14,6 +14,9 @@
             <%= f.hidden_field :episode_id %>
             <%= f.hidden_field :parent_id %>
           </div>
+          <% if @comment.user_id && @comment.user_id != current_user.id %>
+            <p><strong>Please follow the <%= link_to "moderator guidelines", moderators_path %>.</strong></p>
+          <% end %>
           <div class="formatting">
             Use Markdown for formatting. <%= link_to "See examples.", "javascript:void(0)", :class => "markdown_link" %>
             <div class="markdown_examples" style="display: none">
