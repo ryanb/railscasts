@@ -26,7 +26,7 @@ describe CodeFormatter do
   end
 
   it "hard wraps return statements" do
-    format("hello\nworld").strip.should == "<p>hello<br/>\nworld</p>"
+    format("hello\nworld").strip.should == "<p>hello<br>\nworld</p>"
   end
 
   it "autolinks a url" do
@@ -44,6 +44,6 @@ describe CodeFormatter do
   end
 
   it "does not allow html" do
-    format("<img>").strip.should == "<p>&lt;img&gt;</p>"
+    format("<img>").strip.should == ""
   end
 end
