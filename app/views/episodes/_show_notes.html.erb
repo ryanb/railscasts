@@ -1,3 +1,7 @@
+<% if can? :edit, @episode %>
+  <div class="actions episode_actions"><%= link_to "Edit", edit_episode_path(@episode) %></div>
+<% end %>
+
 <% if @episode.asciicasts? %>
   <p>
     <%= image_tag "icons/asciicasts.png", :size => "12x15", :class => "icon" %>
@@ -8,7 +12,3 @@
 <div class="show_notes">
   <%= textilize @episode.notes %>
 </div>
-
-<% if can? :edit, @episode %>
-  <div class="actions"><%= link_to "Edit", edit_episode_path(@episode) %></div>
-<% end %>

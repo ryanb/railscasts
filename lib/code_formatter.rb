@@ -11,7 +11,7 @@ class CodeFormatter
       codes << code
       "\n\n#{code[:id]}\n\n"
     end
-    html = Redcarpet.new(text, :filter_html, :hard_wrap, :autolink).to_html
+    html = Redcarpet.new(text, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html
     codes.each do |code|
       html.sub!("<p>#{code[:id]}</p>") do
         <<-EOS

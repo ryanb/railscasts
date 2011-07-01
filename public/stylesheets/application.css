@@ -689,6 +689,10 @@ label {
   margin-bottom: 20px;
 }
 
+#episode .episode_actions {
+  float: right;
+}
+
 #episode .similar {
   margin-top: 15px;
 }
