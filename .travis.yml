@@ -1,0 +1,5 @@
+before_script:
+  - "script/setup"
+
+rvm:
+  - 1.9.2
