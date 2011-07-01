@@ -1,6 +1,6 @@
 <% if current_user.nil? %>
   <p>First <%= link_to "sign in through GitHub", login_path(:return_to => request.url) %> to post a comment.</p>
-<% elsif cannot? :create, @comment %>
+<% elsif cannot? :create, :comments %>
   <p>You have been banned from creating comments. Please <%= link_to "contact me", feedback_path %> if you are a legitimate user.</p>
 <% else %>
   <%= div_for @comment do %>

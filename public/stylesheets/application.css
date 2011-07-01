@@ -57,14 +57,16 @@ ul.horizontal li {
 
 #flash_notice, #flash_alert {
   padding: 10px 0;
+  text-align: center;
+  color: #FFF;
 }
 
 #flash_notice {
-  color: #0B0;
+  background-color: #267923;
 }
 
 #flash_alert {
-  color: #D00;
+  background-color: #871F22;
 }
 
 .field {
@@ -161,7 +163,7 @@ label {
   background: -moz-linear-gradient(top,  #5C5C5C, #111);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5C5C5C', endColorstr='#111');
   border-bottom: solid 3px #DE9F00;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 #nav_bar .nav {
@@ -180,6 +182,7 @@ label {
 }
 
 #main {
+  padding-top: 15px;
   max-width: 1500px;
 }
 
@@ -191,7 +194,7 @@ label {
   color: #555;
 }
 
-.content, #flash_notice, #flash_error {
+.content {
   margin: 0 100px;
 }
 
@@ -499,6 +502,7 @@ label {
 
 #episode #video_wrapper {
   border: solid 1px #777;
+  margin-bottom: 14px;
 }
 
 #episode video {
@@ -507,7 +511,6 @@ label {
 
 #episode > .info {
   position: relative;
-  margin-top: 14px;
   margin-bottom: 15px;
   background-color: #FFF;
 }
