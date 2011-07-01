@@ -44,4 +44,15 @@ describe "Users request" do
     User.count.should == 1
     User.last.github_uid.should == "54321"
   end
+
+  it "bans user as moderator" do
+    user = Factory(:user, :moderator => true)
+    login user
+    bad_user = Factory(:user)
+    comment = Factory(:comment, :user => bad_user)
+    visit episode_path(comment.episode, :view => "comments")
+    click_on "Ban User"
+    bad_user.reload.should be_banned
+    bad_user.comments.size.should == 0
+  end
 end

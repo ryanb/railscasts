@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110630234413) do
+ActiveRecord::Schema.define(:version => 20110701001805) do
 
   create_table "comments", :force => true do |t|
     t.integer  "episode_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20110630234413) do
     t.datetime "updated_at"
     t.string   "github_uid"
     t.boolean  "moderator",       :default => false, :null => false
+    t.datetime "banned_at"
   end
 
   create_table "versions", :force => true do |t|

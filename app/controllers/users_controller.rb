@@ -37,6 +37,13 @@ class UsersController < ApplicationController
     redirect_to root_url, :notice => "You have been logged out."
   end
 
+  def ban
+    @user = User.find(params[:id])
+    @user.update_attribute(:banned_at, Time.now)
+    @user.comments.find_each(&:destroy)
+    redirect_to :back, :notice => "User #{@user.name} has been banned."
+  end
+
   private
 
   def load_current_user

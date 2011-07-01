@@ -27,8 +27,9 @@
         <div class="actions">
           <%= link_to "Reply", new_comment_path(:parent_id => comment, :episode_id => comment.episode_id), :remote => true if can?(:create, :comments) %>
           <%= link_to "Edit", edit_comment_path(comment), :remote => true if can?(:update, comment) %>
-          <%# link_to "Hide", comment_path(comment, "comment[hidden]" => 1), :remote => true, :method => :put if can?(:update, comment) %>
+          <%# link_to "Ban User", comment_path(comment, "comment[hidden]" => 1), :remote => true, :method => :put if can?(:update, comment) %>
           <%= link_to "Delete", comment, :confirm => "Are you sure you want to delete this comment?", :method => :delete, :remote => true if can?(:destroy, comment) %>
+          <%= link_to "Ban User", ban_user_path(comment.user), :remote => true, :method => :put if comment.user && can?(:ban, comment.user) %>
         </div>
       </div>
     </div>

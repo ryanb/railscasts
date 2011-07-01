@@ -51,6 +51,7 @@ describe "Ability" do
       @ability.should be_able_to(:create, :users)
       @ability.should be_able_to(:update, @user)
       @ability.should_not be_able_to(:update, User.new)
+      @ability.should_not be_able_to(:ban, :users)
     end
 
     it "can create comments and update/destroy within 15 minutes if he owns them" do
@@ -80,10 +81,26 @@ describe "Ability" do
     end
   end
 
+  describe "as banned user" do
+    before(:each) do
+      @user = Factory(:user, :banned_at => Time.now)
+      @ability = Ability.new(@user)
+    end
+
+    it "cannot create or update comments" do
+      @ability.should_not be_able_to(:create, :comments)
+      @ability.should_not be_able_to(:update, :comments)
+    end
+  end
+
   describe "as moderator" do
     before(:each) do
       @user = Factory(:user, :moderator => true)
       @ability = Ability.new(@user)
+    end
+
+    it "can ban users" do
+      @ability.should be_able_to(:ban, :users)
     end
 
     it "can update and destroy any any comments" do
@@ -104,9 +121,6 @@ describe "Ability" do
   end
 
   describe "as admin" do
-    before(:each) do
-    end
-
     it "can access all" do
       user = Factory(:user, :admin => true)
       ability = Ability.new(user)

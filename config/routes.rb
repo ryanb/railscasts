@@ -9,7 +9,9 @@ Railscasts::Application.routes.draw do
   match "feedback" => "feedback_messages#new", :as => "feedback"
   match "episodes/archive" => redirect("/?view=list")
 
-  resources :users
+  resources :users do
+    member { put :ban }
+  end
   resources :comments
   resources :episodes
   resources :feedback_messages

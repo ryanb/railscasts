@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :site_url
   before_create :generate_token
   has_many :comments
+  has_paper_trail
 
   def self.create_from_omniauth(omniauth)
     User.new.tap do |user|
@@ -26,5 +27,9 @@ class User < ActiveRecord::Base
 
   def display_name
     name || github_username
+  end
+
+  def banned?
+    banned_at
   end
 end

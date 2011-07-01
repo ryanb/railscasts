@@ -19,6 +19,12 @@ describe "Comments request" do
     page.should have_content("Hello back.")
   end
 
+  it "creates when banned" do
+    login Factory(:user, :banned_at => Time.now)
+    visit episode_path(Factory(:episode), :view => "comments")
+    page.should have_content("banned")
+  end
+
   it "updates a comment" do
     user = Factory(:user, :admin => true)
     login user
