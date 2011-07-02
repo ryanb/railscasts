@@ -64,6 +64,12 @@ puts "code block"
           <div class="field">
             <%= f.text_area :content, :rows => '12', :cols => 65 %>
           </div>
+          <% if @comment.legacy? %>
+          <div class="field">
+            <%= f.check_box :legacy %>
+            <%= f.label :legacy, "Legacy comment (markdown disabled)", :class => "check_box" %>
+          </div>
+          <% end %>
           <div class="actions">
             <%= f.submit(@comment.new_record? ? "Post Comment" : "Update Comment") %>
           </div>

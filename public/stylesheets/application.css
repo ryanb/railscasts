@@ -85,6 +85,10 @@ label {
   display: block;
 }
 
+label.check_box {
+  display: inline;
+}
+
 
 /*** ERRORS ***/
 
