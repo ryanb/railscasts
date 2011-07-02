@@ -24,6 +24,7 @@ class Ability
         can :update, :episodes, :notes
         can [:update, :destroy], :comments
         can :ban, :users
+        can :revert, :versions
       end
 
       if user.admin?

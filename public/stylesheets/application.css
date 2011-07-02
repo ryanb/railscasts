@@ -69,6 +69,10 @@ ul.horizontal li {
   background-color: #871F22;
 }
 
+#flash_notice a, #flash_alert a {
+  color: #FFF;
+}
+
 .field {
   margin: 10px 0;
 }

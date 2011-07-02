@@ -1,1 +1,1 @@
-$("#<%= dom_id(@comment) %>").remove();
+$("#<%= dom_id(@comment) %>").replaceWith("<%= escape_javascript("<p>#{flash.delete(:notice)}</p>".html_safe) %>");

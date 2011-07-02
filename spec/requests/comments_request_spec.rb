@@ -49,5 +49,7 @@ describe "Comments request" do
     visit episode_path(episode, :view => "comments")
     click_on "Delete"
     page.should_not have_content("Hello world!")
+    click_on "undo"
+    page.should have_content("Hello world!")
   end
 end

@@ -40,9 +40,19 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    flash[:notice] = "Deleted comment. #{undo_link}"
     respond_to do |format|
       format.html { redirect_to episode_path(@comment.episode, :view => "comments") }
       format.js
+    end
+  end
+
+  private
+
+  def undo_link
+    if can? :revert, :versions
+      version = @comment.versions.scoped.last
+      view_context.link_to("undo", revert_version_path(version), :method => :post) if can? :revert, version
     end
   end
 end

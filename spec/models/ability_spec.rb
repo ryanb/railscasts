@@ -103,6 +103,10 @@ describe "Ability" do
       @ability.should be_able_to(:ban, :users)
     end
 
+    it "can revert versions" do
+      @ability.should be_able_to(:revert, :versions)
+    end
+
     it "can update and destroy any any comments" do
       @ability.should be_able_to(:update, Factory(:comment, :user => User.new, :created_at => 20.minutes.ago))
       @ability.should be_able_to(:destroy, Factory(:comment, :user => User.new, :created_at => 20.minutes.ago))
