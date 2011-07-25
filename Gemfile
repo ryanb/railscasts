@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem "rake", "0.8.7"
-gem "rails", "3.0.7"
+gem "rails", "3.0.9"
 gem "mysql2"
 gem "redcarpet"
 gem "coderay"
@@ -23,7 +23,7 @@ end
 
 group :test do
   gem "factory_girl_rails"
-  gem "capybara", :git => "git://github.com/jnicklas/capybara.git"
+  gem "capybara"
   # gem "capybara-webkit"
   gem "database_cleaner"
   gem "guard"

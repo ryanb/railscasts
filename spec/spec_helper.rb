@@ -27,14 +27,6 @@ OmniAuth.config.mock_auth[:github] = {
   }
 }
 
-# Hack to get Capybara and Rack-Test to cooperate
-module Rack
-  module Test
-    DEFAULT_HOST = "www.example.com"
-  end
-end
-
-
 RSpec.configure do |config|
   # == Mock Framework
   #
