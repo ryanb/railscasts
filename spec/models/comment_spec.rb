@@ -23,4 +23,21 @@ describe Comment do
     c2 = Factory(:comment, :created_at => Time.now)
     Comment.recent.should == [c2, c1]
   end
+
+  it "should notify owners of all previous commenters except self" do
+    c1 = Factory(:comment)
+    c2a = Factory(:comment, :parent => c1)
+    c2b = Factory(:comment, :parent => c1)
+    c3 = Factory(:comment, :parent => c2a, :user => c2a.user)
+    c3.notify_other_commenters
+    email_count.should eq(1)
+    last_email.to.should include(c1.user.email)
+  end
+
+  it "should not notify users which don't have an email or comments which don't have user" do
+    c1 = Factory(:comment, :user => nil)
+    c2 = Factory(:comment, :parent => c1, :user => Factory(:user, :email => ""))
+    c3 = Factory(:comment, :parent => c2)
+    c3.users_to_notify.should eq([])
+  end
 end

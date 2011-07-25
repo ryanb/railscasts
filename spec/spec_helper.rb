@@ -51,6 +51,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     FakeWeb.clean_registry
+    reset_email
     if example.metadata[:js]
       DatabaseCleaner.strategy = :truncation
     else
@@ -66,6 +67,7 @@ RSpec.configure do |config|
   end
 
   config.include AuthMacros
+  config.include MailerMacros
 end
 
 

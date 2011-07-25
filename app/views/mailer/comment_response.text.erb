@@ -1,0 +1,9 @@
+Someone has responded to your comment on RailsCasts. Here is the response.
+
+---
+From: <%= raw @comment.user.name %>
+
+<%= raw @comment.content %>
+---
+
+To view the full comment: <%= episode_url(@comment.episode, :view => "comments") %>

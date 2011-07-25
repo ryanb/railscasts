@@ -11,15 +11,20 @@ Factory.define :tag do |f|
 end
 
 Factory.define :comment do |f|
-  f.name     'Foo'
-  f.email    'foo@example.com'
-  f.site_url 'example.com'
   f.content  'Hello world.'
   f.episode { |c| c.association(:episode) }
+  f.user { |c| c.association(:user) }
 end
 
 Factory.define :user do |f|
   f.name "Foo Bar"
   f.sequence(:github_username) { |n| "foo#{n}" }
   f.sequence(:github_uid) { |n| n }
+  f.sequence(:email) { |n| "foo#{n}@example.com" }
+end
+
+Factory.define :feedback_message do |f|
+  f.name "Foo Bar"
+  f.content "Hello World"
+  f.sequence(:email) { |n| "foo#{n}@example.com" }
 end

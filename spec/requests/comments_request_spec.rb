@@ -19,6 +19,17 @@ describe "Comments request" do
     page.should have_content("Hello back.")
   end
 
+  it "send email to original authors when replying to comment" do
+    comment = Factory(:comment)
+    login
+    visit episode_path(comment.episode, :view => "comments")
+    click_on "Reply"
+    fill_in "comment_content", :with => "Hello back."
+    click_on "Post Comment"
+    page.should have_content("Hello back.")
+    last_email.to.should include(comment.user.email)
+  end
+
   it "creates when banned" do
     login Factory(:user, :banned_at => Time.now)
     visit episode_path(Factory(:episode), :view => "comments")
