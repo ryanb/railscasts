@@ -67,3 +67,16 @@ RSpec.configure do |config|
 
   config.include AuthMacros
 end
+
+
+# quick hack to get Rack to be quiet about "warning: regexp match /.../n against to UTF-8 string" until we upgrade to Rails 3.1 with Rack 1.3
+module Rack
+  module Utils
+    def escape(s)
+      CGI.escape(s.to_s)
+    end
+    def unescape(s)
+      CGI.unescape(s)
+    end
+  end
+end
