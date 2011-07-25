@@ -42,7 +42,6 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
-    acts_as_list (0.1.2)
     addressable (2.2.5)
     ancestry (1.2.3)
       activerecord (>= 2.2.2)
@@ -232,7 +231,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_list
   ancestry
   cancan!
   capistrano

@@ -17,8 +17,8 @@ describe Episode do
 
   it "should sort recent episodes in descending order" do
     Episode.delete_all
-    e1 = Factory(:episode)
-    e2 = Factory(:episode)
+    e1 = Factory(:episode, :position => 1)
+    e2 = Factory(:episode, :position => 2)
     Episode.recent.should == [e2, e1]
   end
 
@@ -116,7 +116,17 @@ describe Episode do
 
   it "has a full name which includes position" do
     Episode.delete_all
-    Factory(:episode, :name => "Foo Bar").full_name.should eq('#1 Foo Bar')
+    Factory(:episode, :position => 123, :name => "Foo Bar").full_name.should eq('#123 Foo Bar')
+  end
+
+  it "knows the next and previous episode based on position" do
+    Episode.delete_all
+    e1 = Factory(:episode, :position => 1)
+    e2 = Factory(:episode, :position => 6)
+    e1.previous.should be_nil
+    e1.next.should eq(e2)
+    e2.next.should be_nil
+    e2.previous.should eq(e1)
   end
 
   describe "primitive search" do

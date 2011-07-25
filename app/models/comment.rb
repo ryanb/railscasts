@@ -8,7 +8,6 @@ class Comment < ActiveRecord::Base
 
   has_paper_trail
   has_ancestry
-  acts_as_list :scope => :episode
 
   def request=(request)
     self.user_ip    = request.remote_ip

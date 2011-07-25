@@ -53,10 +53,10 @@ describe "Episodes request" do
   end
 
   it "contains show notes, comments, and similar episodes" do
-    episode = Factory(:episode, :name => "Blast from the Past", :notes => "Show notes!")
+    episode = Factory(:episode, :name => "Blast from the Past", :notes => "Show notes!", :position => 1)
     Factory(:comment, :content => "Hello world", :episode => episode)
-    Factory(:episode, :name => "Star Wars")
-    Factory(:episode, :name => "Past and Present")
+    Factory(:episode, :name => "Star Wars", :position => 2)
+    Factory(:episode, :name => "Past and Present", :position => 3)
     visit episodes_path
     click_on "Blast from the Past"
     page.should have_content("Blast from the Past")
@@ -88,7 +88,7 @@ describe "Episodes request" do
     page.should have_content("not authorized")
   end
 
-  it "creates a new episode" do
+  it "creates a new episode with default position" do
     login Factory(:user, :admin => true)
     visit episodes_path
     click_on "New Episode"

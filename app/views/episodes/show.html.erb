@@ -43,8 +43,8 @@
     <li class="selected"><%= tab_link "Show Notes", :view => nil %></li>
     <li><%= tab_link pluralize(@episode.comments.size, "Comment"), :view => "comments" %></li>
     <li><%= tab_link "Similar Episodes", :view => "similar" %></li>
-    <%= content_tag :li, link_to("Next Episode >", @episode.lower_item), :class => "next" unless @episode.last_published? || @episode.last? %>
-    <%= content_tag :li, link_to("< Previous Episode", @episode.higher_item), :class => "previous" unless @episode.first? %>
+    <%= content_tag :li, link_to("Next Episode >", @episode.next), :class => "next" if !@episode.last_published? && @episode.next %>
+    <%= content_tag :li, link_to("< Previous Episode", @episode.previous), :class => "previous" if @episode.previous %>
   </ul>
   <div class="nav_section">
     <%= %w[comments similar].include?(params[:view]) ? render(params[:view]) : render("show_notes") %>

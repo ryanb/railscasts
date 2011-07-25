@@ -2,6 +2,7 @@
   <p><strong>Please follow the <%= link_to "moderator guidelines", moderators_path %>.</strong></p>
   <%= form_for @episode do |f| %>
     <%= f.error_messages %>
+    <%= field f, :position %>
     <%= field f, :name %>
     <%= field f, :tag_names, :label => "Tags" %>
     <%= field f, :description, :type => :text_area, :rows => 6 %>

@@ -4,7 +4,6 @@ class Episode < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   has_paper_trail
-  acts_as_list
 
   scope :published, lambda { where('published_at <= ?', Time.now.utc) }
   scope :unpublished, lambda { where('published_at > ?', Time.now.utc) }
@@ -147,6 +146,14 @@ class Episode < ActiveRecord::Base
     if response.code == "200"
       response["content-length"]
     end
+  end
+
+  def previous
+    self.class.where("position < ?", position).order("position desc").first
+  end
+
+  def next
+    self.class.where("position > ?", position).order("position").first
   end
 
   private

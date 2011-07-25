@@ -5,7 +5,6 @@ gem "rails", "3.0.9"
 gem "mysql2"
 gem "redcarpet"
 gem "coderay"
-gem "acts_as_list"
 gem "thinking-sphinx", ">= 2.0.1", :require => "thinking_sphinx"
 gem "whenever", :require => false
 gem "will_paginate", ">= 3.0.pre2"

@@ -24,6 +24,7 @@ class EpisodesController < ApplicationController
   end
 
   def new
+    @episode.position = Episode.maximum(:position).to_i + 1
   end
 
   def create
