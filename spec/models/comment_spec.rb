@@ -34,10 +34,11 @@ describe Comment do
     last_email.to.should include(c1.user.email)
   end
 
-  it "should not notify users which don't have an email or comments which don't have user" do
+  it "should not notify user when user does not want email" do
     c1 = Factory(:comment, :user => nil)
-    c2 = Factory(:comment, :parent => c1, :user => Factory(:user, :email => ""))
-    c3 = Factory(:comment, :parent => c2)
-    c3.users_to_notify.should eq([])
+    c2 = Factory(:comment, :parent => c2, :user => Factory(:user, :email_on_reply => false))
+    c3 = Factory(:comment, :parent => c2, :user => Factory(:user, :email => ""))
+    c4 = Factory(:comment, :parent => c3)
+    c4.users_to_notify.should eq([])
   end
 end

@@ -23,6 +23,6 @@ class Comment < ActiveRecord::Base
   end
 
   def users_to_notify
-    ancestors.map(&:user).compact.select { |u| u.email.present? && u != user }
+    ancestors.map(&:user).compact.select { |u| u.email.present? && u.email_on_reply? && u != user }
   end
 end

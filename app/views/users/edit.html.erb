@@ -16,8 +16,8 @@
     <%= f.text_field :site_url %>
   </p>
   <p>
-    <%= f.label :email_on_reply, "Receive email when a user replies to your comment?" %>
     <%= f.check_box :email_on_reply %>
+    <%= f.label :email_on_reply, "Receive email when a user replies to your comment", :class => "check_box" %>
   </p>
   <p><%= f.submit "Update Profile" %></p>
 <% end %>
