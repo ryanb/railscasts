@@ -48,6 +48,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+    @user = User.find_by_unsubscribe_token!(params[:token])
+    @user.update_attributes!(:email_on_reply => false)
+    redirect_to root_url, :notice => "You have been unsubscribed from further email notifications."
+  end
+
   private
 
   def load_current_user

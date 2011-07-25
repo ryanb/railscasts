@@ -19,6 +19,15 @@ describe User do
     user.name.should == "Bar"
     user.gravatar_token.should == "avatar"
     user.site_url.should == "customsite"
+    user.email_on_reply.should be_true
     user
+  end
+
+  it "should generate persistant unsubscribe_token" do
+    user = Factory(:user)
+    user.unsubscribe_token.should be_nil
+    token = user.generated_unsubscribe_token
+    user.reload.unsubscribe_token.should eq(token)
+    user.generated_unsubscribe_token.should eq(token)
   end
 end

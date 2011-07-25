@@ -24,6 +24,7 @@ describe Mailer do
       mail.from.should eq(["noreply@railscasts.com"])
       mail.body.encoded.should include(comment.content)
       mail.body.encoded.should include(episode_url(comment.episode, :view => "comments"))
+      mail.body.encoded.should include(unsubscribe_url(user.generated_unsubscribe_token))
     end
   end
 end

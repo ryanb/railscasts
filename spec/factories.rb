@@ -21,6 +21,7 @@ Factory.define :user do |f|
   f.sequence(:github_username) { |n| "foo#{n}" }
   f.sequence(:github_uid) { |n| n }
   f.sequence(:email) { |n| "foo#{n}@example.com" }
+  f.email_on_reply true
 end
 
 Factory.define :feedback_message do |f|

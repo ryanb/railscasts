@@ -11,6 +11,7 @@ describe "Ability" do
       @ability.should be_able_to(:login, :users)
       @ability.should be_able_to(:show, :users)
       @ability.should be_able_to(:create, :users)
+      @ability.should be_able_to(:unsubscribe, :users)
       @ability.should_not be_able_to(:update, :users)
     end
 

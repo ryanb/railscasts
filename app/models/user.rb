@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :site_url
-  before_create :generate_token
+  attr_accessible :name, :email, :site_url, :email_on_reply
+  before_create { generate_token(:token) }
   has_many :comments
   has_paper_trail
 
@@ -12,17 +12,23 @@ class User < ActiveRecord::Base
       user.name = omniauth["user_info"]["name"]
       user.site_url = omniauth["user_info"]["urls"]["Blog"] if omniauth["user_info"]["urls"]
       user.gravatar_token = omniauth["extra"]["user_hash"]["gravatar_id"] if omniauth["extra"] && omniauth["extra"]["user_hash"]
+      user.email_on_reply = true
       user.save!
     end
   end
 
-  def generate_token
-    if token.blank?
-      characters = ('a'..'z').to_a + ('A'..'Z').to_a + ('1'..'9').to_a
-      begin
-        self.token = Array.new(32) { characters.sample }.join
-      end while self.class.exists?(:token => token)
+  def generated_unsubscribe_token
+    if unsubscribe_token.blank?
+      generate_token(:unsubscribe_token)
+      save!
     end
+    unsubscribe_token
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
   end
 
   def display_name

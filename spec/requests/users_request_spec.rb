@@ -16,9 +16,11 @@ describe "Users request" do
     page.should have_content("This is your profile.")
     click_on "Edit Profile"
     fill_in "Name", :with => "Leonardo"
+    uncheck "user_email_on_reply"
     click_on "Update Profile"
     page.should have_content("Successfully updated profile")
     page.should have_content("Leonardo")
+    user.reload.email_on_reply.should be_false
   end
 
   it "logs out current user" do
@@ -54,5 +56,12 @@ describe "Users request" do
     click_on "Ban User"
     bad_user.reload.should be_banned
     bad_user.comments.size.should == 0
+  end
+
+  it "unsubscribe a user from comment replies" do
+    user = Factory(:user)
+    visit unsubscribe_path(user.generated_unsubscribe_token)
+    page.should have_content("unsubscribed")
+    user.reload.email_on_reply.should be_false
   end
 end

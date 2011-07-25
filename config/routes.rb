@@ -9,6 +9,7 @@ Railscasts::Application.routes.draw do
   match "logout" => "users#logout", :as => "logout"
   match "feedback" => "feedback_messages#new", :as => "feedback"
   match "episodes/archive" => redirect("/?view=list")
+  match 'unsubscribe/:token' => 'users#unsubscribe', :as => "unsubscribe"
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
 
   resources :users do
