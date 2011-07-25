@@ -36,6 +36,7 @@ describe "Ability" do
       @ability.should_not be_able_to(:create, :comments)
       @ability.should_not be_able_to(:update, :comments)
       @ability.should_not be_able_to(:destroy, :comments)
+      @ability.should_not be_able_to(:index, :comments)
     end
   end
 
@@ -108,9 +109,10 @@ describe "Ability" do
       @ability.should be_able_to(:revert, :versions)
     end
 
-    it "can update and destroy any any comments" do
+    it "can list, update and destroy any comments" do
       @ability.should be_able_to(:update, Factory(:comment, :user => User.new, :created_at => 20.minutes.ago))
       @ability.should be_able_to(:destroy, Factory(:comment, :user => User.new, :created_at => 20.minutes.ago))
+      @ability.should be_able_to(:index, :comments)
     end
 
     it "can view episodes which are not yet published" do

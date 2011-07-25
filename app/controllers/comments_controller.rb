@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
 
+  def index
+    @comments = @comments.recent.paginate(:page => params[:page], :per_page => 50)
+  end
+
   def new
     @comment = Comment.new(:parent_id => params[:parent_id], :episode_id => params[:episode_id], :user => current_user)
   end

@@ -39,6 +39,9 @@
         <li><%= link_to_unless_current "Browse Episodes", root_url %></li>
         <li><%= link_to_unless_current "About RailsCasts", about_path %></li>
         <li><%= link_to_unless_current "Feedback", feedback_path %></li>
+        <% if can? :index, :comments %>
+          <li><%= link_to_unless_current "Recent Comments", comments_path %></li>
+        <% end %>
       </ul>
       <%= form_tag episodes_path, :method => "get" do %>
         <%= text_field_tag :search, params[:search], :size => 35 %>

@@ -1,0 +1,8 @@
+<% title "Recent Comments" %>
+
+<div class="content">
+  <div id="comments">
+    <%= render @comments %>
+    <%= will_paginate :previous_label => h("< Previous Page"),  :next_label => h("Next Page >") %>
+  </div>
+</div>

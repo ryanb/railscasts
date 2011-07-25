@@ -63,4 +63,11 @@ describe "Comments request" do
     click_on "undo"
     page.should have_content("Hello world!")
   end
+
+  it "lists recent comments" do
+    login Factory(:user, :admin => true)
+    comment = Factory(:comment, :content => "Hello world!")
+    visit comments_path
+    page.should have_content("Hello world!")
+  end
 end

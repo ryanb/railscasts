@@ -22,7 +22,7 @@ class Ability
       if user.moderator?
         can :show, :episodes
         can :update, :episodes, :notes
-        can [:update, :destroy], :comments
+        can [:update, :destroy, :index], :comments
         can :ban, :users
         can :revert, :versions
       end
