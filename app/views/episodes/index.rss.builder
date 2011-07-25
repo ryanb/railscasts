@@ -41,7 +41,7 @@ xml.rss "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",  "xmlns:
 
     @episodes.each do  |episode|
       xml.item do
-        xml.title "\##{episode.position} #{episode.name}"
+        xml.title episode.full_name
         xml.description episode.description
         xml.pubDate episode.published_at.to_s(:rfc822)
         xml.enclosure :url => episode.asset_url("videos", ext), :length => episode.file_size(ext), :type => 'video/mp4'

@@ -114,6 +114,11 @@ describe Episode do
     episode.fetch_file_size("http://example.com/foo").should == nil
   end
 
+  it "has a full name which includes position" do
+    Episode.delete_all
+    Factory(:episode, :name => "Foo Bar").full_name.should eq('#1 Foo Bar')
+  end
+
   describe "primitive search" do
     before(:each) do
       Episode.delete_all

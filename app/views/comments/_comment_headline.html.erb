@@ -8,10 +8,13 @@
     <% else %>
       <%= link_to_unless comment.site_url.blank?, comment.name, fix_url(comment.site_url), :rel => "nofollow" %>
     <% end %>
+    <% if params[:controller] != "episodes" %>
+      on <%= link_to comment.episode.full_name, episode_path(comment.episode, :view => "comments", :anchor => "comment_#{comment.id}") %>
+    <% end %>
   </span>
   <% unless comment.created_at.nil? %>
-    <span class="created_at">
+    <%= link_to episode_path(comment.episode, :view => "comments", :anchor => "comment_#{comment.id}"), :class => "created_at" do %>
       <%= time_ago_in_words comment.created_at %> ago
-    </span>
+    <% end %>
   <% end %>
 </div>

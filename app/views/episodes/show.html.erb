@@ -1,4 +1,4 @@
-<% title "\##{@episode.position} #{@episode.name}", false %>
+<% title @episode.full_name, false %>
 
 <div id="episode" class="<%= "legacy" if @episode.legacy? %>">
   <% if params[:autoplay] %>

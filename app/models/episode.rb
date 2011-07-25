@@ -62,6 +62,10 @@ class Episode < ActiveRecord::Base
     raise e
   end
 
+  def full_name
+    "\##{position} #{name}"
+  end
+
   def tag_names=(names)
     self.tags = Tag.with_names(names.split(/\s+/))
   end
