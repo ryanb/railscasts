@@ -42,9 +42,9 @@ describe "Users request" do
     User.count.should be_zero
     OmniAuth.config.add_mock(:github, "uid" => "54321")
     visit login_path
-    page.current_path.should == "/"
-    User.count.should == 1
-    User.last.github_uid.should == "54321"
+    page.current_path.should eq("/")
+    User.count.should eq(1)
+    User.last.github_uid.should eq("54321")
   end
 
   it "bans user as moderator" do
@@ -55,7 +55,7 @@ describe "Users request" do
     visit episode_path(comment.episode, :view => "comments")
     click_on "Ban User"
     bad_user.reload.should be_banned
-    bad_user.comments.size.should == 0
+    bad_user.comments.size.should eq(0)
   end
 
   it "unsubscribe a user from comment replies" do

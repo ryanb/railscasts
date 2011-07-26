@@ -79,7 +79,7 @@ describe "Episodes request" do
   it "redirects to episode when full permalink isn't used" do
     episode = Factory(:episode, :name => "Blast from the Past")
     visit episode_path("#{episode.position}-anything")
-    page.current_path.should == episode_path("#{episode.position}-#{episode.permalink}")
+    page.current_path.should eq(episode_path("#{episode.position}-#{episode.permalink}"))
   end
 
   it "reports unauthorized access when attempting to create an episode as a normal user" do
@@ -97,7 +97,7 @@ describe "Episodes request" do
     fill_in "Name", :with => "Blast from the Past"
     fill_in "Duration", :with => "15:23"
     click_on "Create"
-    page.current_path.should == episode_path(Episode.last)
+    page.current_path.should eq(episode_path(Episode.last))
     page.should have_content("Blast from the Past")
     page.should have_content("15 minutes")
   end
@@ -112,7 +112,7 @@ describe "Episodes request" do
     page.should have_content("Invalid Fields")
     fill_in "Name", :with => "Back to the Future"
     click_on "Update"
-    page.current_path.should == episode_path(episode)
+    page.current_path.should eq(episode_path(episode))
     page.should have_content("Back to the Future")
   end
 
@@ -129,6 +129,6 @@ describe "Episodes request" do
 
   it "redirects /episodes/archive to episodes list" do
     visit "/episodes/archive"
-    page.current_url.should == root_url(:view => "list")
+    page.current_url.should eq(root_url(:view => "list"))
   end
 end

@@ -14,7 +14,14 @@ describe "FeedbackMessages request" do
     fill_in "Message", :with => "Hello"
     click_button "Send"
     page.should have_content("Thank you for the feedback.")
-    ActionMailer::Base.deliveries.count.should == 1
+    ActionMailer::Base.deliveries.count.should eq(1)
+  end
+
+  it "includes logged in user email and name" do
+    login Factory(:user, :name => "Foo Test", :email => "footest@example.com")
+    visit feedback_path
+    find_by_id("feedback_message_name").value.should eq("Foo Test")
+    find_by_id("feedback_message_email").value.should eq("footest@example.com")
   end
 
   it "does not send an email when filling out fake email field (honeypot)" do
@@ -26,6 +33,6 @@ describe "FeedbackMessages request" do
     fill_in "Message", :with => "Hello"
     click_button "Send"
     page.should have_content("caught")
-    ActionMailer::Base.deliveries.count.should == 0
+    ActionMailer::Base.deliveries.count.should eq(0)
   end
 end

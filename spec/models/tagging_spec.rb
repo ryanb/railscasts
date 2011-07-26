@@ -5,7 +5,7 @@ describe Tagging do
     @tagging = Tagging.new
   end
 
-  it "should be valid" do
+  it "is valid" do
     @tagging.should be_valid
   end
 end
