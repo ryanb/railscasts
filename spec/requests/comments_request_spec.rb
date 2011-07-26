@@ -64,10 +64,16 @@ describe "Comments request" do
     page.should have_content("Hello world!")
   end
 
-  it "lists recent comments" do
+  it "lists and search recent comments" do
     login Factory(:user, :admin => true)
-    comment = Factory(:comment, :content => "Hello world!")
+    Factory(:comment, :content => "Hello world!")
+    Factory(:comment, :content => "Back to the Future")
     visit comments_path
     page.should have_content("Hello world!")
+    page.should have_content("Back to the Future")
+    fill_in "comment_search", :with => "Future"
+    click_on "Search Comments"
+    page.should_not have_content("Hello world!")
+    page.should have_content("Back to the Future")
   end
 end

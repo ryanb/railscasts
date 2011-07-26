@@ -9,6 +9,14 @@ class Comment < ActiveRecord::Base
   has_paper_trail
   has_ancestry
 
+  def self.search(query)
+    if query.blank?
+      scoped
+    else
+      where("comments.content like ?", "%#{query}%")
+    end
+  end
+
   def request=(request)
     self.user_ip    = request.remote_ip
     self.user_agent = request.env['HTTP_USER_AGENT']
