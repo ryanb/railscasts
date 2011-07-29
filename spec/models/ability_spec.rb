@@ -116,6 +116,7 @@ describe "Ability" do
     end
 
     it "can view episodes which are not yet published" do
+      @ability.should be_able_to(:index, Factory.build(:episode, :published_at => 2.days.from_now))
       @ability.should be_able_to(:show, Factory.build(:episode, :published_at => 2.days.from_now))
     end
 
