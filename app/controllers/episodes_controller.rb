@@ -28,6 +28,7 @@ class EpisodesController < ApplicationController
   end
 
   def create
+    @episode.load_file_sizes
     if @episode.save
       redirect_to @episode, :notice => "Successfully created episode."
     else
@@ -39,6 +40,7 @@ class EpisodesController < ApplicationController
   end
 
   def update
+    @episode.load_file_sizes
     if @episode.update_attributes(params[:episode])
       redirect_to @episode, :notice => "Successfully updated episode."
     else

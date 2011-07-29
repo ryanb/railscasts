@@ -89,6 +89,7 @@ describe "Episodes request" do
   end
 
   it "creates a new episode with default position" do
+    FakeWeb.register_uri(:head, /.*/, :content_length => 123)
     login Factory(:user, :admin => true)
     visit episodes_path
     click_on "New Episode"
@@ -100,9 +101,11 @@ describe "Episodes request" do
     page.current_path.should eq(episode_path(Episode.last))
     page.should have_content("Blast from the Past")
     page.should have_content("15 minutes")
+    Episode.last.file_size("mp4").should == 123
   end
 
   it "edits an episode as admin" do
+    FakeWeb.register_uri(:head, /.*/, :content_length => 123)
     login Factory(:user, :admin => true)
     episode = Factory(:episode, :name => "Blast from the Past")
     visit episode_path(episode)
@@ -117,6 +120,7 @@ describe "Episodes request" do
   end
 
   it "edits an episode show notes as moderator" do
+    FakeWeb.register_uri(:head, /.*/, :content_length => 123)
     login Factory(:user, :moderator => true)
     episode = Factory(:episode)
     visit episode_path(episode)
@@ -125,6 +129,7 @@ describe "Episodes request" do
     fill_in "Notes", :with => "Updating notes!"
     click_on "Update"
     page.should have_content("Updating notes!")
+    episode.reload.file_size("mp4").should == 123
   end
 
   it "redirects /episodes/archive to episodes list" do
