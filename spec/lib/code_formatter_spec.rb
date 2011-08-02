@@ -19,6 +19,7 @@ describe CodeFormatter do
     formatter.language("rails console").should eq("ruby")
     formatter.language("hello.js.rjs").should eq("rjs")
     formatter.language("hello.scss").should eq("css")
+    formatter.language("rails").should eq("ruby")
   end
 
   it "converts to markdown" do
