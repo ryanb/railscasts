@@ -35,8 +35,10 @@ class CodeFormatter
     when /\.scss$/ then "css"
     when /\.erb$/, /\.html$/ then "rhtml"
     when /\.rb$/, /\.rake$/, /\.gemspec/, /file$/, /console$/, "rails" then "ruby"
-    when /\./ then path[/\.([^.]+?)$/, 1]
-    else path
+    when /\./ then path[/\.([^.]+?)$/, 1].strip
+    when "" then "text"
+    when nil then "text"
+    else path.strip
     end
   end
 

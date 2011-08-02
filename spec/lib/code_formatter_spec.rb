@@ -20,6 +20,10 @@ describe CodeFormatter do
     formatter.language("hello.js.rjs").should eq("rjs")
     formatter.language("hello.scss").should eq("css")
     formatter.language("rails").should eq("ruby")
+    formatter.language("foo.bar ").should eq("bar")
+    formatter.language("foo ").should eq("foo")
+    formatter.language("").should eq("text")
+    formatter.language(nil).should eq("text")
   end
 
   it "converts to markdown" do
