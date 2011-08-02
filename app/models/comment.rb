@@ -13,7 +13,8 @@ class Comment < ActiveRecord::Base
     if query.blank?
       scoped
     else
-      where("comments.content like ?", "%#{query}%")
+      conditions = %w[content name email site_url].map { |c| "comments.#{c} like :query" }
+      where(conditions.join(" or "), :query => "%#{query}%")
     end
   end
 

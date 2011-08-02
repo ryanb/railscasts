@@ -41,4 +41,10 @@ describe Comment do
     c4 = Factory(:comment, :parent => c3)
     c4.users_to_notify.should eq([])
   end
+
+  it "searches by comment site url" do
+    c1 = Factory(:comment, :site_url => "http://example.com")
+    c2 = Factory(:comment, :site_url => "http://example2.com")
+    Comment.search("example.com").should eq([c1])
+  end
 end

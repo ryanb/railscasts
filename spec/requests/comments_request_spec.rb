@@ -67,7 +67,7 @@ describe "Comments request" do
   it "lists and search recent comments" do
     login Factory(:user, :admin => true)
     Factory(:comment, :content => "Hello world!")
-    Factory(:comment, :content => "Back to the Future")
+    Factory(:comment, :content => "Back to the Future", :site_url => "http://example.com")
     visit comments_path
     page.should have_content("Hello world!")
     page.should have_content("Back to the Future")
