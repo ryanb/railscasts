@@ -24,6 +24,7 @@ describe CodeFormatter do
     formatter.language("foo ").should eq("foo")
     formatter.language("").should eq("text")
     formatter.language(nil).should eq("text")
+    formatter.language("0```").should eq("text")
   end
 
   it "converts to markdown" do

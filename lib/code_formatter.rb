@@ -29,16 +29,14 @@ class CodeFormatter
   end
 
   def language(path)
-    case path
+    case path.to_s.strip
     when /\.yml$/ then "yaml"
     when /\.js$/ then "java_script"
     when /\.scss$/ then "css"
     when /\.erb$/, /\.html$/ then "rhtml"
     when /\.rb$/, /\.rake$/, /\.gemspec/, /file$/, /console$/, "rails" then "ruby"
-    when /\./ then path[/\.([^.]+?)$/, 1].strip
-    when "" then "text"
-    when nil then "text"
-    else path.strip
+    when /([a-z0-9]+)$/i then $1
+    else "text"
     end
   end
 
