@@ -14,7 +14,11 @@
   </span>
   <% unless comment.created_at.nil? %>
     <%= link_to episode_path(comment.episode, :view => "comments", :anchor => "comment_#{comment.id}"), :class => "created_at" do %>
-      <%= time_ago_in_words comment.created_at %> ago
+      <% if params[:controller] == "episodes" %>
+        <%= time_ago_in_words comment.created_at %> ago
+      <% else %>
+        <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%I") %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
