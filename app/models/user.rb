@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    name || github_username
+    name.present? ? name : github_username
   end
 
   def banned?
