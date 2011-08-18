@@ -694,6 +694,14 @@ label.check_box {
   left: 320px;
 }
 
+#episode .asciicasts {
+  padding-right: 20px;
+}
+
+#episode .browse_code img {
+  vertical-align: bottom;
+}
+
 #episode .show_notes ul {
   margin-top: -10px; /* quick hack to move resources list under headline */
   padding-top: 0;

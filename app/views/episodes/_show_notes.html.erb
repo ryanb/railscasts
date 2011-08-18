@@ -2,12 +2,20 @@
   <div class="actions episode_actions"><%= link_to "Edit", edit_episode_path(@episode) %></div>
 <% end %>
 
-<% if @episode.asciicasts? %>
-  <p>
-    <%= image_tag "icons/asciicasts.png", :size => "12x15", :class => "icon" %>
-    <%= link_to "Read on ASCIIcasts", "http://asciicasts.com/episodes/#{@episode.to_param}" %>
-  </p>
-<% end %>
+<div class="extra_nav">
+  <% if @episode.asciicasts? %>
+    <span class="asciicasts">
+      <%= image_tag "icons/asciicasts.png", :size => "12x15", :class => "icon" %>
+      <%= link_to "Read on ASCIIcasts", "http://asciicasts.com/episodes/#{@episode.to_param}" %>
+    </span>
+  <% end %>
+  <% if @episode.file_sizes && @episode.file_sizes["zip"] %>
+    <span class="browse_code">
+      <%= image_tag "icons/browse_code.png", :size => "22x21", :class => "icon" %>
+      <%= link_to "Browse Source Code", "http://github.com/railscasts/episode-#{@episode.position}" %>
+    </span>
+  <% end %>
+</div>
 
 <div class="show_notes">
   <%= textilize @episode.notes %>
