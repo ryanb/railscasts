@@ -18,6 +18,9 @@
       <%= @episode.published_at.strftime('%b %d, %Y') %> |
       <%= pluralize (@episode.seconds/60).round, "minute" %> |
       <%= raw @episode.tags.map { |tag| link_to tag.display_name, root_path(:tag_id => tag) }.join(", ") %>
+      <% unless @episode.published? %>
+        <span class="unreleased">NOT YET RELEASED</span>
+      <% end %>
     </div>
     <div class="description"><%= @episode.description %></div>
     <div class="watch">

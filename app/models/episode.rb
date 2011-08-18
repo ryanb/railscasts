@@ -93,6 +93,10 @@ class Episode < ActiveRecord::Base
     self == self.class.published.last
   end
 
+  def published?
+    published_at <= Time.zone.now
+  end
+
   def duration
     if seconds
       min, sec = *seconds.divmod(60)

@@ -236,6 +236,12 @@ label.check_box {
   margin-right: 200px;
 }
 
+.unreleased {
+  color: #D00;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
 .episodes h2 .remove {
   font-size: 14px;
   font-weight: normal;

@@ -4,6 +4,9 @@
     <div class="info">
       <span class="number">Episode #<%= episode.position %></span> &ndash;
       <span class="published_at"><%= episode.published_at.strftime('%b %d, %Y') %></span>
+      <% unless episode.published? %>
+        <span class="unreleased">NOT YET RELEASED</span>
+      <% end %>
     </div>
     <h2><%= link_to episode.name, episode %></h2>
     <div class="description"><%= episode.description %></div>
