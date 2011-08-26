@@ -169,6 +169,6 @@ class Episode < ActiveRecord::Base
   end
 
   def set_permalink
-    self.permalink = name.downcase.gsub(/[^0-9a-z]+/, ' ').strip.gsub(' ', '-') if name
+    self.permalink = name.parameterize if name
   end
 end
