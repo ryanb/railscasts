@@ -44,7 +44,7 @@ class Episode < ActiveRecord::Base
   end
 
   def self.primitive_search(query, join = "AND")
-    find(:all, :conditions => primitive_search_conditions(query, join))
+    where(primitive_search_conditions(query, join))
   end
 
   def similar_episodes
