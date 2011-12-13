@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
+  protected
+
+  # overrides ActionController::RequestForgeryProtection#handle_unverified_request
+  def handle_unverified_request
+    super
+    cookies.delete(:token)
+  end
+
   private
 
   def user_for_paper_trail
