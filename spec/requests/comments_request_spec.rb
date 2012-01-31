@@ -76,4 +76,12 @@ describe "Comments request" do
     page.should_not have_content("Hello world!")
     page.should have_content("Back to the Future")
   end
+
+  it "provides RSS feed of recent comments" do
+    Factory(:comment, :content => "Hello world!")
+    Factory(:comment, :content => "Back to the Future", :site_url => "http://example.com")
+    visit comments_path(:format => :rss)
+    page.should have_content("Hello world!")
+    page.should have_content("Back to the Future")
+  end
 end

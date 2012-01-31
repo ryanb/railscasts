@@ -32,11 +32,11 @@ describe "Ability" do
       @ability.should be_able_to(:create, :feedback_messages)
     end
 
-    it "cannot even create comments" do
+    it "can only view comments" do
+      @ability.should be_able_to(:index, :comments)
       @ability.should_not be_able_to(:create, :comments)
       @ability.should_not be_able_to(:update, :comments)
       @ability.should_not be_able_to(:destroy, :comments)
-      @ability.should_not be_able_to(:index, :comments)
     end
   end
 
