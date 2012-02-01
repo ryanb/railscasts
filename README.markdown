@@ -2,7 +2,9 @@
 
 This is the source code for the [RailsCasts site](http://railscasts.com/). If you want the source code for the episodes, see the [railscasts-episodes](http://github.com/ryanb/railscasts-episodes) project.
 
-Please [let me know](https://github.com/inbox/new/ryanb) if you plan to use this app for your site.
+Please [let me know](http://railscasts.com/feedback) if you plan to use this app for your site.
+
+**IMPORTANT:** This source code is out of date with the latest changes at railscasts.com to ensure the security of the payment processing. I hope to open-source the latest additions at some point.
 
 
 ## Setup
