@@ -2,7 +2,10 @@ class CommentsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @comments = @comments.search(params[:comment_search]).recent.paginate(:page => params[:page], :per_page => 50)
+    respond_to do |format|
+      format.html { @comments = @comments.search(params[:comment_search]).recent.paginate(:page => params[:page], :per_page => 50) }
+      format.rss { @comments = @comments.where('updated_at > ?', 1.week.ago).order('updated_at DESC') }
+    end
   end
 
   def new
