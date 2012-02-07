@@ -6,9 +6,7 @@
     <%= form_for @feedback_message do |f| %>
       <%= f.error_messages %>
       <div class="info">
-        <p>You can also contact <a href="http://twitter.com/railscasts">@railscasts</a> on Twitter, or send an email to <script type="text/javascript">document.write(
-      "<n uers=\"znvygb:srrqonpx\100envyfpnfgf\056pbz\">srrqonpx\100envyfpnfgf\056pbz<\057n>".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));
-      </script>.</p>
+        <p>You can also contact <a href="http://twitter.com/railscasts">@railscasts</a> on Twitter, or send an email to <%= encrypt_mailto_linK("feedback@addoncasts.com")%>.</p>
       </div>
       <div class="special_email_field">
         <%= label_tag :email %>

@@ -1,3 +1,16 @@
+function decrypted_email(riddle) {
+	var email_address = '';
+	for ( var i = 0; i < riddle.length; i++ ) {
+		email_address += String.fromCharCode(riddle[i])
+	}
+	return email_address
+}
+
+function decrypted_mailto_link(riddle) {
+	var email_address = decrypted_email(riddle)
+	document.write("<a href=\"mailto:"+email_address+"\">"+email_address+"</a>")
+}
+
 $(function() {
   if ($("#episode").length > 0) {
     sublimevideo.ready(function() {
