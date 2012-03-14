@@ -72,6 +72,9 @@ puts "code block"
           <% end %>
           <div class="actions">
             <%= f.submit(@comment.new_record? ? "Post Comment" : "Update Comment") %>
+            <% if params[:controller] == "comments" %>
+              <%= link_to "Discard", "#", :class => "remove_comment" %>
+            <% end %>
           </div>
         <% end %>
       </div>
