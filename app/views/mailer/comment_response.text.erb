@@ -6,7 +6,10 @@ From: <%= raw @comment.user.name %>
 <%= raw @comment.content %>
 ---
 
-To view the full comment: <%= episode_url(@comment.episode, :view => "comments") %>
+To view the full comment: <%= episode_url(@comment.episode, :anchor => "comment_#{comment.id}") %>
+
+If you don't want to receive emails for future comment replies then please update your personal settings here:
+<%= edit_user_url(@user.id) %>
 
 To unsubscribe from future emails from RailsCasts, just click this link:
 <%= unsubscribe_url(@user.generated_unsubscribe_token) %>
