@@ -60,5 +60,12 @@ $(function() {
         $(this).children(".clippy_label").text("copied");
       }
     });
+
+    // Remove reply-to-comment field
+    $(".nested_comments").delegate(".remove_comment", "click", function() {
+      $(this).closest("div#new_comment").remove();
+
+      return false;
+    });
   }
 });
