@@ -11,7 +11,7 @@
   <div class="info<%= " video_info" if params[:autoplay] %>">
     <div class="screenshot"><%= link_to image_tag("/assets/episodes/stills/#{@episode.asset_name}.png", :size => "200x125", :alt => @episode.name), {:autoplay => true}, :class => "play_video" %></div>
     <h1>
-      <span class="position">#<%= @episode.position %></span>
+      <span class="position">#<%= @episode.position %> </span>
       <%= @episode.name %>
     </h1>
     <div class="details">
