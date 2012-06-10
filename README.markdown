@@ -1,4 +1,4 @@
-# RailsCasts
+# RailsCasts [![Dependency Status](https://gemnasium.com/ryanb/railscasts.png)](https://gemnasium.com/ryanb/railscasts)
 
 This is the source code for the [RailsCasts site](http://railscasts.com/). If you want the source code for the episodes, see the [railscasts-episodes](http://github.com/ryanb/railscasts-episodes) project.
 
