@@ -57,4 +57,12 @@ module ApplicationHelper
     type = options.delete(:type) || :text_field
     content_tag(:div, (f.label(attribute, label_name) + f.send(type, attribute, options)), :class => "field")
   end
+  
+  def encrypt_email(email_address)
+    email_address.chars.map{|c|c.ord}
+  end
+  
+  def encrypt_mailto_link(email_address)
+    "<script>decrypted_mailto_link([#{encrypt_email(email_address).join(',')}])</script>".html_safe
+  end
 end
