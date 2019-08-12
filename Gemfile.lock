@@ -200,7 +200,7 @@ GEM
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
-    rubyzip (0.9.4)
+    rubyzip (1.2.3)
     selenium-webdriver (0.2.2)
       childprocess (>= 0.1.9)
       ffi (>= 1.0.7)
